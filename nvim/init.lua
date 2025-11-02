@@ -9,7 +9,7 @@ require("custom.tmuxrun")
 local border = "#1d2021"
 local status_bg = "#121618"
 local status_fg = "#928374"
-local cmd_fg = "#d5c4a1"
+local cmd_fg = "#a89984"
 local error_fg = "#f2594b"
 local warn_fg = "#e9b143"
 local info_fg = "#80aa9e"
