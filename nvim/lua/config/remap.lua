@@ -55,6 +55,11 @@ vim.keymap.set("n", "<C-t>", "<cmd>2argument<CR>", { desc = "Args select 2" })
 vim.keymap.set("n", "<C-n>", "<cmd>3argument<CR>", { desc = "Args select 3" })
 vim.keymap.set("n", "<C-s>", "<cmd>4argument<CR>", { desc = "Args select 4" })
 
+-- Vim sessions
+vim.keymap.set("n", "<C-a>", "<cmd>mksession!<CR>", { desc = "Create session" })
+vim.keymap.set("n", "<C-g>", "<cmd>source Session.vim<CR>", { desc = "Source session file" })
+vim.keymap.set("n", "<C-x>", "<cmd>!rm Session.vim<CR>", { desc = "Delete session" })
+
 -- git diff
 vim.keymap.set("n", "gu", "<cmd>diffget //2<CR>", { desc = "Git get remote diff" })
 vim.keymap.set("n", "gh", "<cmd>diffget //3<CR>", { desc = "Git get local diff" })

@@ -45,7 +45,11 @@ return {
                 cmdline = {
                     enabled = function()
                         return vim.fn.getcmdtype() ~= ":"
-                            or not vim.fn.getcmdline():match("^[%%0-9,'<>%-]*!")
+                            -- disable in shell commands
+                            or not (
+                                vim.fn.getcmdline():match("^term")
+                                or vim.fn.getcmdline():match("^[%%0-9,'<>%-]*!")
+                            )
                     end,
                 },
             },

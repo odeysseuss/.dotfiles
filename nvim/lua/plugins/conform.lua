@@ -7,7 +7,6 @@ return {
         conform.setup({
             formatters_by_ft = {
                 lua = { "stylua" },
-                nix = { "nixpkgs-fmt" },
                 c = { "clang_format" },
                 cpp = { "clang_format" },
                 h = { "clang_format" },

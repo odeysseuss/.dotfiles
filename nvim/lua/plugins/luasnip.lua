@@ -32,8 +32,6 @@ return {
                 t({ "", "TESTBUILDDIR := $(TESTDIR)/build" }),
                 t({ "", "TESTOBJDIR := $(TESTBUILDDIR)/obj" }),
                 t({ "", "OPT := -O2" }),
-                t({ "", "# Avoid in release flags -> -g3 -fsanitize=address" }),
-                t({ "", "# Avoid in development flags -> -O2 -march=native" }),
                 t({
                     "",
                     "CFLAGS := -std="

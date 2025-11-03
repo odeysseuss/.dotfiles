@@ -35,5 +35,4 @@ function ColorMyPencils()
 end
 
 vim.cmd([[ colorscheme gruvbox-material ]])
-
 ColorMyPencils()

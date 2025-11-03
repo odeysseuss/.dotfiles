@@ -70,6 +70,15 @@ vim.lsp.config("clangd", {
             "-D_GNU_SOURCE",
         },
     },
+    on_new_config = function(new_config)
+        local ft = vim.bo.filetype
+        local std_flag = ft == "c" and "-std=c99" or "-std=c++17"
+
+        new_config.init_options = new_config.init_options or {}
+        new_config.init_options.fallbackFlags = new_config.init_options.fallbackFlags or {}
+
+        table.insert(new_config.init_options.fallbackFlags, 1, std_flag)
+    end,
 })
 
 vim.lsp.config("cmake", {
