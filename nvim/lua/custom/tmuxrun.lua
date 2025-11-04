@@ -18,7 +18,7 @@ function KillPane()
 end
 
 -- nvim commands
-vim.api.nvim_create_user_command("TmuxRunner", function(opts)
+vim.api.nvim_create_user_command("TmuxRunCmd", function(opts)
     SendToTmux(opts.args)
 end, { nargs = "+" })
 

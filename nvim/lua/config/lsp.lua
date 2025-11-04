@@ -96,6 +96,11 @@ vim.lsp.config("rust_analyzer", {
     filetypes = { "rust" },
 })
 
+vim.lsp.config("gopls", {
+    cmd = { "gopls" },
+    filetypes = { "go" },
+})
+
 vim.lsp.config("tinymist", {
     cmd = { "tinymist" },
     filetypes = { "typst" },

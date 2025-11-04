@@ -18,6 +18,6 @@ return {
             },
         })
 
-        vim.keymap.set("n", "<leader>pv", "<cmd>Oil<CR>", { desc = "Oil toggle" })
+        vim.keymap.set("n", "<leader>v", "<cmd>Oil<CR>", { desc = "Oil toggle" })
     end,
 }

@@ -25,7 +25,7 @@ vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
 vim.keymap.set("n", "<leader>Y", [["+Y]])
 vim.keymap.set({ "n", "v" }, "<leader>D", '"_d')
 
-vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+vim.keymap.set("n", "<leader>ss", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
 -- lsp remaps
 vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})
@@ -34,14 +34,15 @@ vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, {})
 vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, {})
 vim.keymap.set("n", "<leader>j", vim.diagnostic.goto_next, {})
 vim.keymap.set("n", "<leader>k", vim.diagnostic.goto_prev, {})
--- location list diagnostic
-vim.keymap.set("n", "<leader>xq", vim.diagnostic.setloclist, {})
-vim.keymap.set("n", "<leader>xj", "<cmd>lnext<CR>zz", { desc = "Location list juml next" })
+-- location list
+vim.keymap.set("n", "<leader>xs", vim.diagnostic.setloclist, {})
+vim.keymap.set("n", "<leader>xj", "<cmd>lnext<CR>zz", { desc = "Location list jump next" })
 vim.keymap.set("n", "<leader>xk", "<cmd>lprev<CR>zz", { desc = "Location list jump prev" })
--- quickfix list diagnostic
-vim.keymap.set("n", "<leader>cc", vim.diagnostic.setqflist, {})
-vim.keymap.set("n", "<C-j>", "<cmd>cnext<CR>zz", { desc = "Quickfix list jump next" })
-vim.keymap.set("n", "<C-k>", "<cmd>cprev<CR>zz", { desc = "Quickfix list jump prev" })
+-- quickfix list
+vim.keymap.set("n", "<leader>sd", vim.diagnostic.setqflist, {})
+vim.keymap.set("n", "<leader>cc", "<cmd>copen<CR>", {})
+vim.keymap.set("n", "<leader>sj", "<cmd>cnext<CR>zz", { desc = "Quickfix list jump next" })
+vim.keymap.set("n", "<leader>sk", "<cmd>cprev<CR>zz", { desc = "Quickfix list jump prev" })
 
 -- harpoon like navigation
 vim.keymap.set("n", "<leader>a", function()
@@ -65,6 +66,7 @@ vim.keymap.set("n", "gu", "<cmd>diffget //2<CR>", { desc = "Git get remote diff"
 vim.keymap.set("n", "gh", "<cmd>diffget //3<CR>", { desc = "Git get local diff" })
 
 -- terminal commands
+vim.keymap.set("n", "<leader>b", "<cmd>make<CR>", { desc = "Make" })
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod 755 %<CR>")
 vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
 

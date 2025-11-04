@@ -9,10 +9,11 @@ return {
         require("mason-tool-installer").setup({
             ensure_installed = {
                 "lua-language-server",
-                "rust-analyzer",
-                "cmake-language-server",
-                "tinymist",
                 "bash-language-server",
+                "cmake-language-server",
+                "rust-analyzer",
+                "gopls",
+                "tinymist",
                 "stylua",
                 "taplo",
                 "clang-format",

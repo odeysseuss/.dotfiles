@@ -45,6 +45,7 @@ packages=(
     # lld
     llvm
     clang
+    # go
     typst
     gdb
     make

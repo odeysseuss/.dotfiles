@@ -34,6 +34,7 @@ export XDG_CONFIG_HOME=$HOME/.config
 export DOTFILES="$HOME/.dotfiles"
 export LOCAL_BIN="$HOME/.local/bin"
 export PERSONAL="$HOME/loom"
+export ZSH="$HOME/zsh"
 
 section "=== System Environment Setup ==="
 section "Package Installation"
@@ -79,31 +80,19 @@ if [ "$SHELL" != "$ZSH_PATH" ]; then
         exit 1
     }
 fi
-status "Installing Oh My Zsh..."
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" || {
-    error "Failed to install Oh My Zsh"
-    exit 1
-}
+status "Setup zsh dir"
+mkdir -p $ZSH/plugins $ZSH/themes
+
 status "Installing zsh plugins..."
-git clone https://github.com/zsh-users/zsh-autosuggestions.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}"/plugins/zsh-autosuggestions || {
+git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH/plugins/zsh-autosuggestions || {
     error "Failed to clone zsh-autosuggestions"
     exit 1
 }
-git clone https://github.com/Aloxaf/fzf-tab.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}"/plugins/fzf-tab || {
+git clone https://github.com/Aloxaf/fzf-tab.git $ZSH/plugins/fzf-tab || {
     error "Failed to clone fzf-tab"
     exit 1
 }
-status "Renaming .zshrc"
-rm $HOME/.zshrc
-mv $HOME/zshrc.pre-oh-my-zsh $HOME/.zshrc
 success "Zsh configurations updated..."
-
-section "Git Configuration"
-status "Setting up git..."
-git config --global user.name "$GITNAME"
-git config --global user.email "$GITEMAIL"
-git config --global init.defaultBranch master
-success "Git configured successfully"
 
 section "SSH Key Setup"
 SSH_DIR=$HOME/.ssh

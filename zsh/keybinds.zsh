@@ -41,9 +41,31 @@ alias ltrace=bat_ltrace
 bindkey -v
 autoload -U edit-command-line
 zle -N edit-command-line
+zle -N zle-keymap-select
+
+# ci", ci', ci`, di", etc
+autoload -U select-quoted
+zle -N select-quoted
+for m in visual viopp; do
+  for c in {a,i}{\',\",\`}; do
+    bindkey -M $m $c select-quoted
+  done
+done
+
+# ci{, ci(, ci<, di{, etc
+autoload -U select-bracketed
+zle -N select-bracketed
+for m in visual viopp; do
+  for c in {a,i}${(s..)^:-'()[]{}<>bB'}; do
+    bindkey -M $m $c select-bracketed
+  done
+done
+
+bindkey "^?" backward-delete-char
 bindkey "^Xe" edit-command-line
 bindkey -M vicmd v edit-command-line
 bindkey "^g" fzf-history-widget
+bindkey -s "^r" "source $DOTFILES/zsh/conf.zsh\n"
 bindkey -s "^p" "$DOTFILES/scripts/workflow/tmux-cht.sh\n"
 bindkey -s "^f" "$DOTFILES/scripts/workflow/tmux-sessionizer.sh\n"
 bindkey -s "^y" "yazi\n"

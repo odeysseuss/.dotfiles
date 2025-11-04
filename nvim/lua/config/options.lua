@@ -47,7 +47,6 @@ vim.opt.swapfile = false
 vim.opt.backup = false
 
 vim.o.guicursor = ""
-vim.opt.winborder = "rounded"
 vim.opt.termguicolors = true
 vim.opt.smoothscroll = true
 
@@ -55,7 +54,7 @@ vim.opt.isfname:append("@-@")
 vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 vim.opt.undofile = true
 
-vim.opt.foldmethod = 'indent'
+vim.opt.foldmethod = "indent"
 vim.opt.foldlevelstart = 99
 vim.opt.foldnestmax = 3
 vim.opt.foldminlines = 1
@@ -64,4 +63,3 @@ vim.cmd("set path+=**")
 vim.cmd("filetype plugin on")
 vim.cmd("set wildmenu")
 vim.cmd("set shell=/usr/sbin/zsh")
-vim.cmd("set shellcmdflag=-ic")
