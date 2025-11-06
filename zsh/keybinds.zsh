@@ -41,7 +41,6 @@ alias ltrace=bat_ltrace
 bindkey -v
 autoload -U edit-command-line
 zle -N edit-command-line
-zle -N zle-keymap-select
 
 # ci", ci', ci`, di", etc
 autoload -U select-quoted
@@ -63,7 +62,6 @@ done
 
 bindkey "^?" backward-delete-char
 bindkey "^Xe" edit-command-line
-bindkey -M vicmd v edit-command-line
 bindkey "^g" fzf-history-widget
 bindkey -s "^r" "source $DOTFILES/zsh/conf.zsh\n"
 bindkey -s "^p" "$DOTFILES/scripts/workflow/tmux-cht.sh\n"

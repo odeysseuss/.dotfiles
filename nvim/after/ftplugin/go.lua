@@ -1,1 +1,1 @@
-vim.opt.makeprg = "go build"
+vim.opt_local.makeprg = "go build"

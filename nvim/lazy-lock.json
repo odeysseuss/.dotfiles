@@ -1,12 +1,11 @@
 {
   "LuaSnip": { "branch": "master", "commit": "5a1e39223db9a0498024a77b8441169d260c8c25" },
   "blink.cmp": { "branch": "main", "commit": "327fff91fe6af358e990be7be1ec8b78037d2138" },
-  "conform.nvim": { "branch": "master", "commit": "26c02e1155a4980900bdccabca4516f4c712aae9" },
   "flash.nvim": { "branch": "main", "commit": "fcea7ff883235d9024dc41e638f164a450c14ca2" },
   "friendly-snippets": { "branch": "main", "commit": "572f5660cf05f8cd8834e096d7b4c921ba18e175" },
   "gitsigns.nvim": { "branch": "main", "commit": "20ad4419564d6e22b189f6738116b38871082332" },
-  "gruvbox-material": { "branch": "master", "commit": "834dbf21836862300ced7444db4262b796330ab7" },
-  "lazy.nvim": { "branch": "main", "commit": "202d8e92b3a74ac88eb3a7f1e40fb59b4c2a6535" },
+  "gruvbox-material": { "branch": "master", "commit": "89b8d861153cb23fb730306d2bda6941a1f515cf" },
+  "lazy.nvim": { "branch": "main", "commit": "e6a8824858757ca9cd4f5ae1a72d845fa5c46a39" },
   "mason-tool-installer.nvim": { "branch": "main", "commit": "517ef5994ef9d6b738322664d5fdd948f0fdeb46" },
   "mason.nvim": { "branch": "main", "commit": "ad7146aa61dcaeb54fa900144d768f040090bff0" },
   "nvim-dap": { "branch": "master", "commit": "e97dc47e134ffb33da008658fecfae8f8547c528" },
@@ -20,6 +19,7 @@
   "plenary.nvim": { "branch": "master", "commit": "b9fd5226c2f76c951fc8ed5923d85e4de065e509" },
   "telescope-fzf-native.nvim": { "branch": "main", "commit": "1f08ed60cafc8f6168b72b80be2b2ea149813e55" },
   "telescope.nvim": { "branch": "master", "commit": "a0bbec21143c7bc5f8bb02e0005fa0b982edc026" },
+  "trouble.nvim": { "branch": "main", "commit": "bd67efe408d4816e25e8491cc5ad4088e708a69a" },
   "typst-preview.nvim": { "branch": "master", "commit": "e544812bba84b4f7976590f2b6c0dfbd099e1893" },
   "undotree": { "branch": "master", "commit": "0f1c9816975b5d7f87d5003a19c53c6fd2ff6f7f" }
 }

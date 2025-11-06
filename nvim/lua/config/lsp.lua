@@ -17,7 +17,9 @@ local capabilities = vim.tbl_deep_extend(
 
 vim.lsp.config("*", {
     capabilities = capabilities,
-    root_markers = { ".git" },
+    root_markers = {
+        "Session.vim", ".git/"
+    },
 })
 
 vim.lsp.config("lua_ls", {
@@ -26,8 +28,8 @@ vim.lsp.config("lua_ls", {
     settings = {
         Lua = {
             diagnostics = {
-                globals = {
-                    "vim",
+                disable = {
+                    "undefined-global",
                 },
             },
             format = {
@@ -35,6 +37,7 @@ vim.lsp.config("lua_ls", {
                 defaultConfig = {
                     indent_style = "space",
                     indent_size = "4",
+                    max_line_length = "100",
                 },
             },
         },
@@ -58,6 +61,14 @@ vim.lsp.config("clangd", {
         "--query-driver=/usr/bin/clang*",
     },
     filetypes = { "c", "cpp" },
+    root_markers = {
+        ".git/",
+        ".clangd",
+        "compile_commands.json",
+        "compile_flags.txt",
+        "CMakeLists.txt",
+        "Makefile",
+    },
     init_options = {
         usePlaceholders = true,
         completeUnimported = true,
@@ -94,11 +105,21 @@ vim.lsp.config("rust_analyzer", {
         "rust-analyzer",
     },
     filetypes = { "rust" },
+    root_markers = {
+        ".git/",
+        "Cargo.toml",
+        "Cargo.lock",
+    },
 })
 
 vim.lsp.config("gopls", {
     cmd = { "gopls" },
     filetypes = { "go" },
+    root_markers = {
+        ".git/",
+        "go.mod",
+        "go.sum",
+    },
 })
 
 vim.lsp.config("tinymist", {
@@ -106,6 +127,7 @@ vim.lsp.config("tinymist", {
     filetypes = { "typst" },
     settings = {
         formatterMode = "typstyle",
+        formatterIndentSize = 4,
         exportPdf = "never",
         semanticTokens = "disable",
     },

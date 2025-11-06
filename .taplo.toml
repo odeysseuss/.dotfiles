@@ -1,5 +1,0 @@
-[formatting]
-indent_string = "    "
-indent_tables = true
-array_trailing_comma = true
-array_auto_collapse = false

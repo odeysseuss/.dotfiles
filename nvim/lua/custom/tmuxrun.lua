@@ -32,3 +32,6 @@ end, { range = true })
 vim.api.nvim_create_user_command("TmuxKillPane", function()
     KillPane()
 end, {})
+
+vim.keymap.set("n", "<leader>X", "<cmd>TmuxKillPane<CR>", { desc = "Tmux kill pane" })
+vim.keymap.set("v", "<leader>R", "<cmd>TmuxSendRange<CR>", { desc = "Tmux send visual selection" })

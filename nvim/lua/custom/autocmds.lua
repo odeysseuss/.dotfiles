@@ -10,14 +10,14 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 -- === build, run and test
 local lang_maps = {
     c = {
-        build = "mkdir -p build && cmake -DCMAKE_BUILD_TYPE=Debug -B build -G Ninja && cmake --build build --parallel $(nproc)",
-        exec = "cmake --build build --target run", -- need to add custom target in cmake
-        test = "mkdir -p build && ctest --test-dir build --output-on-failure",
+        build = "xmake project -k compile_commands && xmake f -m debug && xmake build -a -v",
+        exec = "xmake run",
+        test = "xmake -r test",
     },
     cpp = {
-        build = "mkdir -p build && cmake -DCMAKE_BUILD_TYPE=Debug -B build -G Ninja && cmake --build build --parallel $(nproc)",
-        exec = "cmake --build build --target run", -- need to add custom target in cmake
-        test = "mkdir -p build && ctest --test-dir build --output-on-failure",
+        build = "xmake project -k compile_commands && xmake f -m debug && xmake build -a -v",
+        exec = "xmake run",
+        test = "xmake -r test",
     },
     rust = { build = "cargo build", exec = "cargo run", test = "cargo test" },
     go = { build = "go build", exec = "go run .", test = "go test ./..." },

@@ -33,6 +33,8 @@ return {
         vim.keymap.set("n", "<leader>g", builtin.live_grep, { desc = "Telescope live grep" })
         vim.keymap.set("n", "<leader>vh", builtin.help_tags, { desc = "Telescope help tags" })
         vim.keymap.set("n", "<leader>kh", builtin.keymaps, { desc = "Telescope keymaps" })
+        vim.keymap.set("n", "<leader>pc", builtin.command_history, { desc = "Telescope command history" })
+        vim.keymap.set("n", "<leader>ps", builtin.lsp_document_symbols, { desc = "Telescope command history" })
 
         vim.keymap.set("n", "<leader>pws", function()
             local word = vim.fn.expand("<cword>")

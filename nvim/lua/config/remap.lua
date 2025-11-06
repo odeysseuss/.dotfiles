@@ -7,7 +7,7 @@ vim.keymap.set("n", "=ap", "ma=ap'a")
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set({ "n", "v" }, "<leader>m", "@")
-vim.keymap.set({ "n", "v" }, "<leader><leader>", "@:")
+vim.keymap.set({ "n", "v" }, "<leader><leader>", "<cmd>w<CR>")
 vim.keymap.set("n", "<C-m>", "`")
 vim.keymap.set("n", "Q", "<nop>")
 vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", {})
@@ -30,19 +30,11 @@ vim.keymap.set("n", "<leader>ss", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left>
 -- lsp remaps
 vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})
 vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, {})
+vim.keymap.set("n", "<leader>f", vim.lsp.buf.format, {})
 -- diagnostic
 vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, {})
 vim.keymap.set("n", "<leader>j", vim.diagnostic.goto_next, {})
 vim.keymap.set("n", "<leader>k", vim.diagnostic.goto_prev, {})
--- location list
-vim.keymap.set("n", "<leader>xs", vim.diagnostic.setloclist, {})
-vim.keymap.set("n", "<leader>xj", "<cmd>lnext<CR>zz", { desc = "Location list jump next" })
-vim.keymap.set("n", "<leader>xk", "<cmd>lprev<CR>zz", { desc = "Location list jump prev" })
--- quickfix list
-vim.keymap.set("n", "<leader>sd", vim.diagnostic.setqflist, {})
-vim.keymap.set("n", "<leader>cc", "<cmd>copen<CR>", {})
-vim.keymap.set("n", "<leader>sj", "<cmd>cnext<CR>zz", { desc = "Quickfix list jump next" })
-vim.keymap.set("n", "<leader>sk", "<cmd>cprev<CR>zz", { desc = "Quickfix list jump prev" })
 
 -- harpoon like navigation
 vim.keymap.set("n", "<leader>a", function()
@@ -56,7 +48,7 @@ vim.keymap.set("n", "<C-t>", "<cmd>2argument<CR>", { desc = "Args select 2" })
 vim.keymap.set("n", "<C-n>", "<cmd>3argument<CR>", { desc = "Args select 3" })
 vim.keymap.set("n", "<C-s>", "<cmd>4argument<CR>", { desc = "Args select 4" })
 
--- Vim sessions
+-- vim sessions
 vim.keymap.set("n", "<C-a>", "<cmd>mksession!<CR>", { desc = "Create session" })
 vim.keymap.set("n", "<C-g>", "<cmd>source Session.vim<CR>", { desc = "Source session file" })
 vim.keymap.set("n", "<C-x>", "<cmd>!rm Session.vim<CR>", { desc = "Delete session" })
@@ -69,7 +61,3 @@ vim.keymap.set("n", "gh", "<cmd>diffget //3<CR>", { desc = "Git get local diff" 
 vim.keymap.set("n", "<leader>b", "<cmd>make<CR>", { desc = "Make" })
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod 755 %<CR>")
 vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
-
--- tmux runner
-vim.keymap.set("n", "<leader>X", "<cmd>TmuxKillPane<CR>", { desc = "Tmux kill pane" })
-vim.keymap.set("v", "<leader>R", "<cmd>TmuxSendRange<CR>", { desc = "Tmux send visual selection" })

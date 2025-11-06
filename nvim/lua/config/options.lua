@@ -54,6 +54,7 @@ vim.opt.isfname:append("@-@")
 vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 vim.opt.undofile = true
 
+vim.opt.foldenable = true
 vim.opt.foldmethod = "indent"
 vim.opt.foldlevelstart = 99
 vim.opt.foldnestmax = 3

@@ -5,6 +5,7 @@ require("config.lsp")
 require("custom.autocmds")
 require("custom.statusline")
 require("custom.tmuxrun")
+require("custom.tmuxnav")
 
 local border = "#1d2021"
 local status_bg = "#121618"
