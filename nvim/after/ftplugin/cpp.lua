@@ -1,1 +1,1 @@
-vim.opt_local.makeprg = "xmake f -m debug -l cpp && xmake build"
+vim.opt_local.makeprg = "xmake g --theme=plain && xmake f -m debug && xmake build"

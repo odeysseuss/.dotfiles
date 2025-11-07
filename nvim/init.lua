@@ -4,8 +4,9 @@ require("config.lazy")
 require("config.lsp")
 require("custom.autocmds")
 require("custom.statusline")
-require("custom.tmuxrun")
 require("custom.tmuxnav")
+require("custom.tmuxrun")
+require("custom.tmuxbuild")
 
 local border = "#1d2021"
 local status_bg = "#121618"

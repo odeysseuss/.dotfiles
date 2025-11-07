@@ -24,12 +24,12 @@ return {
             desc = "LSP Definitions / references / ... (Trouble)",
         },
         {
-            "<leader>sL",
+            "<leader>sl",
             "<cmd>Trouble loclist toggle<cr>",
             desc = "Location List (Trouble)",
         },
         {
-            "<leader>sQ",
+            "<leader>sk",
             "<cmd>Trouble qflist toggle<cr>",
             desc = "Quickfix List (Trouble)",
         },
