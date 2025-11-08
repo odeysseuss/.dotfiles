@@ -21,7 +21,7 @@ packages=(
     perf
     strace
     ltrace
-    hurl
+    # hurl
     # xclip
     # ffmpeg
     # zathura
@@ -49,17 +49,15 @@ packages=(
     typst
     gdb
     make
-    cmake
-    ninja
+    # ninja
+    # cmake
+    xmake
     npm
     pkgconf
     # docker
 
-    nmap
-    gnu-netcat
-    python-pygments
-    # radare2
-    # r2ghidra
+    # nmap
+    # gnu-netcat
 )
 
 installed_packages=$(yay -Qq)

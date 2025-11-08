@@ -32,6 +32,9 @@ vim.lsp.config("lua_ls", {
                     "undefined-global",
                 },
             },
+            runtime = {
+                version = "LuaJit",
+            },
             format = {
                 enable = true,
                 defaultConfig = {
