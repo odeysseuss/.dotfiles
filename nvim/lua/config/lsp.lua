@@ -66,9 +66,11 @@ vim.lsp.config("clangd", {
     filetypes = { "c", "cpp" },
     root_markers = {
         ".git/",
+        ".xmake/",
         ".clangd",
         "compile_commands.json",
         "compile_flags.txt",
+        "xmake.lua",
         "CMakeLists.txt",
         "Makefile",
     },

@@ -6,9 +6,8 @@ vim.keymap.set("n", "=ap", "ma=ap'a")
 
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
-vim.keymap.set({ "n", "v" }, "<leader>m", "@")
 vim.keymap.set({ "n", "v" }, "<leader><leader>", "<cmd>w<CR>")
-vim.keymap.set("n", "<C-m>", "`")
+vim.keymap.set("n", "<C-m>", "@")
 vim.keymap.set("n", "Q", "<nop>")
 vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", {})
 

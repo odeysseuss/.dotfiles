@@ -27,7 +27,7 @@ return {
                     treesitter = { "lsp" },
                     columns = {
                         { "kind_icon" },
-                        { "label", "label_description", gap = 1 },
+                        { "label",    "label_description", gap = 1 },
                     },
                 },
             },
@@ -45,8 +45,8 @@ return {
                 cmdline = {
                     enabled = function()
                         return vim.fn.getcmdtype() ~= ":"
-                            -- disable in shell commands
                             or not (
+                            -- disable in shell commands
                                 vim.fn.getcmdline():match("^term")
                                 or vim.fn.getcmdline():match("^[%%0-9,'<>%-]*!")
                             )
