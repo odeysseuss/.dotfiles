@@ -4,6 +4,13 @@ vim.api.nvim_create_autocmd("LspAttach", {
         local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
         if client:supports_method("textDocument/formatting") then
             vim.keymap.set("n", "<leader>f", vim.lsp.buf.format, {})
+        else
+            -- via formatprg
+            vim.keymap.set("n", "<leader>f", function()
+                local cursor_pos = vim.api.nvim_win_get_cursor(0)
+                vim.cmd("silent! normal! ggVGgq")
+                vim.api.nvim_win_set_cursor(0, cursor_pos)
+            end, { buffer = true, desc = "Format entire file" })
         end
         if client:supports_method("textDocument/foldingRange") then
             vim.wo.foldexpr = "v:lua.vim.lsp.foldexpr()"
@@ -61,3 +68,24 @@ vim.api.nvim_create_autocmd("FileType", {
         vim.wo.wrap = true
     end
 })
+
+-- running health checks in the background
+vim.api.nvim_create_user_command("HealthCheck", function()
+    local state = vim.fn.stdpath("state")
+    local filename = state .. "/healthcheck.log"
+
+    vim.fn.jobstart({
+        "nvim",
+        "--headless",
+        "-c", "checkhealth | w " .. filename .. " | qa"
+    }, {
+        on_exit = function()
+            vim.schedule(function()
+                vim.cmd("edit " .. filename)
+                print("Health check done")
+            end)
+        end
+    })
+
+    print("Running health checks...")
+end, {})
