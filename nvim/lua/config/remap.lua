@@ -24,12 +24,8 @@ vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
 vim.keymap.set("n", "<leader>Y", [["+Y]])
 vim.keymap.set({ "n", "v" }, "<leader>D", '"_d')
 
-vim.keymap.set("n", "<leader>ss", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
--- lsp remaps
-vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})
-vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, {})
-vim.keymap.set("n", "<leader>f", vim.lsp.buf.format, {})
 -- diagnostic
 vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, {})
 vim.keymap.set("n", "<leader>j", vim.diagnostic.goto_next, {})

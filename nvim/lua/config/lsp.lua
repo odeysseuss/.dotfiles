@@ -7,12 +7,11 @@ vim.lsp.enable({
     "tinymist",
 })
 
-local cmp = require("blink.cmp")
 local capabilities = vim.tbl_deep_extend(
     "force",
     {},
     vim.lsp.protocol.make_client_capabilities(),
-    cmp.get_lsp_capabilities()
+    require("blink.cmp").get_lsp_capabilities()
 )
 
 vim.lsp.config("*", {
@@ -100,6 +99,9 @@ vim.lsp.config("clangd", {
 vim.lsp.config("cmake", {
     cmd = { "cmake-language-server" },
     filetypes = { "cmake" },
+    init_options = {
+        buildDirectory = 'build',
+    },
 })
 
 vim.lsp.config("rust_analyzer", {
@@ -125,6 +127,11 @@ vim.lsp.config("gopls", {
         "go.mod",
         "go.sum",
     },
+})
+
+vim.lsp.config("zls", {
+    cmd = { "zls" },
+    filetypes = { "zig" },
 })
 
 vim.lsp.config("tinymist", {

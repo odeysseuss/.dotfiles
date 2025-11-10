@@ -1,3 +1,16 @@
+vim.api.nvim_create_autocmd("LspAttach", {
+    group = vim.api.nvim_create_augroup("lsp", {}),
+    callback = function(args)
+        local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
+        if client:supports_method("textDocument/formatting") then
+            vim.keymap.set("n", "<leader>f", vim.lsp.buf.format, {})
+        end
+        if client:supports_method("textDocument/foldingRange") then
+            vim.wo.foldexpr = "v:lua.vim.lsp.foldexpr()"
+        end
+    end,
+})
+
 vim.api.nvim_create_autocmd("TextYankPost", {
     desc = "Highlight when yanking text",
     callback = function()
@@ -40,9 +53,11 @@ vim.api.nvim_create_autocmd({ "WinLeave", "BufLeave" }, {
 })
 
 vim.api.nvim_create_autocmd("FileType", {
-    desc = "Disable dap completions",
-    pattern = "dap-repl",
+    desc = "Dap Repl",
+    group = vim.api.nvim_create_augroup("dap-group", { clear = true }),
+    pattern = "*dap-repl*",
     callback = function()
         vim.b.completion = false
+        vim.wo.wrap = true
     end
 })

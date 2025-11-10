@@ -83,12 +83,12 @@ for lang, cmds in pairs(lang_maps) do
 
             -- build cmd
             if effective_cmds.build then
-                vim.keymap.set("n", "<leader>m", function()
+                vim.keymap.set("n", "<leader>b", function()
                     if effective_cmds.errorformat then
                         RunWithQuickfix(effective_cmds.build, effective_cmds.errorformat)
                     end
                 end, { buffer = true, desc = "Tmux build with quickfix" })
-                vim.keymap.set("n", "<leader>M", function()
+                vim.keymap.set("n", "<leader>B", function()
                     SendToTmux(effective_cmds.build)
                 end, { buffer = true, desc = "Tmux build" })
             end

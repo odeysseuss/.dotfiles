@@ -52,6 +52,7 @@ packages=(
     # ninja
     # cmake
     xmake
+    # luarocks
     npm
     pkgconf
     # docker
