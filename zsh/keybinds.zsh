@@ -64,6 +64,5 @@ bindkey "^?" backward-delete-char
 bindkey "^Xe" edit-command-line
 bindkey "^g" fzf-history-widget
 bindkey -s "^r" "source $DOTFILES/zsh/conf.zsh\n"
-bindkey -s "^p" "$DOTFILES/scripts/workflow/tmux-cht.sh\n"
 bindkey -s "^f" "$DOTFILES/scripts/workflow/tmux-sessionizer.sh\n"
 bindkey -s "^y" "yazi\n"
