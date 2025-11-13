@@ -23,7 +23,7 @@ return {
                     size = 0.34
                 } },
                 position = "right",
-                size = 50
+                size = 40
             }, {
                 elements = { {
                     id = "repl",

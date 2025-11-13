@@ -26,13 +26,16 @@ vim.lsp.config("lua_ls", {
     filetypes = { "lua" },
     settings = {
         Lua = {
+            runtime = {
+                version = "LuaJit",
+            },
+            hint = {
+                enable = true,
+            },
             diagnostics = {
                 disable = {
                     "undefined-global",
                 },
-            },
-            runtime = {
-                version = "LuaJit",
             },
             format = {
                 enable = true,
@@ -84,6 +87,12 @@ vim.lsp.config("clangd", {
             "-pedantic",
             "-D_GNU_SOURCE",
         },
+        InlayHints = {
+            Designators = true,
+            Enabled = true,
+            ParameterNames = true,
+            DeducedTypes = true,
+        },
     },
     on_new_config = function(new_config)
         local ft = vim.bo.filetype
@@ -117,6 +126,40 @@ vim.lsp.config("rust_analyzer", {
         "Cargo.toml",
         "Cargo.lock",
     },
+    init_options = {
+        inlayHints = {
+            bindingModeHints = {
+                enable = false,
+            },
+            chainingHints = {
+                enable = true,
+            },
+            closingBraceHints = {
+                enable = true,
+                minLines = 25,
+            },
+            closureReturnTypeHints = {
+                enable = "never",
+            },
+            lifetimeElisionHints = {
+                enable = "never",
+                useParameterNames = false,
+            },
+            maxLength = 25,
+            parameterHints = {
+                enable = true,
+            },
+            reborrowHints = {
+                enable = "never",
+            },
+            renderColons = true,
+            typeHints = {
+                enable = true,
+                hideClosureInitialization = false,
+                hideNamedConstructor = false,
+            },
+        },
+    },
 })
 
 vim.lsp.config("gopls", {
@@ -127,11 +170,29 @@ vim.lsp.config("gopls", {
         "go.mod",
         "go.sum",
     },
+    init_options = {
+        hints = {
+            rangeVariableTypes = true,
+            parameterNames = true,
+            constantValues = true,
+            assignVariableTypes = true,
+            compositeLiteralFields = true,
+            compositeLiteralTypes = true,
+            functionTypeParameters = true,
+        },
+    },
 })
 
 vim.lsp.config("zls", {
     cmd = { "zls" },
     filetypes = { "zig" },
+    init_options = {
+        enable_inlay_hints = true,
+        inlay_hints_show_builtin = true,
+        inlay_hints_exclude_single_argument = true,
+        inlay_hints_hide_redundant_param_names = false,
+        inlay_hints_hide_redundant_param_names_last_token = false,
+    },
 })
 
 vim.lsp.config("tinymist", {

@@ -5,12 +5,11 @@ return {
         config = function()
             require("nvim-treesitter.configs").setup({
                 ensure_installed = {
+                    "lua",
                     "bash",
                     "c",
-                    "rust",
                     "cpp",
-                    "lua",
-                    "tmux",
+                    "rust",
                 },
 
                 sync_install = false,

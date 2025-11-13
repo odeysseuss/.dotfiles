@@ -6,7 +6,5 @@ $DOTFILES/zsh/conf.zsh=$HOME/.zshrc
 $DOTFILES/zsh/profile.zsh=$HOME/.zprofile
 $DOTFILES/tmux/tmux.conf=$HOME/.tmux.conf
 $DOTFILES/misc/.gitconfig=$HOME/.gitconfig
-$DOTFILES/misc/radare.conf=$HOME/.radare2rc
-$DOTFILES/misc/gdb.conf=$HOME/.gdbinit
 $DOTFILES/misc/.inputrc=$HOME/.inputrc
 $DOTFILES/misc/.clang-format=$PERSONAL/.clang-format

@@ -29,6 +29,7 @@ vim.opt.smartcase = true
 vim.opt.splitright = true
 vim.opt.splitbelow = false
 vim.opt.inccommand = "split"
+vim.opt.winborder = "rounded"
 
 vim.opt.list = true
 vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
