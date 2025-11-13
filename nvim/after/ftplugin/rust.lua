@@ -1,3 +1,3 @@
-vim.b.makeprg = "cargo build"
-vim.b.execprg = "cargo run" -- custom
-vim.b.testprg = "cargo test" -- custom
+vim.opt_local.makeprg = "cargo build"
+vim.b.execprg = "cargo run"
+vim.b.testprg = "cargo test"

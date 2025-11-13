@@ -46,6 +46,7 @@ packages=(
     llvm
     clang
     # go
+    # zig
     typst
     gdb
     make

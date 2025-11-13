@@ -25,10 +25,8 @@ error() {
 }
 
 USER=$1
-GITNAME=$2
-GITEMAIL=$3
-KEY_NAME="$4"
-PASSPHRASE="$5"
+KEY_NAME="$2"
+PASSPHRASE="$3"
 
 export XDG_CONFIG_HOME=$HOME/.config
 export DOTFILES="$HOME/.dotfiles"
@@ -39,12 +37,12 @@ export ZSH="$HOME/zsh"
 section "=== System Environment Setup ==="
 section "Package Installation"
 status "Yay installation..."
-curl -fsSL "https://raw.githubusercontent.com/ridwanalmahmud/.dotfiles/refs/heads/master/scripts/setup/build.sh" | sh -s -- --yay || {
+curl -fsSL "https://raw.githubusercontent.com/odeysseuss/.dotfiles/refs/heads/master/scripts/setup/build.sh" | sh -s -- --yay || {
     error "Yay installation failed"
     exit 1
 }
 status "Installing packages..."
-curl -fsSL "https://raw.githubusercontent.com/ridwanalmahmud/.dotfiles/refs/heads/master/scripts/setup/install.sh" | sh || {
+curl -fsSL "https://raw.githubusercontent.com/odeysseuss/.dotfiles/refs/heads/master/scripts/setup/install.sh" | sh || {
     error "Failed to run dotfiles install script"
     exit 1
 }
@@ -52,7 +50,7 @@ success "Packages installed"
 
 section "Dotfiles Setup"
 status "Cloning dotfiles repository..."
-git clone https://github.com/ridwanalmahmud/.dotfiles.git $DOTFILES || {
+git clone https://github.com/odeysseuss/.dotfiles.git $DOTFILES || {
     error "Failed to clone dotfiles repository"
     exit 1
 }

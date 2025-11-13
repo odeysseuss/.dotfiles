@@ -2,23 +2,6 @@
 
 set -e
 
-show_help() {
-    echo -e "${YELLOW}Usage:${NC}"
-    echo -e "<username> <userpass> <gitname> <email> <ssh_keyname> <passphrase>"
-    echo -e "<username> Create user with sudo previledge"
-    echo -e "<userpass> Add password for created user"
-    echo -e "<gitname> git config username"
-    echo -e "<email> git config email, ssh key comment"
-    echo -e "<ssh_keyname> Create ssh key for github"
-    echo -e "<passphrase> Add passphrase to the corresponding ssh key"
-    echo -e "\n***Warning! If arguments are not provided properly, setup will abort***\n"
-}
-
-if [[ "$1" == "--help" ]]; then
-    show_help
-    exit 0
-fi
-
 check_pass() {
     local prompt="$1"
     local var_name="$2"
@@ -38,8 +21,6 @@ check_pass() {
 
 read -e -p "Username: " USERNAME
 check_pass "Userpass: " USERPASS
-read -e -p "Fullname: " GITNAME
-read -e -p "Email: " GITEMAIL
 read -e -p "SSH key: " KEY_NAME
 check_pass "SSH Passphrase: " PASSPHRASE
 
@@ -52,7 +33,7 @@ else
 fi
 
 echo "Download and execute the sudouser script"
-curl -fLO "https://raw.githubusercontent.com/ridwanalmahmud/.dotfiles/refs/heads/master/scripts/startup/sudouser.sh"
+curl -fLO "https://raw.githubusercontent.com/odeysseuss/.dotfiles/refs/heads/master/scripts/startup/sudouser.sh"
 chmod 700 sudouser.sh
 ./sudouser.sh $USERNAME $USERPASS
 
@@ -62,7 +43,7 @@ pacman -Syu --needed --noconfirm || {
     exit 1
 }
 
-echo "Execute the setup script as the $1 user"
-su - $USERNAME -c "curl -fsSL 'https://raw.githubusercontent.com/ridwanalmahmud/.dotfiles/refs/heads/master/scripts/startup/setup.sh' | sh -s -- $USERNAME $GITNAME $GITEMAIL $KEY_NAME $PASSPHRASE"
+echo "Execute the setup script as the $USERNAME user"
+su - $USERNAME -c "curl -fsSL 'https://raw.githubusercontent.com/odeysseuss/.dotfiles/refs/heads/master/scripts/startup/setup.sh' | sh -s -- $USERNAME $KEY_NAME $PASSPHRASE"
 
 echo "su - $USERNAME" >>~/.bash_profile
