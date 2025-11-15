@@ -2,6 +2,7 @@ return {
     "chomosuke/typst-preview.nvim",
     lazy = false,
     version = "1.*",
+    ft = "typst",
     opts = {},
     config = function()
         require("typst-preview").setup({
@@ -27,6 +28,6 @@ return {
             end,
         })
 
-        vim.keymap.set("n", "<leader>tp", "<cmd>TypstPreviewToggle<CR>", { desc = "Typst preview" })
+        vim.keymap.set("n", "<leader>P", "<cmd>TypstPreviewToggle<CR>", { desc = "Typst preview" })
     end,
 }

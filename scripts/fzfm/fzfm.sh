@@ -19,7 +19,7 @@ fzf_file_handlers() {
     local mime=$(file -L --mime-type -b "$selected")
 
     case "$mime" in
-    text/* | application/json | application/octet-stream)
+    text/* | application/*)
         ${FZFM_EDITOR:-$EDITOR} "$selected"
         exit 0
         ;;

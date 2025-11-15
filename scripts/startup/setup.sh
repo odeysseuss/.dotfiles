@@ -55,7 +55,7 @@ git clone https://github.com/odeysseuss/.dotfiles.git $DOTFILES || {
     exit 1
 }
 status "Installing fonts..."
-"$DOTFILES/scripts/setup/fonts.sh" || {
+"$DOTFILES/scripts/setup/fonts.sh" --maple || {
     error "Failed to install fonts"
     exit 1
 }

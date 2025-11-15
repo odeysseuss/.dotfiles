@@ -26,6 +26,7 @@ packages=(
     # ffmpeg
     # zathura
 
+    # alacritty
     # wezterm
     zsh
     tmux
@@ -50,13 +51,14 @@ packages=(
     typst
     gdb
     make
-    # ninja
-    # cmake
+    ninja
+    cmake
     xmake
-    # luarocks
     npm
     pkgconf
     # docker
+    # luarocks
+    python-cffi
 
     # nmap
     # gnu-netcat

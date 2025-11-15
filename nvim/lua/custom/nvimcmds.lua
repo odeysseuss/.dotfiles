@@ -49,6 +49,17 @@ vim.api.nvim_create_autocmd("FileType", {
     end
 })
 
+vim.api.nvim_create_autocmd("FileType", {
+    desc = "Treesitter highlight, indent",
+    group = vim.api.nvim_create_augroup("tree-sitter", { clear = true }),
+    callback = function()
+        local hasStarted = pcall(vim.treesitter.start)
+        if hasStarted then
+            vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+        end
+    end
+})
+
 -- running health checks in the background
 vim.api.nvim_create_user_command("HealthCheck", function()
     local state = vim.fn.stdpath("state")

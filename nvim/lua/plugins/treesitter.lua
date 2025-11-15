@@ -1,24 +1,24 @@
 return {
     {
         "nvim-treesitter/nvim-treesitter",
+        lazy = false,
+        branch = "main",
         build = ":TSUpdate",
         config = function()
-            require("nvim-treesitter.configs").setup({
-                ensure_installed = {
-                    "lua",
-                    "bash",
-                    "c",
-                    "cpp",
-                    "rust",
-                },
-
-                sync_install = false,
-                auto_install = true,
-
-                highlight = {
-                    enable = true,
-                    additional_vim_regex_highlighting = false,
-                },
+            local treesitter = require("nvim-treesitter")
+            treesitter.setup({
+                install_dir = vim.fn.stdpath('data') .. '/site'
+            })
+            treesitter.install({
+                "lua",
+                "bash",
+                "c",
+                "cpp",
+                "rust",
+                "python",
+                "toml",
+                "json",
+                "rasi",
             })
         end,
     },

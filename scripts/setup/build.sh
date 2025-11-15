@@ -14,6 +14,15 @@ build_yay() {
     fi
 }
 
+build_treesitter_cli() {
+    if ! command -v tree-sitter &>/dev/null; then
+        echo "Treesitter cli installation"
+        npm install tree-sitter-cli
+    else
+        echo "tree-sitter already installed."
+    fi
+}
+
 build_rust() {
     if ! command -v rustc &>/dev/null; then
         echo "Rust installation"
