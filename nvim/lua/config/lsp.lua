@@ -2,7 +2,6 @@ vim.lsp.enable({
     "lua_ls",
     "bashls",
     "clangd",
-    "cmake",
     "rust_analyzer",
     "gopls",
     "zls",
@@ -20,7 +19,9 @@ local capabilities = vim.tbl_deep_extend(
 vim.lsp.config("*", {
     capabilities = capabilities,
     root_markers = {
-        "Session.vim", ".git/"
+        ".git",
+        ".gitignore",
+        ".editorconfig",
     },
 })
 
@@ -43,7 +44,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
             vim.wo.foldexpr = "v:lua.vim.lsp.foldexpr()"
         end
         if client:supports_method("textDocument/inlayHint") then
-            vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+            vim.keymap.set("n", "<leader>h", function()
+                vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+            end, { desc = "Toggle inlay hints" })
         end
     end,
 })

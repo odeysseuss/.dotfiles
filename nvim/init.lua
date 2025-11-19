@@ -1,6 +1,6 @@
 require("config.remap")
 require("config.options")
-require("custom.nvimcmds")
+require("custom.autocmds")
 require("config.lazy")
 require("config.lsp")
 require("custom.statusline")

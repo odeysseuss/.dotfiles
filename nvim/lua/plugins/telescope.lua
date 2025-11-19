@@ -16,7 +16,7 @@ return {
         require("telescope").load_extension("fzf")
 
         local builtin = require("telescope.builtin")
-        vim.keymap.set("n", "<leader>pf", function()
+        vim.keymap.set("n", "<leader>sf", function()
             builtin.find_files({
                 find_command = {
                     "rg",
@@ -31,21 +31,20 @@ return {
 
         vim.keymap.set("n", "<leader>sb", builtin.buffers, { desc = "Telescope buffers" })
         vim.keymap.set("n", "<leader>g", builtin.live_grep, { desc = "Telescope live grep" })
-        vim.keymap.set("n", "<leader>vh", builtin.help_tags, { desc = "Telescope help tags" })
-        vim.keymap.set("n", "<leader>kh", builtin.keymaps, { desc = "Telescope keymaps" })
-        vim.keymap.set("n", "<leader>pc", builtin.command_history, { desc = "Telescope command history" })
-        vim.keymap.set("n", "<leader>ps", builtin.lsp_document_symbols, { desc = "Telescope command history" })
+        vim.keymap.set("n", "<leader>sh", builtin.help_tags, { desc = "Telescope help tags" })
+        vim.keymap.set("n", "<leader>sk", builtin.keymaps, { desc = "Telescope keymaps" })
+        vim.keymap.set("n", "<leader>sc", builtin.command_history, { desc = "Telescope command history" })
 
-        vim.keymap.set("n", "<leader>pws", function()
+        vim.keymap.set("n", "<leader>sw", function()
             local word = vim.fn.expand("<cword>")
             builtin.grep_string({ search = word })
         end, { desc = "Telescope search word under cursor in CWD" })
-        vim.keymap.set("n", "<leader>pWs", function()
+        vim.keymap.set("n", "<leader>sW", function()
             local word = vim.fn.expand("<cWORD>")
             builtin.grep_string({ search = word })
         end, { desc = "Telescope search WORD under cursor in CWD" })
 
-        vim.keymap.set("n", "<leader>cf", function()
+        vim.keymap.set("n", "<leader>sl", function()
             builtin.find_files({ cwd = "~/.dotfiles/" })
         end, { desc = "Telescope find dotfiles" })
     end,

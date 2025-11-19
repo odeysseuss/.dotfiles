@@ -11,16 +11,18 @@ vim.api.nvim_create_autocmd("FileType", {
     command = "wincmd L",
 })
 
+vim.api.nvim_create_autocmd("FileType", {
+    desc = "Open help in vertical split",
+    pattern = "man",
+    callback = function()
+        vim.opt_local.wrap = false
+        vim.cmd("wincmd L")
+    end,
+})
+
 vim.api.nvim_create_autocmd("VimResized", {
     desc = "Sync nvim with the terminal",
     command = "wincmd ="
-})
-
-vim.api.nvim_create_autocmd("FileType", {
-    desc = "Don't continue auto comment",
-    callback = function()
-        vim.opt_local.formatoptions:remove({ "o" })
-    end
 })
 
 vim.api.nvim_create_autocmd({ "WinEnter", "BufEnter" }, {
@@ -41,7 +43,7 @@ vim.api.nvim_create_autocmd({ "WinLeave", "BufLeave" }, {
 
 vim.api.nvim_create_autocmd("FileType", {
     desc = "Dap Repl",
-    group = vim.api.nvim_create_augroup("dap-group", { clear = true }),
+    group = vim.api.nvim_create_augroup("dap", { clear = true }),
     pattern = "*dap-repl*",
     callback = function()
         vim.b.completion = false
@@ -60,23 +62,27 @@ vim.api.nvim_create_autocmd("FileType", {
     end
 })
 
--- running health checks in the background
-vim.api.nvim_create_user_command("HealthCheck", function()
-    local state = vim.fn.stdpath("state")
-    local filename = state .. "/healthcheck.log"
+vim.api.nvim_create_autocmd("BufRead", {
+    desc = "Auto install parsers",
+    group = "tree-sitter",
+    callback = function(event)
+        local bufnr = event.buf
+        local filetype = vim.api.nvim_get_option_value("filetype", { buf = bufnr })
 
-    vim.fn.jobstart({
-        "nvim",
-        "--headless",
-        "-c", "checkhealth | w " .. filename .. " | qa"
-    }, {
-        on_exit = function()
-            vim.schedule(function()
-                vim.cmd("edit " .. filename)
-                print("Health check done")
-            end)
+        if filetype == "" then
+            return
         end
-    })
 
-    print("Running health checks...")
-end, {})
+        local parser_name = vim.treesitter.language.get_lang(filetype)
+        if not parser_name then
+            return
+        end
+
+        local parser_configs = require("nvim-treesitter.parsers")
+        if not parser_configs[parser_name] then
+            return -- parser not available, skip silently
+        end
+
+        require("nvim-treesitter").install({ parser_name })
+    end,
+})

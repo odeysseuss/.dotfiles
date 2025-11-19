@@ -3,7 +3,7 @@ AlignConsecutiveAssignments: false
 AlignConsecutiveDeclarations: false
 AlignEscapedNewlines: Left
 AlignOperands: true
-AlignTrailingComments: false
+AlignTrailingComments: true
 AllowAllParametersOfDeclarationOnNextLine: false
 AllowShortBlocksOnASingleLine: false
 AllowShortCaseLabelsOnASingleLine: false
@@ -34,7 +34,7 @@ BraceWrapping:
   SplitEmptyNamespace: true
 BreakBeforeBraces: Attach
 BreakBeforeBinaryOperators: None
-ColumnLimit: 100
+ColumnLimit: 80
 IndentCaseLabels: false
 IndentGotoLabels: false
 IndentPPDirectives: AfterHash

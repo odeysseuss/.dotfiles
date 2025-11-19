@@ -43,7 +43,9 @@ packages=(
     # zen-browser-bin
 
     nasm
-    # lld
+    lld
+    # qemu-user
+    # qemu-user-binfmt
     llvm
     clang
     # go
@@ -53,7 +55,6 @@ packages=(
     make
     ninja
     cmake
-    xmake
     npm
     pkgconf
     # docker

@@ -9,7 +9,7 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set({ "n", "v" }, "<leader><leader>", "<cmd>w<CR>")
 vim.keymap.set("n", "<C-m>", "@")
 vim.keymap.set("n", "Q", "<nop>")
-vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", {})
+vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>")
 
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
@@ -24,29 +24,16 @@ vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
 vim.keymap.set("n", "<leader>Y", [["+Y]])
 vim.keymap.set({ "n", "v" }, "<leader>D", '"_d')
 
-vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+vim.keymap.set("n", "<leader>ss", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
 -- diagnostic
-vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, {})
-vim.keymap.set("n", "<leader>j", vim.diagnostic.goto_next, {})
-vim.keymap.set("n", "<leader>k", vim.diagnostic.goto_prev, {})
-
--- harpoon like navigation
-vim.keymap.set("n", "<leader>a", function()
-    vim.cmd([[ argadd % ]])
-    vim.cmd([[ argdedupe ]])
-end, { desc = "Args append" })
-vim.keymap.set("n", "<leader>d", "<cmd>argdelete<CR>", { desc = "Args delete" })
-vim.keymap.set("n", "<C-e>", "<cmd>args<CR>", { desc = "Args view list" })
-vim.keymap.set("n", "<C-h>", "<cmd>1argument<CR>", { desc = "Args select 1" })
-vim.keymap.set("n", "<C-t>", "<cmd>2argument<CR>", { desc = "Args select 2" })
-vim.keymap.set("n", "<C-n>", "<cmd>3argument<CR>", { desc = "Args select 3" })
-vim.keymap.set("n", "<C-s>", "<cmd>4argument<CR>", { desc = "Args select 4" })
-
--- vim sessions
-vim.keymap.set("n", "<C-a>", "<cmd>mksession!<CR>", { desc = "Create session" })
-vim.keymap.set("n", "<C-g>", "<cmd>source Session.vim<CR>", { desc = "Source session file" })
-vim.keymap.set("n", "<C-x>", "<cmd>!rm Session.vim<CR>", { desc = "Delete session" })
+vim.keymap.set("n", "ge", vim.diagnostic.open_float, {})
+vim.keymap.set("n", "gj", vim.diagnostic.goto_next, {})
+vim.keymap.set("n", "gk", vim.diagnostic.goto_prev, {})
+vim.keymap.set("n", "<leader>sd", vim.diagnostic.setqflist, {})
+vim.keymap.set("n", "<leader>sD", vim.diagnostic.setloclist, {})
+vim.keymap.set("n", "<leader>j", "<cmd>cnext<CR>", {})
+vim.keymap.set("n", "<leader>k", "<cmd>cprev<CR>", {})
 
 -- git diff
 vim.keymap.set("n", "gu", "<cmd>diffget //2<CR>", { desc = "Git get remote diff" })

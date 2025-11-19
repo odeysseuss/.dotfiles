@@ -10,7 +10,6 @@ return {
             ensure_installed = {
                 "lua-language-server",
                 "bash-language-server",
-                "cmake-language-server",
                 "rust-analyzer",
                 "gopls",
                 "zls",

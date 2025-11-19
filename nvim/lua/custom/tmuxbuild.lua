@@ -70,7 +70,9 @@ local function RunWithQuickfix(cmd, errorformat)
                         lines = output_lines,
                         efm = errorformat
                     })
-                    vim.cmd("Trouble qflist toggle")
+                    vim.cmd("copen")
+                else
+                    vim.notify("No items for quickfix list", vim.log.levels.INFO, {})
                 end
 
                 if exit_code == 0 then
