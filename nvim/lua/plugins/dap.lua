@@ -1,3 +1,6 @@
+--- @diagnostic disable: missing-fields
+--- @diagnostic disable: missing-parameter
+
 return {
     "rcarriga/nvim-dap-ui",
     dependencies = {

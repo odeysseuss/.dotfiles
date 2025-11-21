@@ -15,11 +15,26 @@ return {
                 "c",
                 "cpp",
                 "rust",
-                "python",
-                "toml",
-                "json",
-                "rasi",
             })
+        end,
+    },
+    {
+        "nvim-treesitter/nvim-treesitter-textobjects",
+        after = "nvim-treesitter",
+        branch = "main",
+        config = function()
+            require("nvim-treesitter-textobjects").setup()
+            -- local sel = require("nvim-treesitter-textobjects.select").select_textobject
+            local ts_swap = require("nvim-treesitter-textobjects.swap")
+            -- local ts_move = require("nvim-treesitter-textobjects.move")
+            -- local tsrepeat = require("nvim-treesitter-textobjects.repeatable_move")
+
+            vim.keymap.set("n", "<leader>si", function()
+                ts_swap.swap_next "@parameter.inner"
+            end)
+            vim.keymap.set("n", "<leader>so", function()
+                ts_swap.swap_previous "@parameter.inner"
+            end)
         end,
     },
     {

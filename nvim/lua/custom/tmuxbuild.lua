@@ -15,7 +15,7 @@ local function get_effective_cmds()
     -- check for Makefile first
     if has_makefile() then
         return {
-            build = "make",
+            build = "make -j$(nproc)",
             exec = "make run",
             test = "make test",
             errorformat = "%f:%l:%c: %m"

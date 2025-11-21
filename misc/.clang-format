@@ -36,7 +36,7 @@ BreakBeforeBraces: Attach
 BreakBeforeBinaryOperators: None
 ColumnLimit: 80
 IndentCaseLabels: false
-IndentGotoLabels: false
+IndentGotoLabels: true
 IndentPPDirectives: AfterHash
 IndentWidth: 4
 KeepEmptyLinesAtTheStartOfBlocks: false

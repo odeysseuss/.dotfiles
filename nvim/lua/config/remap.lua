@@ -7,7 +7,6 @@ vim.keymap.set("n", "=ap", "ma=ap'a")
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set({ "n", "v" }, "<leader><leader>", "<cmd>w<CR>")
-vim.keymap.set("n", "<C-m>", "@")
 vim.keymap.set("n", "Q", "<nop>")
 vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>")
 
@@ -26,18 +25,22 @@ vim.keymap.set({ "n", "v" }, "<leader>D", '"_d')
 
 vim.keymap.set("n", "<leader>ss", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
--- diagnostic
+-- lsp & diagnostic
+vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})
+vim.keymap.set("n", "gD", vim.lsp.buf.declaration, {})
 vim.keymap.set("n", "ge", vim.diagnostic.open_float, {})
-vim.keymap.set("n", "gj", vim.diagnostic.goto_next, {})
-vim.keymap.set("n", "gk", vim.diagnostic.goto_prev, {})
+vim.keymap.set("n", "gj", function() vim.diagnostic.jump({ count = 1, float = true }) end,
+    { desc = "Goto next diagonstic" })
+vim.keymap.set("n", "gk", function() vim.diagnostic.jump({ count = -1, float = true }) end,
+    { desc = "Goto previous diagonstic" })
 vim.keymap.set("n", "<leader>sd", vim.diagnostic.setqflist, {})
 vim.keymap.set("n", "<leader>sD", vim.diagnostic.setloclist, {})
 vim.keymap.set("n", "<leader>j", "<cmd>cnext<CR>", {})
 vim.keymap.set("n", "<leader>k", "<cmd>cprev<CR>", {})
 
 -- git diff
-vim.keymap.set("n", "gu", "<cmd>diffget //2<CR>", { desc = "Git get remote diff" })
-vim.keymap.set("n", "gh", "<cmd>diffget //3<CR>", { desc = "Git get local diff" })
+-- vim.keymap.set("n", "gu", "<cmd>diffget //2<CR>", { desc = "Git get remote diff" })
+-- vim.keymap.set("n", "gh", "<cmd>diffget //3<CR>", { desc = "Git get local diff" })
 
 -- terminal commands
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod 755 %<CR>")
