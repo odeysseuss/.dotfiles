@@ -4,15 +4,12 @@ set -e
 
 if [[ $# -eq 0 ]]; then
     $HOME/.dotfiles/fonts/maple_fonts.sh
-    $HOME/.dotfiles/fonts/monaspace_fonts.sh
-    $HOME/.dotfiles/fonts/nerds_fonts.sh
 fi
 
 while [[ $# -gt 0 ]]; do
     case $1 in
     --all)
         $HOME/.dotfiles/fonts/maple_fonts.sh
-        $HOME/.dotfiles/fonts/monaspace_fonts.sh
         $HOME/.dotfiles/fonts/nerds_fonts.sh
         shift
         ;;
@@ -20,12 +17,8 @@ while [[ $# -gt 0 ]]; do
         $HOME/.dotfiles/fonts/maple_fonts.sh
         shift
         ;;
-    --jetbrains)
+    --nf)
         $HOME/.dotfiles/fonts/nerds_fonts.sh
-        shift
-        ;;
-    --monaspace)
-        $HOME/.dotfiles/fonts/monaspace_fonts.sh
         shift
         ;;
     *)
