@@ -39,8 +39,8 @@ vim.keymap.set("n", "<leader>j", "<cmd>cnext<CR>", {})
 vim.keymap.set("n", "<leader>k", "<cmd>cprev<CR>", {})
 
 -- git diff
--- vim.keymap.set("n", "gu", "<cmd>diffget //2<CR>", { desc = "Git get remote diff" })
--- vim.keymap.set("n", "gh", "<cmd>diffget //3<CR>", { desc = "Git get local diff" })
+vim.keymap.set("n", "gu", "<cmd>diffget //2<CR>", { desc = "Git get remote diff" })
+vim.keymap.set("n", "gh", "<cmd>diffget //3<CR>", { desc = "Git get local diff" })
 
 -- terminal commands
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod 755 %<CR>")

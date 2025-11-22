@@ -21,12 +21,10 @@ packages=(
     perf
     strace
     ltrace
-    # hurl
     # xclip
     # ffmpeg
     # zathura
 
-    # alacritty
     # wezterm
     zsh
     tmux
@@ -59,7 +57,6 @@ packages=(
     pkgconf
     # docker
     # luarocks
-    python-cffi
 
     # nmap
     # gnu-netcat
