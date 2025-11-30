@@ -30,7 +30,7 @@ process_fonts() {
         local_font="$font_dir/$font_ttf"
 
         if [[ -f "$local_font" ]]; then
-            echo "$font_ttf already exists"
+            echo -ne "$font_ttf already exists\r"
         else
             echo "Downloading $font_ttf..."
             curl -fL "https://github.com/ryanoasis/nerd-fonts/raw/HEAD/patched-fonts/$font" \

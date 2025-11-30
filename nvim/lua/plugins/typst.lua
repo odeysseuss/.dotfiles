@@ -1,6 +1,5 @@
 return {
     "chomosuke/typst-preview.nvim",
-    lazy = false,
     version = "1.*",
     ft = "typst",
     opts = {},
@@ -26,6 +25,7 @@ return {
             get_main_file = function(path_of_buffer)
                 return path_of_buffer
             end,
+            vim.keymap.set("n", "<leader>P", "<cmd>TypstPreviewToggle<CR>", {})
         })
     end,
 }

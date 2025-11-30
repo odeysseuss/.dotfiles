@@ -10,14 +10,14 @@ function StatusFileIcon()
         require("nvim-web-devicons").get_icon_color(filename, extension, { default = true })
 
     if icon then
-        vim.api.nvim_set_hl(0, "StatusFile", { bg = "#121618", fg = icon_color })
-        return icon .. " "
+        vim.api.nvim_set_hl(0, "StatusFile", { bg = "#111111", fg = icon_color, bold = true })
+        return icon
     end
 
     return ""
 end
 
--- === Statusline git branch ===
+-- === Git branch ===
 local git_branch_cache = {}
 
 function GetGitBranch()
@@ -37,7 +37,7 @@ function GetGitBranch()
     if handle then
         local result = handle:read("*a"):gsub("%s+", "")
         handle:close()
-        git_branch_cache[bufdir] = result ~= "" and " " .. result .. " " or ""
+        git_branch_cache[bufdir] = result ~= "" and " " .. result .. " " or ""
         return git_branch_cache[bufdir]
     end
 
@@ -55,7 +55,7 @@ vim.api.nvim_create_autocmd({ "VimEnter", "BufEnter" }, {
     end,
 })
 
--- === Statusline diagnostics ===
+-- === Diagnostics ===
 local icons = {
     ERROR = " ",
     WARN = " ",
@@ -84,15 +84,30 @@ function StatusDiagHint()
     return count > 0 and icons.HINT .. count .. " " or ""
 end
 
+--  === Mode name ===
+function StatusMode()
+    local mode_map = {
+        n = "NORMAL",
+        v = "VISUAL",
+        V = "V-LINE",
+        [''] = "V-BLOCK",
+        i = "INSERT",
+        R = "REPLACE",
+        c = "COMMAND",
+        t = "TERMINAL",
+        s = "SELECT",
+        S = "S-LINE",
+        [''] = "S-BLOCK",
+    }
+    return " " .. (mode_map[vim.fn.mode()] or "UNKNOWN")
+end
+
+-- === Statusline ===
 vim.o.statusline = table.concat({
-    "%#StatusStyle#",
-    " ",
-    "%{v:lua.GetGitBranch()}", -- git branch
-    "%#StatusStyle#",
-    " %#StatusFile#%{v:lua.StatusFileIcon()}", -- file icon
-    "%#StatusStyle#", -- reset
-    "%<%t%h%w%m%r", -- filename and flags
-    "%=", -- right align
+    "%#StatusMode# %{v:lua.StatusMode()} ",                 -- mode name
+    "%#StatusBranch# %{v:lua.GetGitBranch()}",              -- git branch
+    "%#StatusFile# %{v:lua.StatusFileIcon()} %<%t%h%w%m%r", -- file icon, name and flags
+    "%=",                                                   -- right align
 
     -- diagnostics
     "%#StatusDiagERROR#%{v:lua.StatusDiagErr()}",
@@ -100,9 +115,5 @@ vim.o.statusline = table.concat({
     "%#StatusDiagINFO#%{v:lua.StatusDiagInfo()}",
     "%#StatusDiagHINT#%{v:lua.StatusDiagHint()}",
 
-    "%#StatusStyle#", -- reset
-    "[%n] ", -- status buffer
-    "%l:%c ", -- line:column
-    "%P", -- percentage
-    " ",
+    "%#StatusStyle# %l:%c %P ", -- line:column and percentage
 })

@@ -8,8 +8,8 @@ packages=(
     sudo
     man-db
     man-pages
-    tldr
     wget
+    ufw
     zip
     websocat
     bat
@@ -21,6 +21,7 @@ packages=(
     perf
     strace
     ltrace
+    valgrind
     # xclip
     # ffmpeg
     # zathura
@@ -53,8 +54,10 @@ packages=(
     make
     ninja
     cmake
+    # xmake
     npm
     pkgconf
+    # vcpkg
     # docker
     # luarocks
 
@@ -70,7 +73,7 @@ for pkg in "${packages[@]}"; do
     if ! echo "$installed_packages" | grep -q "^$pkg$"; then
         packages_to_install+=("$pkg")
     else
-        echo "$pkg is already installed"
+        echo -ne "==> $pkg is already installed\r"
     fi
 done
 

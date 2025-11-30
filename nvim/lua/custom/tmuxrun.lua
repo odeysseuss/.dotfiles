@@ -9,7 +9,7 @@ local function execute_tmux_command(tmux_cmd, callback)
                 vim.schedule(callback)
             end
             if exit_code == 0 then
-                vim.notify("[Ok]: " .. tmux_cmd, vim.log.levels.INFO, {})
+                vim.notify("[OK]: " .. tmux_cmd, vim.log.levels.INFO, {})
             else
                 vim.notify("[FAIL]: " .. tmux_cmd, vim.log.levels.ERROR, {})
             end

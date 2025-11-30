@@ -17,11 +17,11 @@ fzf_nvim() {
     nvim "${files[@]}"
 }
 
-bat_strace() {
+bstrace() {
     stdbuf -o0 strace "$@" 2>&1 | bat --no-pager -l c
 }
 
-bat_ltrace() {
+bltrace() {
     stdbuf -o0 ltrace "$@" 2>&1 | bat --no-pager -l c
 }
 
@@ -35,34 +35,13 @@ alias vi=fzf_nvim
 alias vinstall="nvim $DOTFILES/scripts/setup/install.sh"
 alias vbuild="nvim $DOTFILES/scripts/setup/buildpkgs.sh"
 alias python="python3"
-alias strace=bat_strace
-alias ltrace=bat_ltrace
 
 bindkey -v
 autoload -U edit-command-line
 zle -N edit-command-line
 
-# ci", ci', ci`, di", etc
-autoload -U select-quoted
-zle -N select-quoted
-for m in visual viopp; do
-  for c in {a,i}{\',\",\`}; do
-    bindkey -M $m $c select-quoted
-  done
-done
-
-# ci{, ci(, ci<, di{, etc
-autoload -U select-bracketed
-zle -N select-bracketed
-for m in visual viopp; do
-  for c in {a,i}${(s..)^:-'()[]{}<>bB'}; do
-    bindkey -M $m $c select-bracketed
-  done
-done
-
 bindkey "^?" backward-delete-char
 bindkey "^Xe" edit-command-line
 bindkey "^g" fzf-history-widget
-bindkey -s "^r" "source $DOTFILES/zsh/conf.zsh\n"
 bindkey -s "^f" "$DOTFILES/scripts/workflow/tmux-sessionizer.sh\n"
 bindkey -s "^y" "yazi\n"
