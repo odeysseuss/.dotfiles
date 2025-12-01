@@ -46,7 +46,6 @@ return {
             vim.g.gruvbox_material_ui_contrast = "high"
             vim.g.gruvbox_material_float_style = "bright"
             vim.g.gruvbox_material_statusline_style = "material"
-            vim.g.gruvbox_material_cursor = "aqua"
             vim.g.gruvbox_material_better_performance = 1
             vim.g.gruvbox_material_disable_italic_comment = 1
             vim.g.gruvbox_material_enable_italic = 1

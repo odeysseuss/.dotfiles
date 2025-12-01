@@ -27,8 +27,9 @@ source $HOME/.dotfiles/zsh/keybinds.zsh
 source $HOME/.cargo/env
 source <(fzf --zsh)
 
-plugins=(fzf-tab zsh-autosuggestions)
+plugins=(fzf-tab zsh-autosuggestions zsh-syntax-highlighting)
 
 for plugin in ${plugins[@]}; do
     source "$ZSH/plugins/$plugin/$plugin.plugin.zsh"
 done
+source "$DOTFILES/zsh/syntax.zsh"

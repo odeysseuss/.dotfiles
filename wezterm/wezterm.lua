@@ -4,6 +4,29 @@ local config = wezterm.config_builder()
 config.automatically_reload_config = true
 config.enable_tab_bar = false
 
+config.window_close_confirmation = "NeverPrompt"
+config.window_decorations = "NONE"
+config.window_background_opacity = 0.9
+config.window_padding = {
+    left = 2,
+    right = 2,
+    top = 0,
+    bottom = 0,
+}
+
+config.force_reverse_video_cursor = true
+config.colors = require("cyberdream")
+config.window_background_gradient = {
+    colors = {
+        "#070709",
+        "#1b1871",
+        "#580a8f",
+    },
+    orientation = {
+        Linear = { angle = 111.4 }
+    },
+}
+
 config.line_height = 1.2
 config.font_size = 20
 config.font = wezterm.font({
@@ -26,46 +49,23 @@ config.font = wezterm.font({
     },
 })
 
-config.window_close_confirmation = "NeverPrompt"
-config.window_decorations = "NONE"
-config.window_background_opacity = 0.8
-config.window_padding = {
-    left = 2,
-    right = 2,
-    top = 0,
-    bottom = 0,
-}
-
 config.hyperlink_rules = {
-    -- Matches: a URL in parens: (URL)
+    -- Match URLs within brackets
     {
-        regex = "\\((\\w+://\\S+)\\)",
+        regex = "[\\(\\[\\{<](\\w+://\\S+)[\\)\\]\\}>]",
         format = "$1",
         highlight = 1,
     },
-    -- Matches: a URL in square brackets: [URL]
+    -- Match bare URLs
     {
-        regex = "\\[(\\w+://\\S+)\\]",
+        regex = "\\b(\\w+://[\\S]+[a-zA-Z0-9/])",
         format = "$1",
         highlight = 1,
     },
-    -- Matches: a URL in curly braces: {URL}
+    -- Match email addresses
     {
-        regex = "\\{(\\w+://\\S+)\\}",
-        format = "$1",
-        highlight = 1,
-    },
-    -- Matches: a URL in angle brackets: <URL>
-    {
-        regex = "<(\\w+://\\S+)>",
-        format = "$1",
-        highlight = 1,
-    },
-    -- Then handle URLs not wrapped in brackets
-    {
-        regex = "[^(]\\b(\\w+://\\S+[)/a-zA-Z0-9-]+)",
-        format = "$1",
-        highlight = 1,
+        regex = "\\b\\w+@[\\w-]+\\.[a-z]{2,}\\b",
+        format = "mailto:$0",
     },
 }
 
