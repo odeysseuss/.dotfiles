@@ -17,9 +17,18 @@ build_yay() {
 build_treesitter_cli() {
     if ! command -v tree-sitter &>/dev/null; then
         echo "Treesitter cli installation"
-        npm install tree-sitter-cli
+        npm install tree-sitter-cli -g
     else
         echo "tree-sitter already installed."
+    fi
+}
+
+build_typescript() {
+    if ! command -v tsc &>/dev/null; then
+        echo "Typescript installation"
+        npm install typescript -g
+    else
+        echo "Typescript already installed"
     fi
 }
 
@@ -129,6 +138,10 @@ while [[ $# -gt 0 ]]; do
         ;;
     --rust)
         build_rust
+        shift
+        ;;
+    --ts)
+        build_typescript
         shift
         ;;
     --pwndbg)

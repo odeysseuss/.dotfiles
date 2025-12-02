@@ -23,7 +23,7 @@ return {
                     "--glob",
                     "!**/.git/*",
                 },
-                file_ignore_patterns = { "^.git/" }, -- Extra safety
+                file_ignore_patterns = { "^.git/", "^node_modules/" },
             })
         end, { desc = "Telescope find files" })
 
