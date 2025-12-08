@@ -4,7 +4,7 @@ fzf_nvim() {
         return
     fi
 
-    local selected=$(fzf --multi --preview="bat --color=always {} || cat {}" --preview-window "right:65%")
+    local selected=$(rg --files --hidden --glob "!**/.git/*" | fzf --multi --preview="bat --color=always {} || cat {}" --preview-window "right:65%")
     if [[ -z "$selected" ]]; then
         return
     fi

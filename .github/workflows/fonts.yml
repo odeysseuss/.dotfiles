@@ -1,11 +1,7 @@
 name: Build fonts
-
-on:
-  workflow_dispatch
-
+on: workflow_dispatch
 permissions:
   contents: write
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -14,21 +10,17 @@ jobs:
       - uses: actions/setup-python@v6
         with:
           python-version: "3.13"
-
       - name: Clone src repository
         run: |
           git clone https://github.com/subframe7536/maple-font --depth 1 -b variable
-
       - name: Install dependencies
         run: |
           cd maple-font
           pip install -r requirements.txt
-
       - name: Build Maple font
         run: |
           cd maple-font
           ./build.py --feat cv03,cv09,cv10,cv42,cv43,cv66,ss03,ss07,ss08,ss09,ss10,ss11,zero --nf --liga --infinite-arrow --archive
-
       - name: Create release
         run: |
           cp -r maple-font/fonts/archive/* ./

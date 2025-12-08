@@ -142,28 +142,28 @@ footer = { fg = "#CECDC3", bg = "#282726", bold = true } # tx, ui
 
 [filetype]
 rules = [
-    # Images
-    { mime = "image/*", fg = "#8B7EC8" }, # pu
+  # Images
+  { mime = "image/*", fg = "#8B7EC8" }, # pu
 
-    # Media
-    { mime = "video/*", fg = "#D0A215" }, # ye
-    { mime = "audio/*", fg = "#D0A215" }, # ye
+  # Media
+  { mime = "video/*", fg = "#D0A215" }, # ye
+  { mime = "audio/*", fg = "#D0A215" }, # ye
 
-    # Broken symbolic link
-    { name = "*", is = "orphan", fg = "#575653", crossed = true },  # tx-3
-    { name = "*/", is = "orphan", fg = "#575653", crossed = true }, # tx-3
+  # Broken symbolic link
+  { name = "*", is = "orphan", fg = "#575653", crossed = true },  # tx-3
+  { name = "*/", is = "orphan", fg = "#575653", crossed = true }, # tx-3
 
-    # Symbolic links
-    { name = "*", is = "link", fg = "#3AA99F" },  # cy
-    { name = "*/", is = "link", fg = "#3AA99F" }, # cy
+  # Symbolic links
+  { name = "*", is = "link", fg = "#3AA99F" },  # cy
+  { name = "*/", is = "link", fg = "#3AA99F" }, # cy
 
-    # Executable
-    { name = "*", is = "exec", fg = "#879A39" }, # gr
+  # Executable
+  { name = "*", is = "exec", fg = "#879A39" }, # gr
 
-    # Empty files
-    { mime = "inode/empty", fg = "#575653" }, # tx-3
+  # Empty files
+  { mime = "inode/empty", fg = "#575653" }, # tx-3
 
-    # Fallback
-    { name = "*", fg = "#878580" },  # tx-2
-    { name = "*/", fg = "#CECDC3" }, # tx
+  # Fallback
+  { name = "*", fg = "#878580" },  # tx-2
+  { name = "*/", fg = "#CECDC3" }, # tx
 ]

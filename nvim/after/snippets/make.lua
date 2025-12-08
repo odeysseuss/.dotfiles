@@ -3,7 +3,7 @@ local function makefile_snippet(lang, compiler, std)
 
     return {
         t({ "cc := " .. compiler }),
-        t({ "", "cflags := -std=" .. std .. " -Wall -Wextra -pedantic -MMD -MP" }),
+        t({ "", "cflags := -std=" .. std .. " -Wall -Wextra -pedantic -MMD -MP -g3" }),
         t({ "", "incdir := -Iinclude" }),
         t({ "", "objdir := build/obj" }),
         t({ "", "" }),
