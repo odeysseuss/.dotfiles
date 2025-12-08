@@ -16,6 +16,7 @@ return {
                 typst = { "typstyle" },
                 json = { "biome" },
                 jsonc = { "biome" },
+                css = { "biome" },
                 yaml = { "yamlfmt" },
                 toml = { "taplo" },
             },

@@ -90,10 +90,6 @@ git clone https://github.com/Aloxaf/fzf-tab.git $ZSH/plugins/fzf-tab || {
     error "Failed to clone fzf-tab"
     exit 1
 }
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH/plugins/zsh-syntax-highlighting || {
-    error "Failed to clone zsh-syntax-highlighting"
-    exit 1
-}
 success "Zsh configurations updated..."
 
 section "SSH Key Setup"

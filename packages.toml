@@ -1,0 +1,95 @@
+[sys]
+packages = [
+  "sudo",
+  "man-db",
+  "man-pages",
+  "zip",
+  "rsync",
+  # "docker",
+  # "qemu-user",
+  # "qemu-user-binfmt",
+]
+
+[cli]
+packages = ["bat", "fzf", "tree", "ripgrep", "go-yq"]
+
+# [media]
+# packages = ["xclip", "ffmpeg", "zathura"]
+
+# [desktop]
+# packages = [
+#   "hyprland",
+#   "xorg-xwayland",
+#   "hyprpaper",
+#   "waybar",
+#   "rofi",
+#   "yazi",
+#   "zen-browser-bin",
+# ]
+
+[perf]
+packages = ["perf", "strace", "ltrace", "valgrind"]
+
+[networking]
+packages = ["wget", "ufw", "websocat"]
+
+[dev]
+packages = [
+  # "wezterm",
+  "zsh",
+  "starship",
+  "tmux",
+  "git",
+  "neovim",
+]
+
+[langs]
+packages = [
+  "nasm",
+  "lld",
+  "clang",
+  # "go",
+  # "zig",
+  "luajit",
+  "python",
+  "typst",
+]
+
+[lang-tools]
+packages = [
+  "llvm",
+  "make",
+  "ninja",
+  "cmake",
+  # "xmake",
+  # "vcpkg",
+  "pkgconf",
+  "npm",
+  # "luarocks",
+]
+
+[lsps]
+packages = [
+  "lua-language-server",
+  "bash-language-server",
+  "rust-analyzer",
+  # "gopls",
+  # "typescript-language-server",
+  # "zls",
+  # "pyright",
+  # "tinymist",
+]
+
+[formatters]
+packages = [
+  "biome",
+  "stylua",
+  "shfmt",
+  "taplo-cli",
+  "yamlfmt",
+  # "typstyle",
+  # "ruff",
+]
+
+[debuggers]
+packages = ["gdb", "codelldb-bin"]

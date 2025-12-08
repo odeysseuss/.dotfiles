@@ -40,7 +40,7 @@ return {
         vim.keymap.set("n", "<leader>sW", function()
             local word = vim.fn.expand("<cWORD>")
             builtin.grep_string({ search = word })
-        end, { desc = "Telescope search WORD under cursor in CWD" })
+        end, { desc = "Telescope search WORD (case sensitive) under cursor in CWD" })
 
         vim.keymap.set("n", "<leader>sl", function()
             builtin.find_files({ cwd = "~/.dotfiles/" })
