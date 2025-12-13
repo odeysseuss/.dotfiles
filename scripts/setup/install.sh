@@ -28,9 +28,7 @@ get_package_count() {
 }
 
 if ! command -v yq &>/dev/null; then
-    echo -e "${RED}Error: yq is required.${NC}"
-    $pkg_manager yq-go
-    exit 1
+    $pkg_manager go-yq
 fi
 
 installed_packages=$(yay -Qq 2>/dev/null || true)

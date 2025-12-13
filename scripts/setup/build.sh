@@ -8,7 +8,8 @@ build_yay() {
         echo "Yay aur installation"
         sudo pacman -Sy --needed git base-devel --noconfirm
         git clone https://aur.archlinux.org/yay-bin.git $HOME/yay
-        cd $HOME/yay && makepkg -si --noconfirm && cd $HOME
+        cd $HOME/yay && makepkg -si --noconfirm
+        cd $HOME && rm -rf $HOME/yay
     else
         echo "yay already installed."
     fi
@@ -39,15 +40,6 @@ build_rust() {
         source "$HOME/.cargo/env"
     else
         echo "Rust already installed."
-    fi
-}
-
-build_pwndbg() {
-    if ! command -v pwndbg &>/dev/null; then
-        echo "pwndbg installation"
-        curl -qsL 'https://install.pwndbg.re' | sh -s -- -t pwndbg-gdb
-    else
-        echo "pwndbg is already installed"
     fi
 }
 
@@ -106,17 +98,12 @@ build_wasm() {
     fi
 }
 
-clean() {
-    rm -rf $HOME/yay
-    rm -rf $HOME/raylib
-    rm -rf $HOME/emsdk
-}
-
 # === build packages ===
 if [[ $# -eq 0 ]]; then
     build_yay
     build_rust
-    build_pwndbg
+    build_treesitter_cli
+    build_typescript
     build_raylib
     build_wasm
     exit 0
@@ -125,11 +112,10 @@ fi
 while [[ $# -gt 0 ]]; do
     case $1 in
     --all)
-        build_pwndbg
-        build_rust
         build_yay
-        build_wasm
+        build_rust
         build_raylib
+        build_wasm
         shift
         ;;
     --yay)
@@ -140,14 +126,13 @@ while [[ $# -gt 0 ]]; do
         build_rust
         shift
         ;;
-    --ts)
+    --tsc)
         build_typescript
         shift
         ;;
-    --pwndbg)
-        build_pwndbg
+    --ts)
+        build_treesitter_cli
         shift
-        ;;
     --raylib)
         build_raylib
         shift
@@ -155,10 +140,6 @@ while [[ $# -gt 0 ]]; do
     --wasm)
         build_wasm
         shift
-        ;;
-    --clean)
-        clean
-        exit 0
         ;;
     *)
         echo "Unknown option: $1"

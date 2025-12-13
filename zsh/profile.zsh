@@ -15,12 +15,9 @@ export TYPST_FONT_PATHS="$XDG_DATA_HOME/fonts/"
 
 export DISPLAY=:0
 export EDITOR="nvim"
-export FZFM_EDITOR=$EDITOR
-export FZFM_PDF_READER="zathura"
-export PAGER="bat"
 export BAT_THEME="gruvbox-dark"
-export BAT_STYLE="numbers"
 export MANPAGER="nvim +Man!"
+export PAGER="bat"
 
 # SSH Agent Configuration
 if [ -z "$SSH_AUTH_SOCK" ]; then

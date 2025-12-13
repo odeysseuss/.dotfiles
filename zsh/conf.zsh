@@ -20,7 +20,6 @@ eval "$(dircolors)"
 eval "$(fzf --zsh)"
 
 source $HOME/.dotfiles/zsh/keybinds.zsh
-source $HOME/.cargo/env
 
 plugins=(fzf-tab zsh-autosuggestions)
 for plugin in ${plugins[@]}; do

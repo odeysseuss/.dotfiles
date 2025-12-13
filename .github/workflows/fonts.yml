@@ -20,11 +20,12 @@ jobs:
       - name: Build Maple font
         run: |
           cd maple-font
-          ./build.py --feat cv03,cv09,cv10,cv42,cv43,cv66,ss07,ss08,ss09,ss10,ss11,zero --nf --liga --infinite-arrow --archive
+          ./build.py --feat cv03,cv09,cv10,cv42,cv43,cv66,ss07,ss08,ss09,ss10,ss11,zero --nf --liga --remove-tag-liga --infinite-arrow --archive
       - name: Create release
         run: |
-          cp -r maple-font/fonts/archive/* ./
+          mkdir -p maple-nf
+          cp -r maple-font/fonts/archive/* ./maple-nf
           gh release delete "Fonts" --yes 2>/dev/null || true # no old releases
-          gh release create "Fonts" ./*.* --title "Maple Mono NF" --notes-file .github/fonts.md
+          gh release create "Fonts" ./maple-nf/*.* --title "Maple Mono NF" --notes-file .github/fonts.md
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
