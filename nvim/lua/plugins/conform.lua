@@ -21,15 +21,8 @@ return {
                 toml = { "taplo" },
             },
             formatters = {
-                ruff = {
-                    command = "ruff",
-                    args = { "format", "--stdin-filename", "$FILENAME" },
-                    stdin = true,
-                },
                 typstyle = {
-                    command = "typstyle",
-                    args = { "-t", "4", "-i", "$FILENAME" },
-                    stdin = false,
+                    append_args = { "-t", "4" },
                 },
             },
             vim.keymap.set("n", "<leader>f", function()

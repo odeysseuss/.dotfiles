@@ -1,6 +1,8 @@
 return {
     cmd = { "zls" },
-    filetypes = { "zig" },
+    filetypes = { "zig", "zir" },
+    root_markers = { "zls.json", "build.zig", ".git" },
+    workspace_required = false,
     init_options = {
         enable_inlay_hints = true,
         inlay_hints_show_builtin = true,

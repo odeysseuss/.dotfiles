@@ -14,7 +14,7 @@ return {
         require("telescope").load_extension("fzf")
 
         local builtin = require("telescope.builtin")
-        vim.keymap.set("n", "<leader>sf", function()
+        vim.keymap.set("n", "<leader>sj", function()
             builtin.find_files({
                 find_command = {
                     "rg",

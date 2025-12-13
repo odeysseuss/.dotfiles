@@ -40,5 +40,6 @@ zle -N edit-command-line
 bindkey "^?" backward-delete-char
 bindkey "^Xe" edit-command-line
 bindkey "^g" fzf-history-widget
+bindkey -s "^r" "source $DOTFILES/zsh/conf.zsh\n"
 bindkey -s "^f" "$DOTFILES/scripts/workflow/tmux-sessionizer.sh\n"
 bindkey -s "^y" "yazi\n"

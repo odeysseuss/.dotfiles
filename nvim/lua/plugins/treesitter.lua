@@ -7,7 +7,7 @@ return {
         config = function()
             local treesitter = require("nvim-treesitter")
             treesitter.setup({
-                install_dir = vim.fn.stdpath('data') .. '/site'
+                install_dir = vim.fn.stdpath("data") .. "/site",
             })
             treesitter.install({
                 "lua",
@@ -30,10 +30,10 @@ return {
             -- local tsrepeat = require("nvim-treesitter-textobjects.repeatable_move")
 
             vim.keymap.set("n", "<leader>si", function()
-                ts_swap.swap_next "@parameter.inner"
+                ts_swap.swap_next("@parameter.inner")
             end)
             vim.keymap.set("n", "<leader>so", function()
-                ts_swap.swap_previous "@parameter.inner"
+                ts_swap.swap_previous("@parameter.inner")
             end)
         end,
     },

@@ -5,25 +5,25 @@ config.automatically_reload_config = true
 config.enable_tab_bar = false
 
 config.window_close_confirmation = "NeverPrompt"
-config.window_decorations = "NONE"
-config.window_background_opacity = 0.9
+config.window_decorations = "INTEGRATED_BUTTONS|RESIZE"
+config.window_background_opacity = 0.95
 config.window_padding = {
-    left = 2,
-    right = 2,
-    top = 0,
-    bottom = 0,
+    left = 10,
+    right = 10,
+    top = 5,
+    bottom = 5,
 }
 
 config.force_reverse_video_cursor = true
 config.colors = require("cyberdream")
 config.window_background_gradient = {
     colors = {
-        "#070709",
-        "#1b1871",
         "#580a8f",
+        "#1b1871",
+        "#070709",
     },
     orientation = {
-        Linear = { angle = 111.4 }
+        Linear = { angle = 111.4 },
     },
 }
 

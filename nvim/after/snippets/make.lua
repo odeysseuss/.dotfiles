@@ -39,5 +39,5 @@ end
 
 return {
     s("makefile_c", makefile_snippet("c", "clang", "c11")),
-    s("makefile_cpp", makefile_snippet("c++", "clang++", "c++17"))
+    s("makefile_cpp", makefile_snippet("c++", "clang++", "c++17")),
 }

@@ -20,7 +20,7 @@ jobs:
       - name: Build Maple font
         run: |
           cd maple-font
-          ./build.py --feat cv03,cv09,cv10,cv42,cv43,cv66,ss03,ss07,ss08,ss09,ss10,ss11,zero --nf --liga --infinite-arrow --archive
+          ./build.py --feat cv03,cv09,cv10,cv42,cv43,cv66,ss07,ss08,ss09,ss10,ss11,zero --nf --liga --infinite-arrow --archive
       - name: Create release
         run: |
           cp -r maple-font/fonts/archive/* ./

@@ -14,31 +14,41 @@ return {
         dap.set_log_level("DEBUG")
         local dapui = require("dapui")
         dapui.setup({
-            layouts = { {
-                elements = { {
-                    id = "stacks",
-                    size = 0.33
-                }, {
-                    id = "watches",
-                    size = 0.33
-                }, {
-                    id = "scopes",
-                    size = 0.34
-                } },
-                position = "right",
-                size = 40
-            }, {
-                elements = { {
-                    id = "repl",
-                    size = 0.5
-                }, {
-                    id = "console",
-                    size = 0.5
-                } },
-                position = "bottom",
-                size = 10
-            }, },
-        });
+            layouts = {
+                {
+                    elements = {
+                        {
+                            id = "stacks",
+                            size = 0.33,
+                        },
+                        {
+                            id = "watches",
+                            size = 0.33,
+                        },
+                        {
+                            id = "scopes",
+                            size = 0.34,
+                        },
+                    },
+                    position = "right",
+                    size = 40,
+                },
+                {
+                    elements = {
+                        {
+                            id = "repl",
+                            size = 0.5,
+                        },
+                        {
+                            id = "console",
+                            size = 0.5,
+                        },
+                    },
+                    position = "bottom",
+                    size = 10,
+                },
+            },
+        })
 
         dap.adapters.codelldb = {
             type = "executable",
@@ -68,8 +78,9 @@ return {
         vim.keymap.set("n", "<leader>dB", function()
             dap.set_breakpoint(vim.fn.input("Breakpoint condition: "))
         end, { desc = "Dap set conditional breakpoint" })
-        vim.keymap.set("n", "<leader>de", function() dapui.eval() end,
-            { desc = "Dap evaluate expression" })
+        vim.keymap.set("n", "<leader>de", function()
+            dapui.eval()
+        end, { desc = "Dap evaluate expression" })
         vim.keymap.set("n", "<F10>", dap.step_over, { desc = "Dap step over" })
         vim.keymap.set("n", "<F11>", dap.step_into, { desc = "Dap step into" })
         vim.keymap.set("n", "<F12>", dap.step_out, { desc = "Dap step out" })
@@ -91,5 +102,5 @@ return {
                 dapui.eval(body.output) -- sends stdout/stderr to Console
             end
         end
-    end
+    end,
 }

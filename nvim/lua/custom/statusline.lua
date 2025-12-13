@@ -6,8 +6,7 @@ function StatusFileIcon()
     end
 
     local extension = vim.fn.expand("%:e")
-    local icon, icon_color =
-        require("nvim-web-devicons").get_icon_color(filename, extension, { default = true })
+    local icon, icon_color = require("nvim-web-devicons").get_icon_color(filename, extension, { default = true })
 
     if icon then
         vim.api.nvim_set_hl(0, "StatusFile", { bg = "#111111", fg = icon_color, bold = true })
@@ -32,8 +31,7 @@ function GetGitBranch()
         return git_branch_cache[bufdir]
     end
 
-    local handle =
-        io.popen("git -C " .. vim.fn.shellescape(bufdir) .. " branch --show-current 2>/dev/null")
+    local handle = io.popen("git -C " .. vim.fn.shellescape(bufdir) .. " branch --show-current 2>/dev/null")
     if handle then
         local result = handle:read("*a"):gsub("%s+", "")
         handle:close()
@@ -90,24 +88,24 @@ function StatusMode()
         n = "NORMAL",
         v = "VISUAL",
         V = "V-LINE",
-        [''] = "V-BLOCK",
+        [""] = "V-BLOCK",
         i = "INSERT",
         R = "REPLACE",
         c = "COMMAND",
         t = "TERMINAL",
         s = "SELECT",
         S = "S-LINE",
-        [''] = "S-BLOCK",
+        [""] = "S-BLOCK",
     }
     return " " .. (mode_map[vim.fn.mode()] or "UNKNOWN")
 end
 
 -- === Statusline ===
 vim.o.statusline = table.concat({
-    "%#StatusMode# %{v:lua.StatusMode()} ",                 -- mode name
-    "%#StatusBranch# %{v:lua.GetGitBranch()}",              -- git branch
+    "%#StatusMode# %{v:lua.StatusMode()} ", -- mode name
+    "%#StatusBranch# %{v:lua.GetGitBranch()}", -- git branch
     "%#StatusFile# %{v:lua.StatusFileIcon()} %<%t%h%w%m%r", -- file icon, name and flags
-    "%=",                                                   -- right align
+    "%=", -- right align
 
     -- diagnostics
     "%#StatusDiagERROR#%{v:lua.StatusDiagErr()}",

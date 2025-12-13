@@ -25,7 +25,7 @@ return {
             get_main_file = function(path_of_buffer)
                 return path_of_buffer
             end,
-            vim.keymap.set("n", "<leader>P", "<cmd>TypstPreviewToggle<CR>", {})
+            vim.keymap.set("n", "<leader>P", "<cmd>TypstPreviewToggle<CR>", {}),
         })
     end,
 }

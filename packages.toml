@@ -4,56 +4,41 @@ packages = [
   "man-db",
   "man-pages",
   "zip",
+  "entr",
   "rsync",
-  # "docker",
-  # "qemu-user",
-  # "qemu-user-binfmt",
+  "docker",
+  "qemu-user",
+  "qemu-user-binfmt",
 ]
 
-[cli]
-packages = ["bat", "fzf", "tree", "ripgrep", "go-yq"]
+[desktop]
+packages = [
+  "hyprland",
+  "xorg-xwayland",
+  "hyprpaper",
+  "waybar",
+  "rofi",
+  "yazi",
+  "zen-browser-bin",
+]
 
-# [media]
-# packages = ["xclip", "ffmpeg", "zathura"]
-
-# [desktop]
-# packages = [
-#   "hyprland",
-#   "xorg-xwayland",
-#   "hyprpaper",
-#   "waybar",
-#   "rofi",
-#   "yazi",
-#   "zen-browser-bin",
-# ]
-
-[perf]
-packages = ["perf", "strace", "ltrace", "valgrind"]
+[media]
+packages = ["xclip", "ffmpeg", "zathura"]
 
 [networking]
 packages = ["wget", "ufw", "websocat"]
 
+[cli]
+packages = ["bat", "fzf", "tree", "ripgrep", "go-yq"]
+
+[perf]
+packages = ["perf", "strace", "ltrace", "valgrind"]
+
 [dev]
-packages = [
-  # "wezterm",
-  "zsh",
-  "starship",
-  "tmux",
-  "git",
-  "neovim",
-]
+packages = ["wezterm", "zsh", "starship", "tmux", "git", "neovim"]
 
 [langs]
-packages = [
-  "nasm",
-  "lld",
-  "clang",
-  # "go",
-  # "zig",
-  "luajit",
-  "python",
-  "typst",
-]
+packages = ["nasm", "lld", "clang", "go", "zig", "luajit", "python", "typst"]
 
 [lang-tools]
 packages = [
@@ -61,11 +46,11 @@ packages = [
   "make",
   "ninja",
   "cmake",
-  # "xmake",
-  # "vcpkg",
+  "xmake",
+  "vcpkg",
   "pkgconf",
   "npm",
-  # "luarocks",
+  "luarocks",
 ]
 
 [lsps]
@@ -73,22 +58,22 @@ packages = [
   "lua-language-server",
   "bash-language-server",
   "rust-analyzer",
-  # "gopls",
-  # "typescript-language-server",
-  # "zls",
-  # "pyright",
-  # "tinymist",
+  "gopls",
+  "typescript-language-server",
+  "zls",
+  "pyright",
+  "tinymist",
 ]
 
 [formatters]
 packages = [
   "biome",
-  "stylua",
+  "stylua-bin",
   "shfmt",
   "taplo-cli",
   "yamlfmt",
-  # "typstyle",
-  # "ruff",
+  "typstyle",
+  "ruff",
 ]
 
 [debuggers]

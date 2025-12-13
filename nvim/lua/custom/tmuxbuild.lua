@@ -18,7 +18,7 @@ local function get_effective_cmds()
             build = "make -j$(nproc)",
             exec = "make run",
             test = "make test",
-            errorformat = "%f:%l:%c: %m"
+            errorformat = "%f:%l:%c: %m",
         }
     end
 
@@ -65,10 +65,10 @@ local function RunWithQuickfix(cmd, errorformat)
         on_exit = function(_, exit_code)
             vim.schedule(function()
                 if #output_lines > 0 then
-                    vim.fn.setqflist({}, 'r', {
+                    vim.fn.setqflist({}, "r", {
                         title = cmd,
                         lines = output_lines,
-                        efm = errorformat
+                        efm = errorformat,
                     })
                     vim.cmd("copen")
                 else
@@ -81,7 +81,7 @@ local function RunWithQuickfix(cmd, errorformat)
                     vim.notify("[FAIL]: " .. cmd, vim.log.levels.ERROR, {})
                 end
             end)
-        end
+        end,
     })
 end
 

@@ -22,7 +22,7 @@ vim.api.nvim_create_autocmd("FileType", {
 
 vim.api.nvim_create_autocmd("VimResized", {
     desc = "Sync nvim with the terminal",
-    command = "wincmd ="
+    command = "wincmd =",
 })
 
 vim.api.nvim_create_autocmd({ "WinEnter", "BufEnter" }, {
@@ -30,7 +30,7 @@ vim.api.nvim_create_autocmd({ "WinEnter", "BufEnter" }, {
     group = vim.api.nvim_create_augroup("active-cursorline", { clear = true }),
     callback = function()
         vim.opt_local.cursorline = true
-    end
+    end,
 })
 
 vim.api.nvim_create_autocmd({ "WinLeave", "BufLeave" }, {
@@ -38,7 +38,7 @@ vim.api.nvim_create_autocmd({ "WinLeave", "BufLeave" }, {
     group = "active-cursorline",
     callback = function()
         vim.opt_local.cursorline = false
-    end
+    end,
 })
 
 vim.api.nvim_create_autocmd("FileType", {
@@ -48,7 +48,7 @@ vim.api.nvim_create_autocmd("FileType", {
     callback = function()
         vim.b.completion = false
         vim.wo.wrap = true
-    end
+    end,
 })
 
 vim.api.nvim_create_autocmd("FileType", {
@@ -59,7 +59,7 @@ vim.api.nvim_create_autocmd("FileType", {
         if hasStarted then
             vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
         end
-    end
+    end,
 })
 
 vim.api.nvim_create_autocmd("BufRead", {
