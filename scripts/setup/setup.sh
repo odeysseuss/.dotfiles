@@ -2,33 +2,18 @@
 
 set -euo pipefail
 
-RED='\033[0;31m'
-GREEN='\033[0;32m'
-YELLOW='\033[1;33m'
-BLUE='\033[0;34m'
+RED='\033[1;31m'
+GREEN='\033[1;32m'
+BLUE='\033[1;34m'
 NC='\033[0m'
 
-set -e
-
-section() {
-    echo -e " ${BLUE}===${NC} ${GREEN}$1${NC} ${BLUE}===${NC} "
-}
-
 status() {
-    echo -e "${YELLOW}➔ $1${NC}"
-}
-
-success() {
-    echo -e "${GREEN}✓ $1${NC}"
+    echo -e "${BLUE}=== $1${NC}"
 }
 
 error() {
     echo -e "${RED}✗ $1${NC}" >&2
 }
-
-USER=$1
-KEY_NAME="$2"
-PASSPHRASE="$3"
 
 export XDG_CONFIG_HOME=$HOME/.config
 export DOTFILES="$HOME/.dotfiles"
@@ -36,8 +21,10 @@ export LOCAL_BIN="$HOME/.local/bin"
 export PERSONAL="$HOME/loom"
 export ZSH="$HOME/zsh"
 
-section "=== System Environment Setup ==="
-section "Package Installation"
+user="$1"
+keyname="$2"
+passphrase="$3"
+
 status "Yay installation..."
 curl -fsSL "https://raw.githubusercontent.com/odeysseuss/.dotfiles/refs/heads/master/scripts/setup/build.sh" | sh -s -- --yay || {
     error "Yay installation failed"
@@ -48,67 +35,59 @@ curl -fsSL "https://raw.githubusercontent.com/odeysseuss/.dotfiles/refs/heads/ma
     error "Failed to run dotfiles install script"
     exit 1
 }
-success "Packages installed"
 
-section "Dotfiles Setup"
 status "Cloning dotfiles repository..."
-git clone https://github.com/odeysseuss/.dotfiles.git $DOTFILES || {
-    error "Failed to clone dotfiles repository"
-    exit 1
-}
+if [[ ! -d "$DOTFILES" ]]; then
+    git clone https://github.com/odeysseuss/.dotfiles.git $DOTFILES || {
+        error "Failed to clone dotfiles repository"
+        exit 1
+    }
+fi
 status "Installing fonts..."
-"$DOTFILES/scripts/setup/fonts.sh" --maple || {
+"$DOTFILES/fonts/maple_fonts.sh" || {
     error "Failed to install fonts"
     exit 1
 }
-status "Creating symlinks..."
+status "Installing dotfiles..."
 "$DOTFILES/scripts/setup/symlinks.sh" --overwrite-all || {
     error "Failed to create symlinks"
     exit 1
 }
-success "Dotfiles installation complete"
 
-section "ZSH Configuration"
 status "Changing default shell..."
-ZSH_PATH=$(which zsh)
-if ! grep -q "$ZSH_PATH" /etc/shells 2>/dev/null; then
-    echo "$ZSH_PATH" | sudo tee -a /etc/shells >/dev/null
+zsh_path=$(which zsh)
+if ! grep -q "$zsh_path" /etc/shells 2>/dev/null; then
+    echo "$zsh_path" | sudo tee -a /etc/shells >/dev/null
 fi
-if [ "$SHELL" != "$ZSH_PATH" ]; then
-    sudo chsh -s "$ZSH_PATH" $USER || {
+if [ "$SHELL" != "$zsh_path" ]; then
+    sudo chsh -s "$zsh_path" "$user" || {
         error "Failed to change default shell to zsh"
         exit 1
     }
 fi
-status "Setup zsh dir"
+
 mkdir -p $ZSH/plugins $ZSH/themes
-
 status "Installing zsh plugins..."
-git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH/plugins/zsh-autosuggestions || {
-    error "Failed to clone zsh-autosuggestions"
-    exit 1
-}
-git clone https://github.com/Aloxaf/fzf-tab.git $ZSH/plugins/fzf-tab || {
-    error "Failed to clone fzf-tab"
-    exit 1
-}
-success "Zsh configurations updated..."
+if [[ ! -d "$ZSH/plugins/zsh-autosuggestions" ]]; then
+    git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH/plugins/zsh-autosuggestions || {
+        error "Failed to clone zsh-autosuggestions"
+        exit 1
+    }
+fi
+if [[ ! -d "$ZSH/plugins/fzf-tab" ]]; then
+    git clone https://github.com/Aloxaf/fzf-tab.git $ZSH/plugins/fzf-tab || {
+        error "Failed to clone fzf-tab"
+        exit 1
+    }
+fi
 
-section "SSH Key Setup"
+status "Generating new SSH key..."
 SSH_DIR=$HOME/.ssh
-status "Creating SSH directory..."
 mkdir -p "$SSH_DIR"
 chmod 700 "$SSH_DIR"
-if [[ -f "$SSH_DIR/$KEY_NAME" ]]; then
-    error "SSH key already exists at $SSH_DIR/$KEY_NAME"
-    exit 1
+if [[ ! -f "$SSH_DIR/$keyname" ]]; then
+    $DOTFILES/scripts/setup/sshkey.sh -a "github*" -m "git" -H "github.com" -f "$keyname" -N "$passphrase" || {
+        error "Failed to generate SSH key"
+        exit 1
+    }
 fi
-status "Generating new SSH key..."
-$DOTFILES/scripts/setup/sshkey.sh -a "github*" -m "git" -H "github.com" -f "$KEY_NAME" -N "$PASSPHRASE" -C "$GITEMAIL" || {
-    error "Failed to generate SSH key"
-    exit 1
-}
-success "SSH key setup completed"
-success " === System Environment setup successfully completed! === "
-
-"$DOTFILES/scripts/dashboard/culers.sh"

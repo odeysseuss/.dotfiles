@@ -5,13 +5,6 @@ set -euo pipefail
 pkg_manager="yay -S --needed --noconfirm"
 config_file="${DOTFILES:-$HOME/.dotfiles}/packages.toml"
 
-RED='\033[1;31m'
-GREEN='\033[1;32m'
-YELLOW='\033[1;33m'
-BLUE='\033[1;34m'
-CYAN='\033[1;36m'
-NC='\033[0m'
-
 total_packages=0
 to_install=0
 already_installed=0
@@ -73,7 +66,7 @@ for category in $categories; do
     echo ""
 done
 
-echo -e "${CYAN}|= Summary =|${NC}"
+echo -e "${CYAN}[Summary]${NC}"
 echo -e "  ${BLUE}|> Total packages: $total_packages${NC}"
 echo -e "  ${YELLOW}|> Already installed: $already_installed${NC}"
 echo -e "  ${GREEN}|> Newly installed: $to_install${NC}"

@@ -4,33 +4,33 @@ packages = [
   "man-db",
   "man-pages",
   "zip",
-  "entr",
-  "rsync",
-  "docker",
+  # "entr",
+  # "rsync",
+  # "docker",
   # "qemu-user",
   # "qemu-user-binfmt",
 ]
 
-[desktop]
-packages = [
-  "hyprland",
-  "xorg-xwayland",
-  "hyprpaper",
-  "waybar",
-  "rofi",
-  "zen-browser-bin",
-  "yazi",
-  "wezterm",
-]
+# [desktop]
+# packages = [
+#   "hyprland",
+#   "xorg-xwayland",
+#   "hyprpaper",
+#   "waybar",
+#   "rofi",
+#   "dolphin",
+#   "zen-browser-bin",
+#   "wezterm",
+# ]
 
-[media]
-packages = ["xclip", "ffmpeg", "zathura", "mpv"]
+# [media]
+# packages = ["xclip", "ffmpeg", "zathura", "mpv"]
 
 [networking]
 packages = ["wget", "ufw", "websocat"]
 
-[perf]
-packages = ["perf", "strace", "ltrace", "valgrind"]
+# [perf]
+# packages = ["perf", "strace", "ltrace", "valgrind"]
 
 [cli]
 packages = ["bat", "fzf", "tree", "ripgrep", "go-yq"]

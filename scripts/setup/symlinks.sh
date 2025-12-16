@@ -2,12 +2,12 @@
 
 set -euo pipefail
 
-DOTFILES=$HOME/.dotfiles
-OVERWRITE_ALL=false
+dotfiles=$HOME/.dotfiles
+overwrite_all=false
 
 while [[ "$#" -gt 0 ]]; do
     case $1 in
-    --overwrite-all) OVERWRITE_ALL=true ;;
+    --overwrite-all) overwrite_all=true ;;
     *)
         echo "Unknown parameter: $1"
         exit 1
@@ -24,13 +24,13 @@ link_file() {
         local currentSrc=$(readlink "$dst" 2>/dev/null || true)
 
         if [ "$currentSrc" = "$src" ]; then
-            echo "SKIP: $dst (already linked)"
+            echo "Skip: $dst (already linked)"
             return
         fi
 
-        if [ "$OVERWRITE_ALL" = "true" ]; then
+        if [ "$overwrite_all" = "true" ]; then
             rm -rf "$dst"
-            echo "REMOVED: $dst (overwrite all)"
+            echo "Remove: $dst (overwrite all)"
         else
             echo "File exists: $dst"
             echo "  [s]kip, [o]verwrite, [b]ackup?"
@@ -40,14 +40,14 @@ link_file() {
             case "$action" in
             o)
                 rm -rf "$dst"
-                echo "REMOVED: $dst"
+                echo "Remove: $dst"
                 ;;
             b)
                 mv "$dst" "${dst}.bak"
-                echo "BACKUP: $dst -> ${dst}.bak"
+                echo "Backup: $dst -> ${dst}.bak"
                 ;;
             s | *)
-                echo "SKIP: $dst"
+                echo "Skip: $dst"
                 return
                 ;;
             esac
@@ -55,13 +55,11 @@ link_file() {
     fi
 
     ln -s "$src" "$dst"
-    echo "LINKED: $src -> $dst"
+    echo "Link: $src -> $dst"
 }
 
 install_dotfiles() {
-    echo "Installing dotfiles..."
-
-    find "$DOTFILES" -maxdepth 2 -name 'links.sh' -not -path '*.git*' | while read linkfile; do
+    find "$dotfiles" -maxdepth 2 -name 'links.sh' -not -path '*.git*' | while read linkfile; do
         while IFS='=' read -r src dst; do
             [[ -z "$src" ]] && continue
             src=$(eval echo "$src")

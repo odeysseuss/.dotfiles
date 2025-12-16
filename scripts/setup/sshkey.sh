@@ -47,6 +47,7 @@ if [[ -f "$ssh_dir/$keyname" ]]; then
     exit 1
 fi
 
+echo "Generating ssh-key -- $keyname..."
 ssh-keygen -t ed25519 -f "$ssh_dir/$keyname" -N "$passphrase" -C "$comment" || {
     echo "Failed to generate SSH key"
     exit 1
@@ -59,5 +60,4 @@ Host $hostalias
     IdentityFile $ssh_dir/$keyname
     IdentitiesOnly yes
     AddKeysToAgent yes
-
 EOL

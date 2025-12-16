@@ -1,5 +1,4 @@
 $DOTFILES/wezterm/=$XDG_CONFIG_HOME/wezterm
-$DOTFILES/yazi/=$XDG_CONFIG_HOME/yazi
 $DOTFILES/nvim/=$XDG_CONFIG_HOME/nvim
 $DOTFILES/zsh/conf.zsh=$HOME/.zshrc
 $DOTFILES/zsh/profile.zsh=$HOME/.zprofile

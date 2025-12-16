@@ -29,10 +29,10 @@ return {
             -- local ts_move = require("nvim-treesitter-textobjects.move")
             -- local tsrepeat = require("nvim-treesitter-textobjects.repeatable_move")
 
-            vim.keymap.set("n", "<leader>si", function()
+            vim.keymap.set("n", "gsn", function()
                 ts_swap.swap_next("@parameter.inner")
             end)
-            vim.keymap.set("n", "<leader>so", function()
+            vim.keymap.set("n", "gsp", function()
                 ts_swap.swap_previous("@parameter.inner")
             end)
         end,
