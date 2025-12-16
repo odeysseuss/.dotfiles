@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -euo pipefail
+
 fzf_touch() {
     local selected=$(dirname "$1")
     read -e -p "File Name(s): " file_names

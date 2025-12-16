@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
 
+set -euo pipefail
+
 # file handles
 # have to exit and restart fzf to reset key binds
-mode_file="/tmp/fzf_mode_$$" # for mode change
+mode_file="/tmp/fzf_mode_$$"       # for mode change
 restart_file="/tmp/fzf_restart_$$" # restart after mode change
 echo "NORMAL" >"$mode_file"
 
@@ -53,9 +55,9 @@ declare -A NORMAL_BINDINGS=(
 
 declare -A INSERT_BINDINGS=(
     [esc]="execute(bash -c 'fzf_normal $mode_file && touch $restart_file')+abort"
-    [ctrl-q]="abort"
-    [ctrl-l]="accept"
-    [ctrl-h]="pos(2)+accept"
+    [ctrl - q]="abort"
+    [ctrl - l]="accept"
+    [ctrl - h]="pos(2)+accept"
 )
 
 build_bind_keys() {

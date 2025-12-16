@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -e
+set -euo pipefail
 
 FONT_PATH=$HOME/.local/share/fonts
 

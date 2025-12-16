@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -euo pipefail
+
 remote_url=$(git remote get-url origin 2>/dev/null)
 
 if [ -z "$remote_url" ]; then

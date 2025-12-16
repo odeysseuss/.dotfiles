@@ -1,14 +1,15 @@
 #!/usr/bin/env bash
 
-set -e
+set -euo pipefail
 
 pkg_manager="yay -S --needed --noconfirm"
 config_file="${DOTFILES:-$HOME/.dotfiles}/packages.toml"
 
-RED='\033[0;31m'
-GREEN='\033[0;32m'
+RED='\033[1;31m'
+GREEN='\033[1;32m'
 YELLOW='\033[1;33m'
-BLUE='\033[0;34m'
+BLUE='\033[1;34m'
+CYAN='\033[1;36m'
 NC='\033[0m'
 
 total_packages=0
@@ -16,7 +17,7 @@ to_install=0
 already_installed=0
 
 get_categories() {
-    yq eval 'keys | .[]' "$config_file" 2>/dev/null || true
+    yq eval "keys | .[]" "$config_file" 2>/dev/null || true
 }
 
 get_packages() {
@@ -28,9 +29,7 @@ get_package_count() {
 }
 
 if ! command -v yq &>/dev/null; then
-    echo -e "${RED}Error: yq is required.${NC}"
-    $pkg_manager yq-go
-    exit 1
+    $pkg_manager go-yq
 fi
 
 installed_packages=$(yay -Qq 2>/dev/null || true)
@@ -38,13 +37,13 @@ installed_packages=$(yay -Qq 2>/dev/null || true)
 categories=$(get_categories)
 
 for category in $categories; do
-    echo -e "${YELLOW}[$category]${NC}"
+    echo -e "${CYAN}[$category]${NC}"
 
     packages=$(get_packages "$category")
     count=$(get_package_count "$category")
 
     if [[ $count -eq 0 ]]; then
-        echo "  No packages in this category"
+        echo -e "  ${YELLOW}No packages in this category${NC}"
         echo ""
         continue
     fi
@@ -63,18 +62,18 @@ for category in $categories; do
     done
 
     echo ""
-    echo "  Installing ${#category_to_install[@]} packages..."
+    echo -e "  ${BLUE}|> Installing ${#category_to_install[@]} packages...${NC}"
     if $pkg_manager "${category_to_install[@]}"; then
         to_install=$((to_install + ${#category_to_install[@]}))
-        echo -e "  ${GREEN}Done${NC}"
+        echo -e "  ${GREEN}|> Done${NC}"
     else
-        echo -e "  ${RED}Failed${NC}"
+        echo -e "  ${RED}|> Failed${NC}"
     fi
 
     echo ""
 done
 
-echo -e "${BLUE}=== Summary ===${NC}"
-echo -e "Total packages: $total_packages"
-echo -e "Already installed: ${GREEN}$already_installed${NC}"
-echo -e "Newly installed: ${BLUE}$to_install${NC}"
+echo -e "${CYAN}|= Summary =|${NC}"
+echo -e "  ${BLUE}|> Total packages: $total_packages${NC}"
+echo -e "  ${YELLOW}|> Already installed: $already_installed${NC}"
+echo -e "  ${GREEN}|> Newly installed: $to_install${NC}"

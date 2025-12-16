@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -euo pipefail
+
 MAGENTA='\033[0;35m'
 NC='\033[0m'
 
@@ -16,10 +18,10 @@ mischief_managed=(
 
 max_len=0
 for line in "${mischief_managed[@]}"; do
-    (( ${#line} > max_len )) && max_len=${#line}
+    ((${#line} > max_len)) && max_len=${#line}
 done
 
-padding=$(( (cols - max_len) / 2 ))
+padding=$(((cols - max_len) / 2))
 
 echo -e "\n"
 
@@ -29,4 +31,3 @@ for line in "${mischief_managed[@]}"; do
 done
 
 echo -e "\n"
-

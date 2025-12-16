@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -e
+set -euo pipefail
 
 # === define packages ===
 build_yay() {
@@ -8,46 +8,10 @@ build_yay() {
         echo "Yay aur installation"
         sudo pacman -Sy --needed git base-devel --noconfirm
         git clone https://aur.archlinux.org/yay-bin.git $HOME/yay
-        cd $HOME/yay && makepkg -si --noconfirm && cd $HOME
+        cd $HOME/yay && makepkg -si --noconfirm
+        cd $HOME && rm -rf $HOME/yay
     else
         echo "yay already installed."
-    fi
-}
-
-build_treesitter_cli() {
-    if ! command -v tree-sitter &>/dev/null; then
-        echo "Treesitter cli installation"
-        npm install tree-sitter-cli -g
-    else
-        echo "tree-sitter already installed."
-    fi
-}
-
-build_typescript() {
-    if ! command -v tsc &>/dev/null; then
-        echo "Typescript installation"
-        npm install typescript -g
-    else
-        echo "Typescript already installed"
-    fi
-}
-
-build_rust() {
-    if ! command -v rustc &>/dev/null; then
-        echo "Rust installation"
-        curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
-        source "$HOME/.cargo/env"
-    else
-        echo "Rust already installed."
-    fi
-}
-
-build_pwndbg() {
-    if ! command -v pwndbg &>/dev/null; then
-        echo "pwndbg installation"
-        curl -qsL 'https://install.pwndbg.re' | sh -s -- -t pwndbg-gdb
-    else
-        echo "pwndbg is already installed"
     fi
 }
 
@@ -106,17 +70,9 @@ build_wasm() {
     fi
 }
 
-clean() {
-    rm -rf $HOME/yay
-    rm -rf $HOME/raylib
-    rm -rf $HOME/emsdk
-}
-
 # === build packages ===
 if [[ $# -eq 0 ]]; then
     build_yay
-    build_rust
-    build_pwndbg
     build_raylib
     build_wasm
     exit 0
@@ -125,27 +81,14 @@ fi
 while [[ $# -gt 0 ]]; do
     case $1 in
     --all)
-        build_pwndbg
-        build_rust
         build_yay
-        build_wasm
+        build_rust
         build_raylib
+        build_wasm
         shift
         ;;
     --yay)
         build_yay
-        shift
-        ;;
-    --rust)
-        build_rust
-        shift
-        ;;
-    --ts)
-        build_typescript
-        shift
-        ;;
-    --pwndbg)
-        build_pwndbg
         shift
         ;;
     --raylib)
@@ -155,10 +98,6 @@ while [[ $# -gt 0 ]]; do
     --wasm)
         build_wasm
         shift
-        ;;
-    --clean)
-        clean
-        exit 0
         ;;
     *)
         echo "Unknown option: $1"

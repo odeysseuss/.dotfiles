@@ -36,6 +36,8 @@ alias python="python3"
 bindkey -v
 autoload -U edit-command-line
 zle -N edit-command-line
+autoload -U compinit
+compinit
 
 bindkey "^?" backward-delete-char
 bindkey "^Xe" edit-command-line

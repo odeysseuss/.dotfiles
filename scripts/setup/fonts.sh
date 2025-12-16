@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -e
+set -euo pipefail
 
 if [[ $# -eq 0 ]]; then
     $HOME/.dotfiles/fonts/maple_fonts.sh

@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -euo pipefail
+
 RED='\033[0;31m'
 BLUE='\033[0;34m'
 NC='\033[0m'
@@ -17,10 +19,10 @@ visca_barca=(
 
 max_len=0
 for line in "${visca_barca[@]}"; do
-    (( ${#line} > max_len )) && max_len=${#line}
+    ((${#line} > max_len)) && max_len=${#line}
 done
 
-padding=$(( (cols - max_len) / 2 ))
+padding=$(((cols - max_len) / 2))
 
 echo -e "\n"
 

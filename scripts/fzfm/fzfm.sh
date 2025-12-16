@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -euo pipefail
+
 err() {
     echo -e "ERROR: $1" >&2
     sleep 0.5

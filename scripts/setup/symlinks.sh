@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-DOTFILES=$HOME/.dotfiles
-set -e
+set -euo pipefail
 
+DOTFILES=$HOME/.dotfiles
 OVERWRITE_ALL=false
 
 while [[ "$#" -gt 0 ]]; do

@@ -7,8 +7,8 @@ packages = [
   "entr",
   "rsync",
   "docker",
-  "qemu-user",
-  "qemu-user-binfmt",
+  # "qemu-user",
+  # "qemu-user-binfmt",
 ]
 
 [desktop]
@@ -18,27 +18,39 @@ packages = [
   "hyprpaper",
   "waybar",
   "rofi",
-  "yazi",
   "zen-browser-bin",
+  "yazi",
+  "wezterm",
 ]
 
 [media]
-packages = ["xclip", "ffmpeg", "zathura"]
+packages = ["xclip", "ffmpeg", "zathura", "mpv"]
 
 [networking]
 packages = ["wget", "ufw", "websocat"]
 
-[cli]
-packages = ["bat", "fzf", "tree", "ripgrep", "go-yq"]
-
 [perf]
 packages = ["perf", "strace", "ltrace", "valgrind"]
 
+[cli]
+packages = ["bat", "fzf", "tree", "ripgrep", "go-yq"]
+
 [dev]
-packages = ["wezterm", "zsh", "starship", "tmux", "git", "neovim"]
+packages = ["zsh", "starship", "tmux", "git", "neovim"]
 
 [langs]
-packages = ["nasm", "lld", "clang", "go", "zig", "luajit", "python", "typst"]
+packages = [
+  "nasm",
+  "lld",
+  "clang",
+  "rust",
+  "luajit",
+  # "go",
+  # "zig",
+  # "python",
+  # "typescript",
+  # "typst",
+]
 
 [lang-tools]
 packages = [
@@ -46,11 +58,12 @@ packages = [
   "make",
   "ninja",
   "cmake",
-  "xmake",
-  "vcpkg",
+  # "xmake",
+  # "vcpkg",
   "pkgconf",
   "npm",
-  "luarocks",
+  # "luarocks",
+  "tree-sitter-cli",
 ]
 
 [lsps]
@@ -58,22 +71,22 @@ packages = [
   "lua-language-server",
   "bash-language-server",
   "rust-analyzer",
-  "gopls",
-  "typescript-language-server",
-  "zls",
-  "pyright",
-  "tinymist",
+  # "gopls",
+  # "typescript-language-server",
+  # "zls",
+  # "pyright",
+  # "tinymist",
 ]
 
 [formatters]
 packages = [
-  "biome",
   "stylua-bin",
   "shfmt",
   "taplo-cli",
   "yamlfmt",
-  "typstyle",
-  "ruff",
+  # "biome",
+  # "typstyle",
+  # "ruff",
 ]
 
 [debuggers]

@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -euo pipefail
+
 AQUA='\033[0;36m'
 NC='\033[0m'
 
@@ -16,10 +18,10 @@ winter_is_coming=(
 
 max_len=0
 for line in "${winter_is_coming[@]}"; do
-    (( ${#line} > max_len )) && max_len=${#line}
+    ((${#line} > max_len)) && max_len=${#line}
 done
 
-padding=$(( (cols - max_len) / 2 ))
+padding=$(((cols - max_len) / 2))
 
 echo -e "\n"
 
