@@ -27,17 +27,11 @@ bltrace() {
 
 alias o='cd $(git rev-parse --show-toplevel)'
 alias la="ls --color -lAvh --group-directories-first"
-alias z="$DOTFILES/scripts/fzfm/fzfm.sh"
 alias xsc="xclip -selection clipboard"
 alias glog="git --no-pager log --oneline --decorate --graph --parents"
-alias vi=fzf_nvim
+alias v=fzf_nvim
 alias python="python3"
-
-bindkey -v
-autoload -U edit-command-line
-zle -N edit-command-line
-autoload -U compinit
-compinit
+alias getlib="pkg-config --cflags --libs $@"
 
 bindkey "^?" backward-delete-char
 bindkey "^Xe" edit-command-line

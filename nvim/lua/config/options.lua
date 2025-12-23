@@ -20,7 +20,6 @@ vim.opt.numberwidth = 3
 vim.opt.signcolumn = "yes:2"
 vim.opt.colorcolumn = ""
 vim.opt.cursorline = true
-vim.opt.mouse = "a"
 
 vim.opt.breakindent = true
 vim.opt.smartindent = true
@@ -48,7 +47,8 @@ vim.opt.wrap = false
 vim.opt.swapfile = false
 vim.opt.backup = false
 
-vim.o.guicursor = ""
+vim.opt.mouse = "a"
+vim.opt.guicursor = ""
 vim.opt.termguicolors = true
 vim.opt.smoothscroll = true
 

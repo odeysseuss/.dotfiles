@@ -38,7 +38,7 @@ fzf_file_handlers() {
 
 export -f err fzf_preview
 
-curr_dir=$(dirname "$0")
+curr_dir=$DOTFILES/scripts/fzfm
 source $curr_dir/utils.sh
 source $curr_dir/modes.sh
 

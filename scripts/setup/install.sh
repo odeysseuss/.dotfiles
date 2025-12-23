@@ -97,7 +97,6 @@ package_status() {
             fi
         done
 
-        # Display category summary
         if [[ $config_count -gt 0 || $lock_count -gt 0 ]]; then
             echo -e "${CYAN}[$category]${NC}"
 
@@ -190,7 +189,7 @@ main() {
     package_status
 
     if [[ ${#TO_INSTALL[@]} -eq 0 && ${#TO_REMOVE[@]} -eq 0 ]]; then
-        echo -e "${GREEN}|> System is already synchronized with configuration${NC}"
+        echo -e "${GREEN}|> Packages are already synchronized${NC}"
         summary
         return 0
     fi

@@ -47,7 +47,7 @@ packages = [
   "luajit",
   # "go",
   # "zig",
-  # "python",
+  "pypy-bin",
   # "typescript",
   # "typst",
 ]
@@ -64,6 +64,7 @@ packages = [
   "npm",
   # "luarocks",
   "tree-sitter-cli",
+  "hugo",
 ]
 
 [lsps]

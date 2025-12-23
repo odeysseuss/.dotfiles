@@ -46,7 +46,6 @@ fi
 status "Installing fonts..."
 "$DOTFILES/fonts/maple_fonts.sh" || {
     error "Failed to install fonts"
-    exit 1
 }
 status "Installing dotfiles..."
 "$DOTFILES/scripts/setup/symlinks.sh" --overwrite-all || {
@@ -71,13 +70,16 @@ status "Installing zsh plugins..."
 if [[ ! -d "$ZSH/plugins/zsh-autosuggestions" ]]; then
     git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH/plugins/zsh-autosuggestions || {
         error "Failed to clone zsh-autosuggestions"
-        exit 1
     }
 fi
 if [[ ! -d "$ZSH/plugins/fzf-tab" ]]; then
     git clone https://github.com/Aloxaf/fzf-tab.git $ZSH/plugins/fzf-tab || {
         error "Failed to clone fzf-tab"
-        exit 1
+    }
+fi
+if [[ ! -d "$ZSH/plugins/zsh-z" ]]; then
+    git clone https://github.com/agkozak/zsh-z.git $ZSH/plugins/zsh-z || {
+        error "Failed to clone zsh-z"
     }
 fi
 

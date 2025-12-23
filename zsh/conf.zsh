@@ -15,13 +15,20 @@ setopt hist_find_no_dups
 setopt globdots
 setopt no_bang_hist
 
+bindkey -v
+autoload -U edit-command-line
+zle -N edit-command-line
+autoload -U compinit
+compinit
+zstyle ':completion:*' menu select
+
 eval "$(starship init zsh)"
 eval "$(dircolors)"
 eval "$(fzf --zsh)"
 
 source $HOME/.dotfiles/zsh/keybinds.zsh
 
-plugins=(fzf-tab zsh-autosuggestions)
+plugins=(fzf-tab zsh-autosuggestions zsh-z)
 for plugin in ${plugins[@]}; do
     source "$ZSH/plugins/$plugin/$plugin.plugin.zsh"
 done
