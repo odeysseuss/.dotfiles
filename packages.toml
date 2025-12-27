@@ -64,7 +64,7 @@ packages = [
   "npm",
   # "luarocks",
   "tree-sitter-cli",
-  "hugo",
+  # "hugo",
 ]
 
 [lsps]

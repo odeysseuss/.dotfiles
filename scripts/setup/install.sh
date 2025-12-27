@@ -17,7 +17,7 @@ fi
 pkg_manager="yay -S --needed --noconfirm"
 remove_manager="yay -Rns --noconfirm"
 config_file="${DOTFILES:-$HOME/.dotfiles}/packages.toml"
-lock_file="${DOTFILES:-$HOME/.dotfiles}/packages.lock"
+lock_file="${DOTFILES:-$HOME/.dotfiles}/packages-lock.yml"
 
 # Initialize lock file if it doesn't exist
 if [[ ! -f "$lock_file" ]]; then
@@ -170,10 +170,10 @@ remove_packages() {
 
 summary() {
     echo -e "${BLUE}|> Summary${NC}"
-    echo -e "  ${CYAN}-> Total packages: $TOTAL_PACKAGES${NC}"
-    echo -e "  ${YELLOW}-> Already installed: $ALREADY_INSTALLED${NC}"
-    echo -e "  ${GREEN}-> Newly installed: ${#TO_INSTALL[@]}${NC}"
-    echo -e "  ${RED}-> Removed: ${#TO_REMOVE[@]}${NC}"
+    echo -e "  ${CYAN}->${NC} ($TOTAL_PACKAGES) packages processed"
+    echo -e "  ${CYAN}->${NC} ($ALREADY_INSTALLED) packages already installed"
+    echo -e "  ${CYAN}->${NC} (${#TO_INSTALL[@]}) packages newly installed"
+    echo -e "  ${CYAN}->${NC} (${#TO_REMOVE[@]}) packages removed"
 
     if [[ ${#TO_INSTALL[@]} -gt 0 || ${#TO_REMOVE[@]} -gt 0 ]]; then
         echo -e "\n${BLUE}|> Updating lock file...${NC}"

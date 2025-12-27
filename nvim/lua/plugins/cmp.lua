@@ -33,13 +33,15 @@ return {
                 },
             },
             documentation = {
-                auto_show = true,
+                auto_show = false,
                 treesitter_highlighting = true,
-                window = {
-                    border = "rounded",
-                },
+                window = { border = "rounded" },
             },
         },
+        cmdline = {
+            completion = { menu = { auto_show = true } },
+        },
+        signature = { enabled = true },
         sources = {
             default = { "lsp", "path", "snippets", "buffer", "omni" },
             providers = {
@@ -47,8 +49,7 @@ return {
                     enabled = function()
                         return vim.fn.getcmdtype() ~= ":"
                             or not (
-                                                                -- disable in shell commands
-vim.fn.getcmdline():match("^term")
+                                vim.fn.getcmdline():match("^term")
                                 or vim.fn.getcmdline():match("^[%%0-9,'<>%-]*!")
                                 or vim.fn.getcmdline():match("^checkhealth")
                             )
@@ -57,6 +58,5 @@ vim.fn.getcmdline():match("^term")
             },
         },
         fuzzy = { implementation = "prefer_rust_with_warning" },
-        signature = { enabled = true },
     },
 }

@@ -5,53 +5,23 @@ function StatusFileIcon()
         return ""
     end
 
-    local extension = vim.fn.expand("%:e")
-    local icon, icon_color = require("nvim-web-devicons").get_icon_color(filename, extension, { default = true })
+    -- -- nvim-web-devicons
+    -- local extension = vim.fn.expand("%:e")
+    -- local icon, icon_color = require("nvim-web-devicons").get_icon_color(filename, extension, { default = true })
+    -- if icon then
+    --     vim.api.nvim_set_hl(0, "StatusFile", { bg = "#111111", fg = icon_color, bold = true })
+    --     return icon
+    -- end
 
+    local icon, hl = MiniIcons.get("file", filename)
     if icon then
-        vim.api.nvim_set_hl(0, "StatusFile", { bg = "#111111", fg = icon_color, bold = true })
+        local fg = string.format("#%06x", vim.api.nvim_get_hl(0, { name = hl }).fg)
+        vim.api.nvim_set_hl(0, "StatusFile", { bg = "#111111", fg = fg, bold = true })
         return icon
     end
 
     return ""
 end
-
--- === Git branch ===
-local git_branch_cache = {}
-
-function GetGitBranch()
-    local bufname = vim.api.nvim_buf_get_name(0)
-    if bufname == "" then
-        return ""
-    end
-
-    local bufdir = vim.fn.fnamemodify(bufname, ":p:h")
-
-    if git_branch_cache[bufdir] then
-        return git_branch_cache[bufdir]
-    end
-
-    local handle = io.popen("git -C " .. vim.fn.shellescape(bufdir) .. " branch --show-current 2>/dev/null")
-    if handle then
-        local result = handle:read("*a"):gsub("%s+", "")
-        handle:close()
-        git_branch_cache[bufdir] = result ~= "" and " " .. result .. " " or ""
-        return git_branch_cache[bufdir]
-    end
-
-    git_branch_cache[bufdir] = ""
-    return ""
-end
-
-local augroup = vim.api.nvim_create_augroup("GitBranchCache", { clear = true })
-
-vim.api.nvim_create_autocmd({ "VimEnter", "BufEnter" }, {
-    desc = "Get git branch name",
-    group = augroup,
-    callback = function()
-        git_branch_cache = {}
-    end,
-})
 
 -- === Diagnostics ===
 local icons = {
@@ -97,14 +67,14 @@ function StatusMode()
         S = "S-LINE",
         [""] = "S-BLOCK",
     }
-    return " " .. (mode_map[vim.fn.mode()] or "UNKNOWN")
+    return " " .. (mode_map[vim.fn.mode()] or "ABNORMAL")
 end
 
 -- === Statusline ===
 vim.o.statusline = table.concat({
     "%#StatusMode# %{v:lua.StatusMode()} ", -- mode name
-    "%#StatusBranch# %{v:lua.GetGitBranch()}", -- git branch
-    "%#StatusFile# %{v:lua.StatusFileIcon()} %<%t%h%w%m%r", -- file icon, name and flags
+    "%#StatusBranch# %{FugitiveStatusline()}", -- git branch
+    "%#StatusFile# %{v:lua.StatusFileIcon()} %<%t%h%w%m%r ", -- file icon, name and flags
     "%=", -- right align
 
     -- diagnostics
