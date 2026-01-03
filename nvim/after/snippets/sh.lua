@@ -1,4 +1,5 @@
 return {
+    ---@diagnostic disable: undefined-global
     s("state", {
         t({ "#!/usr/bin/env bash" }),
         t({ "", "" }),

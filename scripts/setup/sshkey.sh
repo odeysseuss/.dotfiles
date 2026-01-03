@@ -9,7 +9,7 @@ usage() {
     echo -e "Usage: $prog -h | --help [print this msg]"
 }
 
-if [[ "$1" == "-h" || "$1" == "--help" ]]; then
+if [[ $# -lt 3 || "$1" == "-h" || "$1" == "--help" ]]; then
     usage
     exit 0
 fi

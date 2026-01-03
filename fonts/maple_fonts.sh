@@ -2,10 +2,8 @@
 
 set -euo pipefail
 
-FONT_PATH=$HOME/.local/share/fonts
-
-maple_dir=$FONT_PATH/maple_mono
-maple_zip=$FONT_PATH/maple_fonts.zip
+maple_dir=$XDG_DATA_HOME/fonts/maple_mono
+maple_zip=$XDG_DATA_HOME/fonts/maple_fonts.zip
 
 mkdir -p $maple_dir
 

@@ -13,6 +13,7 @@ function StatusFileIcon()
     --     return icon
     -- end
 
+    ---@diagnostic disable-next-line: undefined-global
     local icon, hl = MiniIcons.get("file", filename)
     if icon then
         local fg = string.format("#%06x", vim.api.nvim_get_hl(0, { name = hl }).fg)
@@ -73,8 +74,8 @@ end
 -- === Statusline ===
 vim.o.statusline = table.concat({
     "%#StatusMode# %{v:lua.StatusMode()} ", -- mode name
-    "%#StatusBranch# %{FugitiveStatusline()}", -- git branch
-    "%#StatusFile# %{v:lua.StatusFileIcon()} %<%t%h%w%m%r ", -- file icon, name and flags
+    "%#StatusBranch#  %{FugitiveHead()} ", -- git branch
+    "%#StatusFile# %{v:lua.StatusFileIcon()} %<%t%h%w%m%r", -- file icon, name and flags
     "%=", -- right align
 
     -- diagnostics

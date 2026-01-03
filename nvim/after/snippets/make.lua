@@ -1,6 +1,7 @@
 local function makefile_snippet(lang, compiler, std)
     local ext = lang == "c" and "c" or "cpp"
 
+    ---@diagnostic disable: undefined-global
     return {
         t({ "cc := " .. compiler }),
         t({ "", "cflags := -std=" .. std .. " -Wall -Wextra -pedantic -MMD -MP -g3" }),

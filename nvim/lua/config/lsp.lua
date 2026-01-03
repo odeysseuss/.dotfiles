@@ -35,9 +35,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
             vim.wo.foldexpr = "v:lua.vim.lsp.foldexpr()"
         end
         if client:supports_method("textDocument/inlayHint") then
-            vim.keymap.set("n", "<leader>h", function()
-                vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
-            end, { desc = "Toggle inlay hints" })
+            vim.lsp.inlay_hint.enable(true)
         end
     end,
 })

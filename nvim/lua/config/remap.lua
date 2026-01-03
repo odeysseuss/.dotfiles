@@ -23,7 +23,7 @@ vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
 vim.keymap.set("n", "<leader>Y", [["+Y]])
 vim.keymap.set({ "n", "v" }, "<leader>D", '"_d')
 
-vim.keymap.set("n", "<leader>ss", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+vim.keymap.set("n", "<leader>x", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
 -- lsp & diagnostic
 vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})
@@ -37,5 +37,4 @@ vim.keymap.set("n", "<leader>j", "<cmd>cnext<CR>", {})
 vim.keymap.set("n", "<leader>k", "<cmd>cprev<CR>", {})
 
 -- terminal commands
-vim.keymap.set("n", "<leader>x", "<cmd>!chmod 755 %<CR>")
 vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")

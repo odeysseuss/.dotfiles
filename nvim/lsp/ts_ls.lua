@@ -64,10 +64,10 @@ return {
             })
 
             vim.lsp.util.show_document({
-                uri = file_uri --[[@as string]],
+                uri = file_uri,
                 range = {
-                    start = position --[[@as lsp.Position]],
-                    ["end"] = position --[[@as lsp.Position]],
+                    start = position,
+                    ["end"] = position,
                 },
             }, client.offset_encoding)
 

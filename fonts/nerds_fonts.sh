@@ -2,9 +2,7 @@
 
 set -euo pipefail
 
-FONT_PATH=$HOME/.local/share/fonts
-
-jetbrains_dir=$FONT_PATH/nerd_jetbrains
+jetbrains_dir=$XDG_DATA_HOME/fonts/nerd_jetbrains
 
 mkdir -p $jetbrains_dir
 

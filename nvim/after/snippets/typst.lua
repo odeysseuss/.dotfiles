@@ -1,4 +1,5 @@
 return {
+    ---@diagnostic disable: undefined-global
     s("typst", {
         t({ "#set text(" }),
         t({ "", '    font: "Maple Mono NF",' }),

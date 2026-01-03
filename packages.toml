@@ -58,7 +58,7 @@ packages = [
   "make",
   "ninja",
   "cmake",
-  # "xmake",
+  "xmake",
   # "vcpkg",
   "pkgconf",
   "npm",

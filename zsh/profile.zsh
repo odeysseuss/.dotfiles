@@ -19,11 +19,6 @@ export BAT_THEME="gruvbox-dark"
 export MANPAGER="nvim +Man!"
 export PAGER="bat"
 
-# SSH Agent Configuration
 if [ -z "$SSH_AUTH_SOCK" ]; then
-    if [ -S "$HOME/.ssh/ssh_auth_sock" ]; then
-        export SSH_AUTH_SOCK="$HOME/.ssh/ssh_auth_sock"
-    else
-        eval "$(ssh-agent -s -a ~/.ssh/ssh_auth_sock)" >/dev/null
-    fi
+    eval "$(ssh-agent -s)" >/dev/null
 fi

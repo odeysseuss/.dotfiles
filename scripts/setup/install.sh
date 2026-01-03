@@ -67,7 +67,6 @@ update_lock_file() {
 package_status() {
     local to_install=()
     local to_remove=()
-    local total_packages=0
     local already_installed=0
 
     categories=$(get_categories)
@@ -80,8 +79,6 @@ package_status() {
 
         config_count=$(echo "$config_packages" | wc -w)
         lock_count=$(echo "$lock_packages" | wc -w)
-
-        total_packages=$((total_packages + config_count))
 
         # Find packages to install (in config but not in lock)
         for pkg in $config_packages; do
@@ -124,7 +121,6 @@ package_status() {
     # Store in global variables
     TO_INSTALL=("${to_install[@]}")
     TO_REMOVE=("${to_remove[@]}")
-    TOTAL_PACKAGES=$total_packages
     ALREADY_INSTALLED=$already_installed
 }
 
@@ -170,7 +166,6 @@ remove_packages() {
 
 summary() {
     echo -e "${BLUE}|> Summary${NC}"
-    echo -e "  ${CYAN}->${NC} ($TOTAL_PACKAGES) packages processed"
     echo -e "  ${CYAN}->${NC} ($ALREADY_INSTALLED) packages already installed"
     echo -e "  ${CYAN}->${NC} (${#TO_INSTALL[@]}) packages newly installed"
     echo -e "  ${CYAN}->${NC} (${#TO_REMOVE[@]}) packages removed"

@@ -21,7 +21,14 @@ return {
                 semicolon = "Disable",
             },
             workspace = {
-                library = vim.api.nvim_get_runtime_file("", true),
+                library = {
+                    unpack(vim.api.nvim_get_runtime_file("", true)),
+                },
+            },
+            diagonostics = {
+                globals = {
+                    "vim",
+                },
             },
             format = {
                 enable = true,
