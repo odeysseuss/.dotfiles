@@ -21,7 +21,7 @@ function SendToTmux(cmd)
     cmd = cmd:gsub("%%", vim.fn.expand("%"))
 
     if not command_pane or vim.fn.system("tmux list-panes -F '#{pane_id}' | wc -l") == "1\n" then
-        execute_tmux_command("tmux split-window -v -c '#{pane_current_path}' -d", function()
+        execute_tmux_command("tmux split-window -h -c '#{pane_current_path}' -d", function()
             execute_tmux_command(string.format("tmux send-keys -t %s 'clear && %s' C-m", command_pane or ".1", cmd))
         end)
         command_pane = ".1"

@@ -8,11 +8,14 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 vim.api.nvim_create_autocmd("FileType", {
     desc = "Open help in vertical split",
     pattern = "help",
-    command = "wincmd L",
+    callback = function()
+        vim.opt_local.wrap = false
+        vim.cmd("wincmd L")
+    end,
 })
 
 vim.api.nvim_create_autocmd("FileType", {
-    desc = "Open help in vertical split",
+    desc = "Open man in vertical split",
     pattern = "man",
     callback = function()
         vim.opt_local.wrap = false
@@ -48,6 +51,16 @@ vim.api.nvim_create_autocmd("FileType", {
     callback = function()
         vim.b.completion = false
         vim.wo.wrap = true
+    end,
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+    desc = "Dap Disassembly",
+    group = "dap",
+    pattern = "*dap-disassembly*",
+    callback = function()
+        vim.b.completion = false
+        vim.wo.wrap = false
     end,
 })
 

@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-set -euo pipefail
-
 if [[ $# -eq 1 ]]; then
     selected=$1
 else

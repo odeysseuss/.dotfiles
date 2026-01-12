@@ -44,18 +44,18 @@ return {
         signature = { enabled = true },
         sources = {
             default = { "lsp", "path", "snippets", "buffer", "omni" },
-            providers = {
-                cmdline = {
-                    enabled = function()
-                        return vim.fn.getcmdtype() ~= ":"
-                            or not (
-                                vim.fn.getcmdline():match("^term")
-                                or vim.fn.getcmdline():match("^[%%0-9,'<>%-]*!")
-                                or vim.fn.getcmdline():match("^checkhealth")
-                            )
-                    end,
-                },
-            },
+            -- providers = {
+            --     cmdline = {
+            --         enabled = function()
+            --             return vim.fn.getcmdtype() ~= ":"
+            --                 or not (
+            --                     vim.fn.getcmdline():match("^term")
+            --                     or vim.fn.getcmdline():match("^[%%0-9,'<>%-]*!")
+            --                     or vim.fn.getcmdline():match("^checkhealth")
+            --                 )
+            --         end,
+            --     },
+            -- },
         },
         fuzzy = { implementation = "prefer_rust_with_warning" },
     },

@@ -2,6 +2,8 @@ return {
     "nvim-telescope/telescope.nvim",
     tag = "0.1.8",
     dependencies = {
+        -- prequisites
+        -- ripgrep make
         "nvim-lua/plenary.nvim",
         {
             "nvim-telescope/telescope-fzf-native.nvim",

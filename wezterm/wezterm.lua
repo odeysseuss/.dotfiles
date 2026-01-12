@@ -3,9 +3,8 @@ local config = wezterm.config_builder()
 
 config.automatically_reload_config = true
 config.enable_tab_bar = false
-
 config.window_close_confirmation = "NeverPrompt"
-config.window_decorations = "INTEGRATED_BUTTONS|RESIZE"
+config.window_decorations = "INTEGRATED_BUTTONS | RESIZE"
 config.window_background_opacity = 0.95
 config.window_padding = {
     left = 10,
@@ -14,13 +13,14 @@ config.window_padding = {
     bottom = 5,
 }
 
+config.default_cursor_style = "SteadyBlock"
 config.force_reverse_video_cursor = true
 config.colors = require("cyberdream")
 config.window_background_gradient = {
     colors = {
         "#580a8f",
         "#1b1871",
-        "#070709",
+        "#050507",
     },
     orientation = {
         Linear = { angle = 111.4 },
@@ -28,7 +28,7 @@ config.window_background_gradient = {
 }
 
 config.line_height = 1.2
-config.font_size = 20
+config.font_size = 16
 config.font = wezterm.font({
     family = "Maple Mono NF",
     weight = "SemiBold",
@@ -48,25 +48,5 @@ config.font = wezterm.font({
         "zero",
     },
 })
-
-config.hyperlink_rules = {
-    -- Match URLs within brackets
-    {
-        regex = "[\\(\\[\\{<](\\w+://\\S+)[\\)\\]\\}>]",
-        format = "$1",
-        highlight = 1,
-    },
-    -- Match bare URLs
-    {
-        regex = "\\b(\\w+://[\\S]+[a-zA-Z0-9/])",
-        format = "$1",
-        highlight = 1,
-    },
-    -- Match email addresses
-    {
-        regex = "\\b\\w+@[\\w-]+\\.[a-z]{2,}\\b",
-        format = "mailto:$0",
-    },
-}
 
 return config

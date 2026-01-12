@@ -18,11 +18,6 @@ function ColorMyPencils()
     vim.api.nvim_set_hl(0, "FloatBorder", { bg = "none", fg = dark })
     -- Cmd
     vim.api.nvim_set_hl(0, "MsgArea", { bg = status.bg, fg = status.cmd, bold = true })
-    -- Cmp
-    vim.api.nvim_set_hl(0, "BlinkCmpMenu", { bg = "none", fg = dark })
-    vim.api.nvim_set_hl(0, "BlinkCmpMenuBorder", { bg = "none", fg = dark })
-    vim.api.nvim_set_hl(0, "BlinkCmpMenuSelection", { bg = dark })
-    vim.api.nvim_set_hl(0, "BlinkCmpDocBorder", { bg = "none", fg = dark })
     -- Statusline
     vim.api.nvim_set_hl(0, "StatusStyle", { bg = status.bg, fg = status.fg, bold = true })
     vim.api.nvim_set_hl(0, "StatusDiagERROR", { bg = status.bg, fg = status.error })
@@ -31,6 +26,14 @@ function ColorMyPencils()
     vim.api.nvim_set_hl(0, "StatusDiagHINT", { bg = status.bg, fg = status.hint })
     vim.api.nvim_set_hl(0, "StatusMode", { bg = status.bg, fg = status.mode, bold = true })
     vim.api.nvim_set_hl(0, "StatusBranch", { bg = status.bg, fg = status.branch, bold = true })
+    -- Cmp
+    vim.api.nvim_set_hl(0, "BlinkCmpMenu", { bg = "none", fg = dark })
+    vim.api.nvim_set_hl(0, "BlinkCmpMenuBorder", { bg = "none", fg = dark })
+    vim.api.nvim_set_hl(0, "BlinkCmpMenuSelection", { bg = dark })
+    vim.api.nvim_set_hl(0, "BlinkCmpDocBorder", { bg = "none", fg = dark })
+    -- Dap
+    vim.api.nvim_set_hl(0, "NvimDapViewTab", { bg = status.bg })
+    vim.api.nvim_set_hl(0, "NvimDapViewTabSelected", { bg = status.bg, fg = status.fg, bold = true })
 end
 
 return {
@@ -48,7 +51,7 @@ return {
             vim.g.gruvbox_material_statusline_style = "material"
             vim.g.gruvbox_material_better_performance = 1
             vim.g.gruvbox_material_disable_italic_comment = 1
-            -- vim.g.gruvbox_material_enable_italic = 1
+            vim.g.gruvbox_material_enable_italic = 1
         end,
     },
 }

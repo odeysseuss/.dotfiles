@@ -66,4 +66,4 @@ vim.opt.foldminlines = 1
 vim.cmd("set path+=**")
 vim.cmd("filetype plugin on")
 vim.cmd("set wildmenu")
-vim.cmd("set shell=/usr/sbin/zsh")
+vim.cmd("set shell=/usr/bin/zsh")

@@ -3,7 +3,7 @@ return {
         "tpope/vim-fugitive",
         config = function()
             vim.keymap.set("n", "<leader>gs", "<cmd>Git<CR>", {})
-            vim.keymap.set("n", "<leader>gl", "<cmd>Git log --oneline --decorate --graph --parents<CR>", {})
+            vim.keymap.set("n", "<leader>gl", "<cmd>Git log --decorate --graph<CR>", {})
 
             vim.api.nvim_create_autocmd("BufWinEnter", {
                 group = vim.api.nvim_create_augroup("Fugitive", {}),
