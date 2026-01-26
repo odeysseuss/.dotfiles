@@ -1,0 +1,5 @@
+Checks: >
+  -*, bugprone-*, cert-*, clang-analyzer-*, # concurrency-*, performance-*, # portability-*, readability-*, # cppcoreguidelines-*, # llvm-*, # google-*, # hicpp-*,
+
+WarningsAsErrors: ""
+FormatStyle: file
