@@ -32,3 +32,5 @@ plugins=(fzf-tab zsh-autosuggestions zsh-z)
 for plugin in ${plugins[@]}; do
     source "$ZSH/plugins/$plugin/$plugin.plugin.zsh"
 done
+
+test -f "/home/robb/.xmake/profile" && source "/home/robb/.xmake/profile"

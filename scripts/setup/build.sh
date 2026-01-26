@@ -2,6 +2,21 @@
 
 set -euo pipefail
 
+usage() {
+    echo "Usage: $prog --<item>"
+    echo "Usage: $prog -h | --help [print this msg]"
+    echo "Items:"
+    echo "- yay"
+    echo "- nixpkg"
+    echo "- raylib"
+    echo "- wasm"
+}
+
+if [[ $# -eq 0 || "$1" == "-h" || "$1" == "--help" ]]; then
+    usage
+    exit 0
+fi
+
 # === define packages ===
 build_yay() {
     if ! command -v yay &>/dev/null; then
@@ -12,6 +27,15 @@ build_yay() {
         cd $HOME && rm -rf $HOME/yay
     else
         echo "yay already installed."
+    fi
+}
+
+build_nix_pkg() {
+    if ! command -v nix-env &>/dev/null; then
+        echo "Nix pkg installation"
+        sh <(curl --proto '=https' --tlsv1.2 -L https://nixos.org/nix/install) --daemon
+    else
+        echo "Emscripten already installed."
     fi
 }
 
@@ -71,20 +95,18 @@ build_wasm() {
 }
 
 # === build packages ===
-if [[ $# -eq 0 ]]; then
-    build_yay
-    build_raylib
-    build_wasm
-    exit 0
-fi
-
 while [[ $# -gt 0 ]]; do
     case $1 in
     --all)
         build_yay
+        build_nix_pkg
         build_rust
         build_raylib
         build_wasm
+        shift
+        ;;
+    --nixpkg)
+        build_nix_pkg
         shift
         ;;
     --yay)
