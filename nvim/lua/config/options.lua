@@ -10,7 +10,7 @@ vim.opt.compatible = false
 vim.opt.history = 50
 vim.opt.timeoutlen = 400
 vim.opt.updatetime = 50
-vim.opt.clipboard = "unnamedplus"
+vim.opt.clipboard = "unnamedplus" -- xclip
 vim.opt.showmode = false
 
 vim.opt.number = true

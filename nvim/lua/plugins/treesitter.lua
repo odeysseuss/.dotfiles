@@ -1,5 +1,6 @@
 return {
     {
+        -- npm install tree-sitter-cli
         "nvim-treesitter/nvim-treesitter",
         lazy = false,
         branch = "main",

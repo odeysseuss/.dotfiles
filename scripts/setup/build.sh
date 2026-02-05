@@ -2,12 +2,13 @@
 
 set -euo pipefail
 
+prog=$(basename "$0")
+
 usage() {
     echo "Usage: $prog --<item>"
     echo "Usage: $prog -h | --help [print this msg]"
     echo "Items:"
     echo "- yay"
-    echo "- nixpkg"
     echo "- raylib"
     echo "- wasm"
 }
@@ -27,15 +28,6 @@ build_yay() {
         cd $HOME && rm -rf $HOME/yay
     else
         echo "yay already installed."
-    fi
-}
-
-build_nix_pkg() {
-    if ! command -v nix-env &>/dev/null; then
-        echo "Nix pkg installation"
-        sh <(curl --proto '=https' --tlsv1.2 -L https://nixos.org/nix/install) --daemon
-    else
-        echo "Emscripten already installed."
     fi
 }
 
@@ -99,14 +91,9 @@ while [[ $# -gt 0 ]]; do
     case $1 in
     --all)
         build_yay
-        build_nix_pkg
-        build_rust
+        build_mise
         build_raylib
         build_wasm
-        shift
-        ;;
-    --nixpkg)
-        build_nix_pkg
         shift
         ;;
     --yay)
