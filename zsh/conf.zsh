@@ -34,6 +34,3 @@ for plugin in ${plugins[@]}; do
 done
 
 test -f "/home/robb/.xmake/profile" && source "/home/robb/.xmake/profile"
-# >>> xmake >>>
-test -f "/home/robb/.xmake/profile" && source "/home/robb/.xmake/profile"
-# <<< xmake <<<

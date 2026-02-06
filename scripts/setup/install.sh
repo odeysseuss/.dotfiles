@@ -17,7 +17,7 @@ fi
 pkg_manager="yay -S --needed --noconfirm"
 remove_manager="yay -Rns --noconfirm"
 config_file="${DOTFILES:-$HOME/.dotfiles}/packages.toml"
-lock_file="${DOTFILES:-$HOME/.dotfiles}/packages-lock.yml"
+lock_file="$HOME/packages.lock"
 
 # Initialize lock file if it doesn't exist
 if [[ ! -f "$lock_file" ]]; then

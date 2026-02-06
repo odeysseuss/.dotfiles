@@ -8,4 +8,3 @@ $DOTFILES/zsh/profile.zsh=$HOME/.zprofile
 $DOTFILES/tmux/tmux.conf=$HOME/.tmux.conf
 $DOTFILES/misc/.gitconfig=$HOME/.gitconfig
 $DOTFILES/misc/.inputrc=$HOME/.inputrc
-$DOTFILES/misc/.clang-format=$PERSONAL/.clang-format
