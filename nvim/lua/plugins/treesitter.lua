@@ -1,5 +1,6 @@
 return {
     {
+        -- sudo apt install npm
         -- npm install tree-sitter-cli
         "nvim-treesitter/nvim-treesitter",
         lazy = false,
@@ -16,6 +17,7 @@ return {
                 "c",
                 "cpp",
                 "rust",
+                "vimdoc",
             })
         end,
     },

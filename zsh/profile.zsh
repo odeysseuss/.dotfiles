@@ -17,7 +17,7 @@ export DISPLAY=:0
 export EDITOR="nvim"
 export BAT_THEME="gruvbox-dark"
 export MANPAGER="nvim +Man!"
-export PAGER="bat -l sh"
+export PAGER="bat"
 
 if [ -z "$SSH_AUTH_SOCK" ]; then
     eval "$(ssh-agent -s)" >/dev/null

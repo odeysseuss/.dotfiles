@@ -6,20 +6,12 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 })
 
 vim.api.nvim_create_autocmd("FileType", {
-    desc = "Open help in vertical split",
-    pattern = "help",
+    desc = "Man and Help pages",
+    pattern = { "man", "help" },
     callback = function()
-        vim.opt_local.wrap = false
+        vim.opt_local.wrap = true
         vim.cmd("wincmd L")
-    end,
-})
-
-vim.api.nvim_create_autocmd("FileType", {
-    desc = "Open man in vertical split",
-    pattern = "man",
-    callback = function()
-        vim.opt_local.wrap = false
-        vim.cmd("wincmd L")
+        vim.keymap.set("n", "j", "gj");
     end,
 })
 
