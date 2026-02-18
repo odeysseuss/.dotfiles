@@ -1,0 +1,37 @@
+name: Build perf
+
+on: workflow_dispatch
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v5
+      - name: Update and upgrade
+        run: sudo apt update && sudo apt upgrade -y
+      - name: Install dependencies
+        run: |
+          sudo apt install build-essential make flex bison \
+          libdwarf-dev libelf-dev libnuma-dev libunwind-dev libnewt-dev \
+          libdwarf++0 libelf++0 libdw-dev libbfb0-dev systemtap-sdt-dev libssl-dev \
+          libperl-dev python-dev-is-python3 binutils-dev libiberty-dev libzstd-dev \
+          libcap-dev libbabeltrace-dev libtraceevent-dev pkg-config libdebuginfod-dev -y
+      - name: Clone src repo
+        run: git clone https://github.com/microsoft/WSL2-Linux-Kernel --depth 1
+      - name: Build perf
+        run: |
+          cd WSL2-Linux-Kernel/tools/perf
+          make -j$(nproc)
+      - name: Add perf to github releases
+        run: |
+          mkdir -p perf_release
+          cp WSL2-Linux-Kernel/tools/perf/perf perf_release/perf
+          perf_ver=$(./perf_release/perf --version | grep -oE '[0-9]+\.[0-9]+\.[0-9]+')
+          gh release delete "Perf" --yes 2>/dev/null || true
+          gh release create "Perf" --title "Perf v$perf_ver" ./perf_release/perf --notes-file .github/perf.md
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

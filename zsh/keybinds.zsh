@@ -31,11 +31,9 @@ alias xsc="xclip -selection clipboard"
 alias glog="git --no-pager log --oneline --decorate --graph --parents"
 alias v=fzf_nvim
 alias python="python3"
-alias getlib="pkg-config --cflags --libs $@"
 
 bindkey "^?" backward-delete-char
 bindkey "^Xe" edit-command-line
 bindkey "^g" fzf-history-widget
 bindkey -s "^r" "source $DOTFILES/zsh/conf.zsh\n"
 bindkey -s "^f" "$DOTFILES/scripts/workflow/tmux-sessionizer.sh\n"
-bindkey -s "^y" "yazi\n"
