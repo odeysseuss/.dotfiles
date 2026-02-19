@@ -30,7 +30,6 @@ alias la="ls --color -lAvh --group-directories-first"
 alias xsc="xclip -selection clipboard"
 alias glog="git --no-pager log --oneline --decorate --graph --parents"
 alias v=fzf_nvim
-alias python="python3"
 
 bindkey "^?" backward-delete-char
 bindkey "^Xe" edit-command-line

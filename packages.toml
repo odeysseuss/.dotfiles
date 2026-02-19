@@ -4,7 +4,7 @@ packages = [
   "man-db",
   "man-pages",
   "zip",
-  # "entr",
+  # "btop",
   # "rsync",
   # "docker",
   # "qemu-user",
@@ -18,13 +18,13 @@ packages = [
 #   "hyprpaper",
 #   "waybar",
 #   "rofi",
-#   "dolphin",
+#   "nautilus",
 #   "zen-browser-bin",
 #   "wezterm",
 # ]
 
 # [media]
-# packages = ["xclip", "ffmpeg", "zathura", "mpv"]
+# packages = ["xclip", "ffmpeg", "zathura", "celluloid"]
 
 [networking]
 packages = ["wget", "ufw", "websocat"]
@@ -33,15 +33,15 @@ packages = ["wget", "ufw", "websocat"]
 # packages = ["perf", "strace", "ltrace", "valgrind"]
 
 [cli]
-packages = ["bat", "fzf", "tree", "ripgrep", "go-yq"]
+packages = ["bat", "fzf", "tree", "ripgrep"]
 
 [dev]
 packages = ["zsh", "starship", "tmux", "git", "neovim"]
 
 [langs]
 packages = [
-  "nasm",
-  "lld",
+  # "nasm",
+  # "lld",
   "clang",
   "rust",
   "luajit",
@@ -54,15 +54,15 @@ packages = [
 
 [lang-tools]
 packages = [
+  # "luarocks",
   "llvm",
   "make",
-  "ninja",
-  "cmake",
-  "xmake",
+  # "ninja",
+  # "cmake",
+  # "xmake",
   # "vcpkg",
-  "pkgconf",
+  # "pkgconf",
   "npm",
-  # "luarocks",
   "tree-sitter-cli",
   # "hugo",
 ]
@@ -91,4 +91,8 @@ packages = [
 ]
 
 [debuggers]
-packages = ["gdb", "codelldb-bin"]
+packages = [
+  # "gdb",
+  "lldb",
+  "codelldb-bin"
+]

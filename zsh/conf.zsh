@@ -25,7 +25,6 @@ zstyle ':completion:*' menu select
 eval "$(starship init zsh)"
 eval "$(dircolors)"
 
-source <(fzf --zsh)
 source $HOME/.dotfiles/zsh/keybinds.zsh
 
 plugins=(fzf-tab zsh-autosuggestions zsh-z)

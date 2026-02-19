@@ -29,7 +29,7 @@ jobs:
           mkdir -p maple-nf
           cp -r maple-font/fonts/archive/* ./maple-nf
           install="./maple-nf/MapleMono-NF* ./maple-nf/MapleMono-OTF* ./maple-nf/MapleMono-Woff2*"
-          gh release delete "Fonts" --yes 2>/dev/null || true # no old releases
+          gh release delete "Fonts" --yes 2>/dev/null
           gh release create "Fonts" $install --title "Maple Mono NF" --notes-file .github/fonts.md
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

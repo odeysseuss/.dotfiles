@@ -9,7 +9,7 @@ configuration {
     window-format:              "{w} · {c} · {t}";
 }
 
-@import                          "./gruvbox.rasi"
+@import                          "./onedark.rasi"
 
 * {
     border-colour:               var(selected);
