@@ -5,6 +5,7 @@ set -euo pipefail
 prog=$(basename "$0")
 
 usage() {
+    echo "Creates a SSH key and updates ssh config file"
     echo "Usage: $prog [-a HOST_ALIAS] -m username -H hostname -f keyname [-N passphrase] [-C comment]"
     echo "Usage: $prog -h | --help [print this msg]"
 }

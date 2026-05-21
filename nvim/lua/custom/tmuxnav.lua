@@ -1,4 +1,4 @@
-function Navigate(direction)
+local navigate = function(direction)
     local current_win = vim.api.nvim_get_current_win()
 
     vim.cmd("wincmd " .. direction)
@@ -11,12 +11,7 @@ function Navigate(direction)
     end
 end
 
-vim.keymap.set("n", "<C-h>", '<cmd>lua Navigate("h")<cr>', { silent = true })
-vim.keymap.set("n", "<C-j>", '<cmd>lua Navigate("j")<cr>', { silent = true })
-vim.keymap.set("n", "<C-k>", '<cmd>lua Navigate("k")<cr>', { silent = true })
-vim.keymap.set("n", "<C-l>", '<cmd>lua Navigate("l")<cr>', { silent = true })
-
-vim.keymap.set("t", "<C-h>", '<C-\\><C-n><cmd>lua Navigate("h")<cr>', { silent = true })
-vim.keymap.set("t", "<C-j>", '<C-\\><C-n><cmd>lua Navigate("j")<cr>', { silent = true })
-vim.keymap.set("t", "<C-k>", '<C-\\><C-n><cmd>lua Navigate("k")<cr>', { silent = true })
-vim.keymap.set("t", "<C-l>", '<C-\\><C-n><cmd>lua Navigate("l")<cr>', { silent = true })
+vim.keymap.set("n", "<C-h>", function() navigate("h") end, { silent = true })
+vim.keymap.set("n", "<C-j>", function() navigate("j") end, { silent = true })
+vim.keymap.set("n", "<C-k>", function() navigate("k") end, { silent = true })
+vim.keymap.set("n", "<C-l>", function() navigate("l") end, { silent = true })

@@ -17,7 +17,7 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.numberwidth = 3
 
-vim.opt.signcolumn = "yes:2"
+vim.opt.signcolumn = "yes:1"
 vim.opt.colorcolumn = ""
 vim.opt.cursorline = true
 
@@ -56,12 +56,20 @@ vim.opt.isfname:append("@-@")
 vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 vim.opt.undofile = true
 
+-- folding
 vim.opt.foldenable = true
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 vim.opt.foldlevelstart = 99
 vim.opt.foldnestmax = 3
 vim.opt.foldminlines = 1
+
+-- completion
+-- vim.opt.completeopt = "fuzzy,menuone,noselect,popup"
+-- vim.opt.complete = ".,o"
+-- vim.opt.autocomplete = true
+-- vim.opt.pumheight = 7
+-- vim.opt.pumborder = "rounded"
 
 vim.cmd("set path+=**")
 vim.cmd("filetype plugin on")

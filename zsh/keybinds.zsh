@@ -17,14 +17,6 @@ fzf_nvim() {
     nvim "${files[@]}"
 }
 
-bstrace() {
-    stdbuf -o0 strace "$@" 2>&1 | bat --no-pager -l c
-}
-
-bltrace() {
-    stdbuf -o0 ltrace "$@" 2>&1 | bat --no-pager -l c
-}
-
 alias o='cd $(git rev-parse --show-toplevel)'
 alias la="ls --color -lAvh --group-directories-first"
 alias xsc="xclip -selection clipboard"
