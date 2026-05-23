@@ -1,12 +1,35 @@
 local dap = require("dap")
 dap.set_log_level("DEBUG")
 
--- adapter config
-dap.adapters.codelldb = {
+-- lldb-dap
+dap.adapters.lldb = {
     type = "executable",
-    command = "codelldb",
+    command = "/usr/bin/lldb-dap",
+    name = "lldb",
 }
 
+local lldb_defaults = {
+    type = "lldb",
+    cwd = "${workspaceFolder}",
+    stopOnEntry = false,
+    runInTerminal = true,
+    args = { "--local-lldbinit" },
+    program = function()
+        return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+    end,
+    initCommands = {
+        "process handle -p true -s false -n true SIGWINCH",
+        "settings set target.x86-disassembly-flavor intel",
+    },
+}
+
+-- codelldb
+dap.adapters.codelldb = {
+    type = "executable",
+    command = os.getenv("HOME") .. "/.local/bin/codelldb",
+}
+
+---@diagnostic disable-next-line: unused-local
 local codelldb_defaults = {
     type = "codelldb",
     cwd = "${workspaceFolder}",
@@ -22,12 +45,12 @@ local codelldb_defaults = {
 
 -- language specific config
 dap.configurations.c = {
-    vim.tbl_deep_extend("force", codelldb_defaults, {
+    vim.tbl_deep_extend("force", lldb_defaults, {
         name = "Launch",
         request = "launch",
     }),
 
-    vim.tbl_deep_extend("force", codelldb_defaults, {
+    vim.tbl_deep_extend("force", lldb_defaults, {
         name = "Attach",
         request = "attach",
         pid = function()
@@ -36,7 +59,7 @@ dap.configurations.c = {
         end,
     }),
 
-    vim.tbl_deep_extend("force", codelldb_defaults, {
+    vim.tbl_deep_extend("force", lldb_defaults, {
         name = "Remote",
         request = "attach",
         target = "localhost:1234",
@@ -49,27 +72,45 @@ dap.configurations.zig = dap.configurations.c
 
 -- dap keymaps
 vim.keymap.set("n", "<leader>dc", dap.continue, { desc = "Dap: Start or continue debugging" })
+vim.keymap.set("n", "<leader>dr", dap.restart, { desc = "Dap: Start or continue debugging" })
 vim.keymap.set("n", "<leader>db", dap.toggle_breakpoint, { desc = "Dap: Toggle breakpoint" })
 vim.keymap.set("n", "<leader>dB", function()
     dap.set_breakpoint(vim.fn.input("Breakpoint condition: "))
 end, { desc = "Dap: Add conditional breakpoint" })
 
-dap.listeners.after.event_initialized["dap_keymaps"] = function()
-    vim.keymap.set("n", "<Right>", dap.step_into, { desc = "Dap: Step into a function" })
-    vim.keymap.set("n", "<Left>", dap.step_out, { desc = "Dap: Step out of a function" })
-    vim.keymap.set("n", "<Up>", dap.restart_frame, { desc = "Dap: Restart a frame" })
-    vim.keymap.set("n", "<Down>", dap.step_over, { desc = "Dap: Step over a function" })
+local keys = {
+    ["<Right>"]   = dap.step_into,
+    ["<Left>"]    = dap.step_out,
+    ["<Up>"]      = dap.restart_frame,
+    ["<Down>"]    = dap.step_over,
+    ["<C-Down>"]  = dap.run_to_cursor,
+    ["<leader>w"] = "<cmd>DapViewWatch<CR>",
+    ["K"]         = "<cmd>DapViewHover<CR>",
+    ["B"]         = "<cmd>DapViewJump breakpoints<CR>",
+    ["C"]         = "<cmd>DapViewJump console<CR>",
+    ["D"]         = "<cmd>DapViewJump disassembly<CR>",
+    ["E"]         = "<cmd>DapViewJump exceptions<CR>",
+    ["R"]         = "<cmd>DapViewJump repl<CR>",
+    ["S"]         = "<cmd>DapViewJump scopes<CR>",
+    ["T"]         = "<cmd>DapViewJump threads<CR>",
+    ["W"]         = "<cmd>DapViewJump watches<CR>",
+}
+
+local set_dap_keys = function()
+    for key, cmd in pairs(keys) do
+        vim.keymap.set("n", key, cmd, { silent = true })
+    end
 end
 
 local reset_dap_keys = function()
     if not next(dap.sessions()) then
-        pcall(vim.keymap.del, "n", "<Right>")
-        pcall(vim.keymap.del, "n", "<Left>")
-        pcall(vim.keymap.del, "n", "<Up>")
-        pcall(vim.keymap.del, "n", "<Down>")
+        for lhs, _ in pairs(keys) do
+            pcall(vim.keymap.del, "n", lhs)
+        end
     end
 end
 
+dap.listeners.after.event_initialized["dap_keymaps"] = set_dap_keys
 dap.listeners.after.event_terminated["dap_keymaps"] = reset_dap_keys
 dap.listeners.after.event_exited["dap_keymaps"] = reset_dap_keys
 dap.listeners.after.disconnect["dap_keymaps"] = reset_dap_keys
@@ -86,17 +127,17 @@ require("dap-view").setup({
             "breakpoints",
             "exceptions",
             "disassembly",
-            -- "sessions",
+            "console",
         },
     },
 
     windows = {
         size = 0.40,
         position = "right",
-        terminal = {
-            size = 0.30,
-            position = "below",
-        },
+        -- terminal = {
+        --     size = 0.30,
+        --     position = "below",
+        -- },
     },
 
     virtual_text = {
@@ -106,18 +147,7 @@ require("dap-view").setup({
     auto_toggle = true,
 })
 
-vim.keymap.set("n", "<leader>dr", "<cmd>DapViewJump repl<CR>",
-    { desc = "DapView: Jump to repl window" })
-vim.keymap.set("n", "<leader>dt", "<cmd>DapViewJump terminal<CR>",
-    { desc = "DapView: Jump to terminal window" })
-vim.keymap.set("n", "<leader>dw", "<cmd>DapViewJump watches<CR>",
-    { desc = "DapView: Jumo to watches window" })
-vim.keymap.set("n", "<leader>w", "<cmd>DapViewWatch<CR>",
-    { desc = "DapView: Add expr under cursor to dap watches" })
-vim.keymap.set("n", "<leader>h", "<cmd>DapViewHover<CR>",
-    { desc = "DapView: Hover over the variable under cursor" })
-
--- da-disasm config
+-- dap-disasm config
 require("dap-disasm").setup({
     dapview_register = true,
     repl_commands = true,

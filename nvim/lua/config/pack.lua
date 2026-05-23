@@ -3,6 +3,7 @@ local gh = "https://github.com/"
 vim.pack.add({
     { src = gh .. "sainnhe/gruvbox-material",                    name = "gruvbox" },
     { src = gh .. "nvim-mini/mini.icons",                        name = "icons" },
+    { src = gh .. "nvim-lualine/lualine.nvim",                   name = "lualine" },
     { src = gh .. "stevearc/oil.nvim",                           name = "oil" },
     { src = gh .. "ibhagwan/fzf-lua",                            name = "fzflua" },
     { src = gh .. "mg979/vim-visual-multi",                      name = "multicursor" },
@@ -52,11 +53,12 @@ vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle, { desc = "Undotree togg
 
 -- plugin configs
 require("plugins.cmp")
-require("plugins.colors")
 require("plugins.dap")
 require("plugins.flash")
 require("plugins.fzf")
+require("plugins.gruvbox")
 require("plugins.harpoon")
+require("plugins.lualine")
 require("plugins.luasnip")
 require("plugins.oil")
 require("plugins.treesitter")

@@ -3,7 +3,7 @@ require("config.remap")
 require("config.pack")
 require("config.lsp")
 require("custom.autocmds")
-require("custom.statusline")
+require("custom.colors")
 require("custom.tmuxnav")
 
 vim.cmd("colorscheme gruvbox-material")
