@@ -10,6 +10,7 @@ vim.pack.add({
     { src = gh .. "folke/flash.nvim",                            name = "flash" },
     { src = gh .. "j-hui/fidget.nvim",                           name = "fidget" },
     { src = gh .. "mbbill/undotree",                             name = "undotree" },
+    { src = gh .. "OXY2DEV/markview.nvim",                       name = "markview" },
     -- treesitter
     { src = gh .. "nvim-treesitter/nvim-treesitter",             name = "treesitter" },
     { src = gh .. "nvim-treesitter/nvim-treesitter-textobjects", name = "ts-textobjects" },
@@ -62,3 +63,4 @@ require("plugins.lualine")
 require("plugins.luasnip")
 require("plugins.oil")
 require("plugins.treesitter")
+require("plugins.markview")

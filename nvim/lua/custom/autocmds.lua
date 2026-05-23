@@ -38,12 +38,29 @@ vim.api.nvim_create_autocmd("FileType", {
     end,
 })
 
+local langs = {
+    ["c"] = "make -j$(nproc)",
+    ["cpp"] = "make -j$(nproc)",
+    ["rust"] = "cargo build",
+}
+
+local dev_group = vim.api.nvim_create_augroup("dev", { clear = true })
+
+for ft, cmd in pairs(langs) do
+    vim.api.nvim_create_autocmd("FileType", {
+        desc = "Define makeprg for languages",
+        group = dev_group,
+        pattern = ft,
+        command = "setlocal makeprg=" .. vim.fn.escape(cmd, " ")
+    })
+end
+
 vim.api.nvim_create_autocmd("FileType", {
     desc = "Treesitter highlight, indent",
     group = vim.api.nvim_create_augroup("tree-sitter", { clear = true }),
     callback = function()
-        local hasStarted = pcall(vim.treesitter.start)
-        if hasStarted then
+        local has_started = pcall(vim.treesitter.start)
+        if has_started then
             vim.opt_local.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
         end
     end,

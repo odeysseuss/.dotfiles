@@ -4,6 +4,7 @@ local treesitter = require("nvim-treesitter")
 treesitter.setup({
     install_dir = vim.fn.stdpath("data") .. "/site",
 })
+
 treesitter.install({
     "lua",
     "bash",
@@ -11,7 +12,11 @@ treesitter.install({
     "c",
     "cpp",
     "rust",
+    "typst",
     "vimdoc",
+    "markdown",
+    "markdown-inline",
+    "yaml",
 })
 
 -- treesitter textobjects

@@ -96,13 +96,13 @@ local keys = {
     ["W"]         = "<cmd>DapViewJump watches<CR>",
 }
 
-local set_dap_keys = function()
+local setDapKeys = function()
     for key, cmd in pairs(keys) do
         vim.keymap.set("n", key, cmd, { silent = true })
     end
 end
 
-local reset_dap_keys = function()
+local resetDapKeys = function()
     if not next(dap.sessions()) then
         for lhs, _ in pairs(keys) do
             pcall(vim.keymap.del, "n", lhs)
@@ -110,10 +110,10 @@ local reset_dap_keys = function()
     end
 end
 
-dap.listeners.after.event_initialized["dap_keymaps"] = set_dap_keys
-dap.listeners.after.event_terminated["dap_keymaps"] = reset_dap_keys
-dap.listeners.after.event_exited["dap_keymaps"] = reset_dap_keys
-dap.listeners.after.disconnect["dap_keymaps"] = reset_dap_keys
+dap.listeners.after.event_initialized["dap_keymaps"] = setDapKeys
+dap.listeners.after.event_terminated["dap_keymaps"] = resetDapKeys
+dap.listeners.after.event_exited["dap_keymaps"] = resetDapKeys
+dap.listeners.after.disconnect["dap_keymaps"] = resetDapKeys
 
 -- dap-view config
 require("dap-view").setup({
