@@ -4,17 +4,12 @@ fzf_nvim() {
         return
     fi
 
-    local selected=$(rg --files --hidden --glob "!**/.git/*" | fzf --multi --preview="bat --color=always {} || cat {}" --preview-window "right:65%")
+    local selected=$(find . -type f -not -path "**/.git/*" | fzf --preview="bat --color=always {} || cat {}" --preview-window "right:65%")
     if [[ -z "$selected" ]]; then
         return
     fi
 
-    local files=()
-    while IFS= read -r line; do
-        files+=("$line")
-    done <<<"$selected"
-
-    nvim "${files[@]}"
+    nvim "$selected"
 }
 
 alias o='cd $(git rev-parse --show-toplevel)'

@@ -1,3 +1,17 @@
+local colors = require("custom.colors")
+
+vim.api.nvim_create_autocmd("ColorScheme", {
+    group = vim.api.nvim_create_augroup("ThemeCustomOverrides", { clear = true }),
+    callback = function()
+        colors.updatePallete()
+        colors.colorMyPencils()
+
+        package.loaded["lualine"] = nil
+        local lualine = require("lualine")
+        lualine.setup(lualine.get_config())
+    end,
+})
+
 vim.api.nvim_create_autocmd("TextYankPost", {
     desc = "Highlight when yanking text",
     group = vim.api.nvim_create_augroup("editing", { clear = true }),

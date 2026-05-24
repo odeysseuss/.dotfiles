@@ -1,16 +1,46 @@
-local hl = {
-    dark = "#1d2021",
-    light = "#d5c4a1",
-    black = "#111111",
-    blue = "#80aa9e",
-    green = "#b0b846",
-    red = "#f2594b",
-    yellow = "#e9b143",
-    pink = "#d3869b",
-    grey = "#a89984",
+local M = {}
+
+M.palettes = {
+    gruvbox = {
+        dark = "#1d2021",
+        light = "#d5c4a1",
+        black = "#111111",
+        red = "#f2594b",
+        green = "#b0b846",
+        blue = "#80aa9e",
+        yellow = "#e9b143",
+        purple = "#d3869b",
+        grey = "#a89984",
+    },
+    kanagawa = {
+        dark = "#1d2021",
+        light = "#c5c9c5",
+        black = "#0D0C0C",
+        red = "#C4746E",
+        green = "#8A9A7B",
+        blue = "#8BA4B0",
+        yellow = "#c4b28a",
+        purple = "#A292A3",
+        grey = "#9e9b93",
+    }
 }
 
-function ColorMyPencils()
+M.active = {}
+
+function M.updatePallete()
+    local current_scheme = vim.g.colors_name or "gruvbox-material"
+    local palette = M.palettes[current_scheme] or M.palettes.gruvbox
+
+    for k, v in pairs(palette) do
+        M.active[k] = v
+    end
+end
+
+M.updatePallete()
+
+function M.colorMyPencils()
+    local hl = M.active
+
     vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
     vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
     vim.api.nvim_set_hl(0, "FloatBorder", { bg = "none", fg = hl.dark })
@@ -27,9 +57,12 @@ function ColorMyPencils()
     vim.api.nvim_set_hl(0, "BlinkCmpMenuBorder", { bg = hl.black, fg = hl.dark })
     vim.api.nvim_set_hl(0, "BlinkCmpMenuSelection", { bg = hl.dark })
     vim.api.nvim_set_hl(0, "BlinkCmpDocBorder", { bg = hl.black, fg = hl.dark })
-    -- Dap
-    vim.api.nvim_set_hl(0, "NvimDapViewTab", { bg = hl.bg })
-    vim.api.nvim_set_hl(0, "NvimDapViewTabSelected", { bg = hl.bg, fg = hl.fg, bold = true })
+    -- dap
+    vim.api.nvim_set_hl(0, "NvimDapViewTab", { bg = hl.dark })
+    vim.api.nvim_set_hl(0, "NvimDapViewTabSelected", { bg = hl.dark, fg = hl.light, bold = true })
+    -- fzf-lua
+    vim.api.nvim_set_hl(0, "FzfLuaBorder", { bg = hl.black, fg = hl.dark })
+    vim.api.nvim_set_hl(0, "FzfLuaPreviewBorder", { bg = hl.black, fg = hl.dark })
 end
 
-return hl
+return M

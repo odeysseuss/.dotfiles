@@ -23,12 +23,12 @@ link_file() {
     if [[ -e "$dst" ]]; then
         local currentSrc=$(readlink "$dst" 2>/dev/null || true)
 
-        if [ "$currentSrc" = "$src" ]; then
+        if [[ "$currentSrc" = "$src" ]]; then
             echo "Skip: $dst (already linked)"
             return
         fi
 
-        if [ "$overwrite_all" = "true" ]; then
+        if [[ "$overwrite_all" = "true" ]]; then
             rm -rf "$dst"
             echo "Remove: $dst (overwrite all)"
         else

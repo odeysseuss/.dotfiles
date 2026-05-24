@@ -15,23 +15,23 @@ config.window_padding = {
 
 config.default_cursor_style = "SteadyBlock"
 config.force_reverse_video_cursor = true
-config.colors = require("cyberdream")
-config.window_background_gradient = {
-    colors = {
-        "#580a8f",
-        "#1b1871",
-        "#050507",
-    },
-    orientation = {
-        Linear = { angle = 111.4 },
-    },
-}
+config.colors = require("kanagawa")
+-- config.window_background_gradient = {
+--     colors = {
+--         "#580a8f",
+--         "#1b1871",
+--         "#050507",
+--     },
+--     orientation = {
+--         Linear = { angle = 111.4 },
+--     },
+-- }
 
 config.line_height = 1.2
 config.font_size = 16
 config.font = wezterm.font({
     family = "Maple Mono NF",
-    weight = "SemiBold",
+    weight = "Regular",
     harfbuzz_features = {
         "cv03",
         "cv09",
