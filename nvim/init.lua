@@ -4,4 +4,6 @@ require("config.pack")
 require("config.lsp")
 require("custom.autocmds")
 require("custom.colors")
-require("custom.tmuxnav")
+require("custom.tmux")
+
+vim.cmd("colorscheme gruvbox-material")

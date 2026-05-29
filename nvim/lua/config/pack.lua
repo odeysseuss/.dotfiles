@@ -1,5 +1,9 @@
 local gh = "https://github.com/"
 
+-- internal plugins
+vim.cmd("packadd cfilter")
+
+-- external plugins
 vim.pack.add({
     -- treesitter
     { src = gh .. "nvim-treesitter/nvim-treesitter",             name = "treesitter" },
@@ -33,16 +37,16 @@ vim.pack.add({
         name = "blink",
         version = vim.version.range("1.*")
     },
-    { src = gh .. "rafamadriz/friendly-snippets", name = "friendly-snippets" },
-    { src = gh .. "L3MON4D3/LuaSnip",             name = "luasnip" },
+    { src = gh .. "rafamadriz/friendly-snippets",              name = "friendly-snippets" },
+    { src = gh .. "L3MON4D3/LuaSnip",                          name = "luasnip" },
     -- dap
-    { src = gh .. "mfussenegger/nvim-dap",        name = "dap" },
-    { src = gh .. "igorlfs/nvim-dap-view",        name = "dap-view" },
-    { src = gh .. "Jorenar/nvim-dap-disasm",      name = "dap-disasm" },
+    { src = gh .. "mfussenegger/nvim-dap",                     name = "dap" },
+    { src = gh .. "igorlfs/nvim-dap-view",                     name = "dap-view" },
+    { src = gh .. "Jorenar/nvim-dap-disasm",                   name = "dap-disasm" },
     --- previewers
-    { src = gh .. "mbbill/undotree",              name = "undotree" },
-    { src = gh .. "j-hui/fidget.nvim",            name = "fidget" },
-    { src = gh .. "OXY2DEV/markview.nvim",        name = "markview" },
+    { src = gh .. "mbbill/undotree",                           name = "undotree" },
+    { src = gh .. "j-hui/fidget.nvim",                         name = "fidget" },
+    { src = gh .. "MeanderingProgrammer/render-markdown.nvim", name = "markdown" },
 })
 
 -- mini.icons
@@ -54,10 +58,6 @@ vim.keymap.set("n", "<leader>gh", "<cmd>Gitsigns preview_hunk<CR>",
     { desc = "Preview Gitsigns inline diff" })
 -- undotree
 vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle, { desc = "Undotree toggle" })
--- markview
-require("markview").setup({
-    preview = { icon_provider = "mini" }
-})
 
 require("plugins.cmp")
 require("plugins.dap")
@@ -69,3 +69,4 @@ require("plugins.lualine")
 require("plugins.luasnip")
 require("plugins.oil")
 require("plugins.treesitter")
+require("pligins.markdown")

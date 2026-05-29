@@ -27,7 +27,7 @@ eval "$(dircolors)"
 
 source $HOME/.dotfiles/zsh/keybinds.zsh
 
-plugins=(fzf-tab zsh-autosuggestions zsh-z)
+plugins=(fzf-tab zsh-autosuggestions)
 for plugin in ${plugins[@]}; do
     source "$ZSH/plugins/$plugin/$plugin.plugin.zsh"
 done

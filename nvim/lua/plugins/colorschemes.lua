@@ -7,16 +7,22 @@ vim.g.gruvbox_material_float_style = "bright"
 vim.g.gruvbox_material_statusline_style = "material"
 vim.g.gruvbox_material_better_performance = 1
 vim.g.gruvbox_material_disable_italic_comment = 1
-vim.g.gruvbox_material_enable_italic = 1
+vim.g.gruvbox_material_enable_italic = 0
 
 -- kanagawa
-require("kanagawa").setup({
+require('kanagawa').setup({
+    compile = true,
     commentStyle = { italic = false },
-    transparent = true,
-    dimInactive = true,
+    functionStyle = {},
+    keywordStyle = { italic = false },
+    statementStyle = { bold = true },
+    typeStyle = {},
+    transparent = false,
+    dimInactive = false,
+    terminalColors = true,
     theme = "dragon",
     background = {
         dark = "dragon",
-        light = "wave",
+        light = "wave"
     },
 })

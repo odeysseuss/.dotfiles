@@ -79,28 +79,3 @@ vim.api.nvim_create_autocmd("FileType", {
         end
     end,
 })
-
--- vim.api.nvim_create_autocmd("BufRead", {
---     desc = "Auto install parsers",
---     group = "tree-sitter",
---     callback = function(event)
---         local bufnr = event.buf
---         local filetype = vim.api.nvim_get_option_value("filetype", { buf = bufnr })
---
---         if filetype == "" then
---             return
---         end
---
---         local parser_name = vim.treesitter.language.get_lang(filetype)
---         if not parser_name then
---             return
---         end
---
---         local parser_configs = require("nvim-treesitter.parsers")
---         if not parser_configs[parser_name] then
---             return -- parser not available, skip silently
---         end
---
---         require("nvim-treesitter").install({ parser_name })
---     end,
--- })
