@@ -8,13 +8,13 @@ local s = ls.snippet
 local t = ls.text_node
 local i = ls.insert_node
 
-vim.keymap.set({ "i", "s" }, "<C-j>", function()
+vim.keymap.set({ "i", "s" }, "<Tab>", function()
     if ls.expand_or_jumpable() then
         ls.expand_or_jump()
     end
 end, { silent = true })
 
-vim.keymap.set({ "i", "s" }, "<C-k>", function()
+vim.keymap.set({ "i", "s" }, "<S-Tab>", function()
     if ls.jumpable(-1) then
         ls.jump(-1)
     end

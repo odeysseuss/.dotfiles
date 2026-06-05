@@ -15,9 +15,3 @@
 
 [rebase]
     autoStash = true
-
-[diff]
-    tool = nvimdiff
-
-[merge]
-    tool = nvimdiff

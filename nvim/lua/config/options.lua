@@ -1,3 +1,5 @@
+vim.loader.enable()
+
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
@@ -8,9 +10,9 @@ vim.g.netrw_winsize = 25
 
 vim.opt.compatible = false
 vim.opt.history = 50
-vim.opt.timeoutlen = 400
+vim.opt.timeoutlen = 300
 vim.opt.updatetime = 50
-vim.opt.clipboard = "unnamedplus" -- xclip
+vim.opt.clipboard = "unnamedplus"
 vim.opt.showmode = false
 
 vim.opt.number = true

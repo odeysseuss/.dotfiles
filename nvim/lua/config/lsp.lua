@@ -32,6 +32,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
     callback = function(args)
         local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
 
+        vim.keymap.set("n", "gd", vim.lsp.buf.definition)
+        vim.keymap.set("n", "ge", vim.diagnostic.open_float)
+
         vim.api.nvim_create_autocmd("BufWritePre", {
             buffer = args.buf,
             callback = function()
@@ -48,12 +51,17 @@ vim.api.nvim_create_autocmd("LspAttach", {
         if client:supports_method("textDocument/inlayHint") then
             vim.lsp.inlay_hint.enable(true)
         end
+
+        -- if client:supports_method("textDocument/completion") then
+        --     vim.lsp.completion.enable(true, client.id, args.buf, { autotrigger = true })
+        -- end
     end,
 })
 
 -- diagnostic
 vim.diagnostic.config({
     virtual_text = true,
+    virtual_lines = false,
     underline = true,
     update_in_insert = false,
     severity_sort = true,
@@ -64,6 +72,15 @@ vim.diagnostic.config({
         source = true,
         header = "",
         prefix = "",
+    },
+    jump = {
+        on_jump = function(_, bufnr)
+            vim.diagnostic.open_float({
+                bufnr = bufnr,
+                scope = "cursor",
+                focus = false,
+            })
+        end,
     },
     signs = {
         text = {
@@ -77,4 +94,6 @@ vim.diagnostic.config({
             [vim.diagnostic.severity.WARN] = "WarningMsg",
         },
     },
+
+    vim.keymap.set("n", "<leader>q", vim.diagnostic.setqflist)
 })

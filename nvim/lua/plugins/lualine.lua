@@ -1,6 +1,6 @@
 local colors = require("custom.colors")
 
-local function generateLualineTheme()
+local lualineTheme = function()
     local hl = colors.active
     return {
         normal = {
@@ -31,19 +31,42 @@ end
 
 require("lualine").setup({
     options = {
-        theme = generateLualineTheme,
+        theme = lualineTheme,
         always_show_tabline = false,
+        globalstatus = true,
+        component_separators = "",
+        section_separators = "",
     },
     sections = {
         lualine_a = { "mode" },
         lualine_b = { "branch" },
-        lualine_c = { "filename" },
-        lualine_x = { "diagnostics" },
-        lualine_y = { "filetype", "progress" },
-        lualine_z = { "location" }
+        lualine_c = {
+            -- {
+            --     "filetype",
+            --     icon_only = true,
+            --     padding = { left = 1, right = 0 },
+            -- },
+            "filename",
+        },
+        lualine_x = { {
+            "diagnostics",
+            symbols = {
+                error = " ",
+                warn = " ",
+                info = " ",
+                hint = " ",
+            },
+        } },
+        lualine_y = { {
+            "lsp_status",
+            symbols = {
+                done = "",
+            },
+        } },
+        lualine_z = { "progress", "location" }
     },
     tabline = {
         lualine_c = { "filename" },
-        lualine_z = { "tabs" }
+        lualine_z = { "tabs" },
     },
 })

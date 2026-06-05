@@ -65,6 +65,19 @@ install_excalifont() {
     fi
 }
 
+install_firamath() {
+    local font="$FONT_PATH/firamath/firamath.otf"
+
+    mkdir -p "$(dirname $font)"
+
+    if [[ ! -f $font ]]; then
+        echo "=== FirMath Font Installation ==="
+        curl -fL "https://github.com/firamath/firamath/releases/download/v0.3.4/FiraMath-Regular.otf" -o $font
+    else
+        echo "FirMath already exists"
+    fi
+}
+
 # === install packages ===
 while [[ $# -gt 0 ]]; do
     case $1 in
@@ -72,6 +85,7 @@ while [[ $# -gt 0 ]]; do
         install_maple
         install_jetbrains
         install_excalifont
+        install_firamath
         shift
         ;;
     --maple)
@@ -84,6 +98,10 @@ while [[ $# -gt 0 ]]; do
         ;;
     --excalifont)
         install_excalifont
+        shift
+        ;;
+    --firamath)
+        install_firamath
         shift
         ;;
     *)

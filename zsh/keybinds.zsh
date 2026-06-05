@@ -34,11 +34,12 @@ fzf_completion() {
 
 zle -N fzf_completion
 
-alias o='cd $(git rev-parse --show-toplevel)'
 alias la="ls --color -lAvh --group-directories-first"
 alias xsc="xclip -selection clipboard"
+alias o='cd $(git rev-parse --show-toplevel)'
 alias glog="git --no-pager log --oneline --decorate --graph"
 alias v=fzf_nvim
+alias gitopen="$DOTFILES/scripts/workflow/gitopen.sh\n"
 
 bindkey "^?" backward-delete-char
 bindkey "^Xe" edit-command-line

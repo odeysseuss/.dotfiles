@@ -15,12 +15,12 @@ M.palettes = {
     kanagawa = {
         dark = "#1d2021",
         light = "#c5c9c5",
-        black = "#0D0C0C",
-        red = "#C4746E",
-        green = "#8A9A7B",
-        blue = "#8BA4B0",
+        black = "#0d0c0c",
+        red = "#c4746e",
+        green = "#8a9a7b",
+        blue = "#8ba4b0",
         yellow = "#c4b28a",
-        purple = "#A292A3",
+        purple = "#a292a3",
         grey = "#9e9b93",
     }
 }

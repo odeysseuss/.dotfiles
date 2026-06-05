@@ -27,25 +27,12 @@ build_codelldb() {
     fi
 }
 
-build_emsdk() {
-    if ! command -v emcc &>/dev/null; then
-        echo "=== emscripten installation ==="
-        git clone "https://github.com/emscripten-core/emsdk.git" "$HOME/emsdk"
-        cd "$HOME/emsdk"
-        ./emsdk install latest
-        ./emsdk activate latest --permanent
-    else
-        echo "emsdk already installed"
-    fi
-}
-
 # === build packages ===
 while [[ $# -gt 0 ]]; do
     case $1 in
     --all)
         build_yay
         build_codelldb
-        build_emsdk
         shift
         ;;
     --yay)
@@ -54,10 +41,6 @@ while [[ $# -gt 0 ]]; do
         ;;
     --codelldb)
         build_codelldb
-        shift
-        ;;
-    --emsdk)
-        build_emsdk
         shift
         ;;
     *)

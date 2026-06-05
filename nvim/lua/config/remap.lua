@@ -24,16 +24,3 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 vim.keymap.set({ "n", "t" }, "<C-b>", "<cmd>b#<CR>")
-
--- lsp & diagnostic
-vim.keymap.set("n", "gd", vim.lsp.buf.definition)
-vim.keymap.set("n", "gD", vim.lsp.buf.declaration)
-vim.keymap.set("n", "ge", vim.diagnostic.open_float)
-vim.keymap.set("n", "<leader>sd", vim.diagnostic.setqflist)
-vim.keymap.set("n", "<leader>sD", vim.diagnostic.setloclist)
-
--- quicfix list
-vim.keymap.set("n", "gj", "<cmd>cnext<CR>")
-vim.keymap.set("n", "gk", "<cmd>cprev<CR>")
-vim.keymap.set("n", "<leader>b", "<cmd>make<CR><cmd>copen<CR>")
-vim.keymap.set("n", "<leader>q", "<cmd>cclose<CR>")

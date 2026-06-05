@@ -6,4 +6,4 @@ require("custom.autocmds")
 require("custom.colors")
 require("custom.tmux")
 
-vim.cmd("colorscheme gruvbox-material")
+vim.cmd("colorscheme kanagawa")
