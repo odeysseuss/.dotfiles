@@ -1,6 +1,11 @@
 ### Source Repo
 [*subframe7536/maple-font*](https://github.com/subframe7536/maple-font)
 
+### Formats
+- Nerd Font Variable (TTF)
+- OTF
+- WOFF2
+
 ### Enabled Features:
 - cv03
 - cv09

@@ -10,8 +10,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v5
-      - uses: actions/setup-python@v6
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
         with:
           python-version: "3.13"
       - name: Clone src repository
@@ -23,13 +23,14 @@ jobs:
       - name: Build Maple font
         run: |
           cd maple-font
-          ./build.py --feat cv03,cv09,cv10,cv42,cv43,cv66,ss07,ss08,ss09,ss10,ss11,zero --nf --liga --remove-tag-liga --infinite-arrow --archive
+          chmod +x build.py
+          ./build.py --format otf,woff2 --feat cv03,cv09,cv10,cv42,cv43,cv66,ss07,ss08,ss09,ss10,ss11,zero --nf --nf-variable --liga --apply-fea-file --remove-tag-liga --infinite-arrow --archive
       - name: Add fonts to release
-        run: |
-          mkdir -p maple-nf
-          cp -r maple-font/fonts/archive/* ./maple-nf
-          install="./maple-nf/MapleMono-NF* ./maple-nf/MapleMono-OTF* ./maple-nf/MapleMono-Woff2*"
-          gh release delete "Fonts" --yes 2>/dev/null
-          gh release create "Fonts" $install --title "Maple Mono NF" --notes-file .github/fonts.md
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          cd maple-font/fonts/archive
+          install="MapleMono-NF-VF.zip MapleMono-Woff2.zip MapleMono-OTF.zip"
+          gh release delete "Fonts" --repo ${{ github.repository }} --yes 2>/dev/null || true
+          gh release create "Fonts" $install --repo ${{ github.repository }} --title "Maple Mono NF"
