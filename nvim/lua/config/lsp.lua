@@ -32,8 +32,22 @@ vim.api.nvim_create_autocmd("LspAttach", {
     callback = function(args)
         local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
 
+        -- `]d` - next diagnostic
+        -- `[d` - prev diagnostic
+        -- `]D` - last diagnostic
+        -- `[D` - first diagnostic
+        -- `g0` - document_symbol
+        -- `gra` - code_actions
+        -- `gri` - implementation
+        -- `grn` - rename
+        -- `grr` - references
+        -- `grt` - type_definitions
+        -- `grx` - codelens.run
+        -- `ctrl-s` (i) - signature_help
+        -- `K` - hover
         vim.keymap.set("n", "gd", vim.lsp.buf.definition)
         vim.keymap.set("n", "ge", vim.diagnostic.open_float)
+        vim.keymap.set("n", "<leader>q", vim.diagnostic.setqflist)
 
         vim.api.nvim_create_autocmd("BufWritePre", {
             buffer = args.buf,
@@ -48,13 +62,17 @@ vim.api.nvim_create_autocmd("LspAttach", {
             vim.wo.foldexpr = "v:lua.vim.lsp.foldexpr()"
         end
 
+        -- if client:supports_method("textDocument/completion") then
+        --     vim.lsp.completion.enable(true, client.id, args.buf, { autotrigger = true })
+        -- end
+
         if client:supports_method("textDocument/inlayHint") then
             vim.lsp.inlay_hint.enable(true)
         end
 
-        -- if client:supports_method("textDocument/completion") then
-        --     vim.lsp.completion.enable(true, client.id, args.buf, { autotrigger = true })
-        -- end
+        if client:supports_method("textDocument/codeLens") then
+            vim.lsp.codelens.enable(true)
+        end
     end,
 })
 
@@ -94,6 +112,4 @@ vim.diagnostic.config({
             [vim.diagnostic.severity.WARN] = "WarningMsg",
         },
     },
-
-    vim.keymap.set("n", "<leader>q", vim.diagnostic.setqflist)
 })

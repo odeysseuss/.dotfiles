@@ -16,7 +16,6 @@ vim.pack.add({
     { src = gh "sainnhe/gruvbox-material",                    name = "gruvbox" },
     { src = gh "rebelot/kanagawa.nvim",                       name = "kanagawa" },
     { src = gh "nvim-mini/mini.icons",                        name = "icons" },
-    { src = gh "nvim-lualine/lualine.nvim",                   name = "lualine" },
     -- file manager and fuzzy finder
     { src = gh "stevearc/oil.nvim",                           name = "oil" },
     { src = gh "ibhagwan/fzf-lua",                            name = "fzflua" },
@@ -28,7 +27,6 @@ vim.pack.add({
     },
     { src = gh "nvim-lua/plenary.nvim",   name = "plenary" },
     -- enhaced motions
-    { src = gh "mg979/vim-visual-multi",  name = "multicursor" },
     { src = gh "folke/flash.nvim",        name = "flash" },
     -- git
     { src = gh "NeogitOrg/neogit",        name = "neogit" },
@@ -40,14 +38,12 @@ vim.pack.add({
         name = "blink",
         version = vim.version.range("1.*")
     },
-    { src = gh "rafamadriz/friendly-snippets",              name = "friendly-snippets" },
-    { src = gh "L3MON4D3/LuaSnip",                          name = "luasnip" },
+    { src = gh "rafamadriz/friendly-snippets", name = "friendly-snippets" },
+    { src = gh "L3MON4D3/LuaSnip",             name = "luasnip" },
     -- dap
-    { src = gh "mfussenegger/nvim-dap",                     name = "dap" },
-    { src = gh "igorlfs/nvim-dap-view",                     name = "dap-view" },
-    { src = gh "Jorenar/nvim-dap-disasm",                   name = "dap-disasm" },
-    --- previewers
-    { src = gh "MeanderingProgrammer/render-markdown.nvim", name = "markdown" },
+    { src = gh "mfussenegger/nvim-dap",        name = "dap" },
+    { src = gh "igorlfs/nvim-dap-view",        name = "dap-view" },
+    { src = gh "Jorenar/nvim-dap-disasm",      name = "dap-disasm" },
 })
 
 -- mini.icons
@@ -66,8 +62,6 @@ require("plugins.dap")
 require("plugins.flash")
 require("plugins.fzf")
 require("plugins.harpoon")
-require("plugins.lualine")
 require("plugins.luasnip")
-require("plugins.markdown")
 require("plugins.oil")
 require("plugins.treesitter")

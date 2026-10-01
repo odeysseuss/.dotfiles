@@ -41,3 +41,6 @@ vim.keymap.set("n", "<leader>w", function() fzf.grep_cword() end,
     { desc = "FzfLua: Grep word under cursor" })
 vim.keymap.set("n", "<leader>W", function() fzf.grep_cWORD() end,
     { desc = "FzfLua: Grep WORD under cursor" })
+
+vim.keymap.set("n", "gra", function() fzf.lsp_code_actions() end,
+    { silent = true, desc = "FzfLua: Lsp code actiond" })

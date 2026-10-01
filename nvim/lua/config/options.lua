@@ -50,7 +50,7 @@ vim.opt.swapfile = false
 vim.opt.backup = false
 
 vim.opt.mouse = "a"
-vim.opt.guicursor = ""
+-- vim.opt.guicursor = ""
 vim.opt.termguicolors = true
 vim.opt.smoothscroll = true
 

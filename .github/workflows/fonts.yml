@@ -24,7 +24,9 @@ jobs:
         run: |
           cd maple-font
           chmod +x build.py
-          ./build.py --format otf,woff2 --feat cv03,cv09,cv10,cv42,cv43,cv66,ss07,ss08,ss09,ss10,ss11,zero --nf --nf-variable --liga --apply-fea-file --remove-tag-liga --infinite-arrow --archive
+          ./build.py --format otf,woff2 \
+              --feat cv03,cv09,cv10,cv42,cv43,cv65,cv66,ss07,ss08,ss09,ss10,ss11,zero \
+              --nf --nf-variable --liga --remove-tag-liga --infinite-arrow --archive
       - name: Add fonts to release
         env:
           GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}

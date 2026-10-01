@@ -3,7 +3,6 @@ vim.g.maplocalleader = " "
 
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 vim.keymap.set("n", "=ap", "ma=ap'a")
-vim.keymap.set("n", "Q", "<nop>")
 vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>")
 
 vim.keymap.set({ "n", "v" }, "<leader><leader>", "<cmd>w<CR>")
@@ -24,3 +23,8 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 vim.keymap.set({ "n", "t" }, "<C-b>", "<cmd>b#<CR>")
+
+vim.keymap.set("n", "<Esc>", function()
+    local mc_ns = vim.api.nvim_create_namespace("nvim.multicursor")
+    vim.api.nvim_buf_clear_namespace(0, mc_ns, 0, -1)
+end)
